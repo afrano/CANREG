@@ -5,6 +5,7 @@ class User_model extends ci_model {
     public $nama_tabel = 'tb_user';
     public $data_pasien = 'data_pasien';
     public $data_tumor_pasien = 'data_tumor_pasien';
+    public $Topography = 'Topography';
                 function __construct() {
         parent::__construct();
     }
@@ -12,6 +13,13 @@ class User_model extends ci_model {
     function get_all() {
         $this->db->join('akses', "akses.id_akses = $this->nama_tabel.hak_akses", 'LEFT');
         $query = $this->db->get($this->nama_tabel);
+        return $query;
+    }
+
+    function get_Topography() {
+        $this->db->select('*');
+        $this->db->from('Topography');
+        $query = $this->db->get();
         return $query;
     }
 
@@ -27,7 +35,8 @@ class User_model extends ci_model {
             return $query;
         return false;
     }
-     function get_byNIK($NIK) {
+
+    function get_byNIK($NIK) {
         $query = $this->db->get_where($this->data_tumor_pasien, array('NIK' => $NIK));
         if ($query)
             return $query;
@@ -48,10 +57,17 @@ class User_model extends ci_model {
         return false;
     }
 
-    /*
-     *
-     * Sesuaikan variable id_ser dengan primarykey tabel  
-     */
+    function tambahTopography($data_user) {
+        $query = $this->db->insert('topography', $data_user);
+        if ($query)
+            return $query;
+        return false;
+    }
+
+    public function CekTumor($where) {
+        $data = $this->db->query('SELECT * from topography where id_topography = "' . $where . '" ');
+        return $data;
+    }
 
     function ubah($id_user, $data_user) {
         $this->db->where('id_user', $id_user);
@@ -68,10 +84,11 @@ class User_model extends ci_model {
             return $query;
         return false;
     }
+
     function hapusPasien($NIK) {
         $this->db->where('NIK', $NIK);
-        $query = $this->db->delete($this->data_tumor_pasien,  $this->data_pasien);
-      //  $query1 = $this->db->delete($this->data_pasien);
+        $query = $this->db->delete($this->data_tumor_pasien, $this->data_pasien);
+        //  $query1 = $this->db->delete($this->data_pasien);
         if ($query)
             return $query;
         return false;

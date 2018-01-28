@@ -10,46 +10,49 @@ class Tumor extends ci_controller {
     }
 
     function index() {
-        $data['data_user'] = $this->user_model->get_all();
+        $data['data_user'] = $this->user_model->get_Topography();
         $data['isi'] = 'user/v_user';
         $data['title'] = 'Data User';
         $this->load->view('dashboard/v_dashboard', $data);
     }
-     public function Topography() {
+
+    public function Topography() {
         cek_hakakses(array(1));
-        $data['data_pasien'] = $this->user_model->get_allPasien();
+        $data['topography'] = $this->user_model->get_Topography();
         $data['isi'] = 'tumor/Topography/Topography';
         $data['title'] = 'Data User';
         $this->load->view('dashboard/dashboard', $data);
     }
 
-
-    function tambah_user() {
-        $this->form_validation->set_rules('username', 'Username', 'required');
-        $this->form_validation->set_rules('password', 'password', 'required');
-        $this->form_validation->set_rules('nama', 'nama', 'required');
-        $this->form_validation->set_rules('hak_akses', 'hak_akses', 'required');
-        $this->form_validation->set_rules('status', 'status', 'required');
+    function addTopography() {
+        $this->form_validation->set_rules('ID_Topography', 'ID_Topography', 'required');
+        $this->form_validation->set_rules('Topography', 'Topography', 'required');
+        $Create_Date = Date("Y-m-d H:i:s", time() + 60 * 360);
+        $id_topography = $_POST['ID_Topography'];
         if ($this->form_validation->run()) {
             $data_simpan = array(
-                'username' => $_POST['username'],
-                'password' => md5($_POST['password']),
-                'nama' => $_POST['nama'],
-                'hak_akses' => $_POST['hak_akses'],
-                'status' => $_POST['status'],
+                'ID_Topography' => $_POST['ID_Topography'],
+                'Topography' => $_POST['Topography'],
+                'Create_Date' => $Create_Date,
             );
-
-            if ($this->user_model->tambah($data_simpan)) {
-                $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
-                redirect('user');
+            $Cek = 0;
+            $Cek = $this->user_model->CekTumor($id_topography)->result_array();
+            if ($Cek == NULL) {
+                if ($this->user_model->tambahTopography($data_simpan)) {
+                    $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
+                    redirect('Tumor/Topography');
+                } else {
+                    $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
+                    redirect('Tumor/Topography');
+                }
             } else {
-                $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
-                redirect('user');
+                $this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Maaf Data Sudah Ada</strong></div>");
+                header('location:' . base_url() . 'Tumor/Topography');
             }
         } else {
-            $data['isi'] = 'user/tambah_user';
+            $data['isi'] = 'tumor/Topography/Topography';
             $data['title'] = 'Data User';
-            $this->load->view('dashboard/v_dashboard', $data);
+            $this->load->view('dashboard/dashboard', $data);
         }
     }
 

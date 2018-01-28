@@ -27,7 +27,7 @@ class Pasien extends CI_Controller {
     }
 
     public function addPasien() {
-        $data['isi'] = 'pasien/addPasien';
+        $data['isi'] = 'pasien/FormPasien';
         $data['title'] = 'Data User';
         $this->load->view('dashboard/dashboard', $data);
     }

@@ -30,6 +30,8 @@
         <!-- Bootstrap Core CSS -->
         <link href="<?php echo base_url(); ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
+        <!--alerts CSS -->
+        <link href="<?php echo base_url(); ?>assets/plugins/bower_components/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
         <!-- Menu CSS -->
         <link href="<?php echo base_url(); ?>assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
         <!-- morris CSS -->
@@ -104,10 +106,8 @@
                                 <a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/plugins/images/users/d1.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"><text style="color: yellow"> <b> <?= $this->session->userdata('nama') ?> </b><span class="fa arrow"></span></span>
                                 </a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="javascript:void(0)"><i class="ti-user"></i> My Profile</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li>
-                                    <li><a href="<?php echo base_url(); ?>login/logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="<?= site_url("profile") ?>"><i class="ti-user"></i> My Profile</a></li>
+                                    <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>                                    
                                 </ul>
                             </li>
                             <li> <a href="<?= site_url('Dashboard') ?>" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>
@@ -139,7 +139,7 @@
                                             <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #006666"><b>In Situ Hybridization </b></text></a> </li>
                                             <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #990033"><b>Jenis Biopsy / Type of biopsy </b></text></a> </li>
                                             <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #006666"><b>Sublocation of Breast Tumor</b></text></a> </li>
-                                            
+
                                         </ul>
                                     </li>
                             </li>
@@ -174,10 +174,8 @@
                                 <a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/plugins/images/users/d1.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"><text style="color: yellow"> <b> <?= $this->session->userdata('nama') ?> </b><span class="fa arrow"></span></span>
                                 </a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="javascript:void(0)"><i class="ti-user"></i> My Profile</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li>
-                                    <li><a href="<?php echo base_url(); ?>login/logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="<?= site_url("profile") ?>"><i class="ti-user"></i> My Profile</a></li>
+                                    <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>                                    
                                 </ul>
                             </li>
                             <li> <a href="<?= site_url('Dashboard') ?>" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>
@@ -210,10 +208,8 @@
                                 <a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/plugins/images/users/d1.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"> <text style="color: yellow"> <b> <?= $this->session->userdata('nama') ?> </b><span class="fa arrow"></span></span>
                                 </a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="javascript:void(0)"><i class="ti-user"></i> My Profile</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li>
-                                    <li><a href="<?php echo base_url(); ?>login/logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="<?= site_url("profile") ?>"><i class="ti-user"></i> My Profile</a></li>
+                                    <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>                                    
                                 </ul>
                             </li>
                             <li> <a href="<?= site_url('Dashboard') ?>" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>

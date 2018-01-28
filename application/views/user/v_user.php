@@ -6,7 +6,7 @@
                 <h4 class="modal-title"><strong><center>Tambah User</center></strong></h4>
             </div>
             <div class="modal-body">
-                <form class="form-group" action="<?= site_url('user/tambah_user') ?>" method="POST" method="POST">
+                <form class="form-group" action="<?= site_url('user/tambah_user') ?>" method="POST" >
                     <div class="form-group">
                         <label>Email</label>
                         <input class="form-control" type="email" name="username" required="true" />
@@ -71,7 +71,7 @@
 
                             <div class="form-group">
 
-                                <a href="#" data-toggle="modal" data-target="#add-new-event"  class='btn btn-primary'>
+                                <a href="#" data-toggle="modal" data-target="#add-new-event"  class='btn btn-skype '>
                                     <i class='glyphicon glyphicon-plus'> Tambah</i> 
                                 </a>
                                 <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
@@ -86,9 +86,9 @@
                     if ($data_user->num_rows() > 0) {
                         foreach ($data_user->result() as $row) {
                             if ($row->status == 0) {
-                                $link = "<a class='glyphicon glyphicon-cog' style='color:red'	href='" . site_url("user/aktif/$row->id_user") . "' > </a>";
+                                $link = "<a class='glyphicon glyphicon-cog' style='color:red'	href='" . site_url("user/aktif/$row->id_user") . "' ></a>";
                             } else {
-                                $link = "<a class='glyphicon glyphicon-wrench ' style='color:blue' href='" . site_url("user/aktif/$row->id_user") . "' > </a>";
+                                $link = "<a class='glyphicon glyphicon-wrench ' style='color:blue' href='" . site_url("user/aktif/$row->id_user") . "' ></a>";
                             }
                             echo "
 			<tr>

@@ -6,14 +6,14 @@
                 <h4 class="modal-title"><strong><center>Tambah Topography</center></strong></h4>
             </div>
             <div class="modal-body">
-                <form class="form-group" action="<?= site_url('user/tambah_user') ?>" method="POST" method="POST">
+                <form class="form-group" action="<?= site_url('Tumor/addTopography') ?>" method="POST" >
                     <div class="form-group">
-                        <label>ID Topography</label>
+                        <label>ID Topography :</label>
                         <input class="form-control" type="text" name="ID_Topography" required="true" />
                     </div>
                     <div class="form-group">
-                        <label>Nama Topography</label>
-                        <input class="form-control" type="password" name="Topography" required="true" />
+                        <label>Nama Topography :</label>
+                        <input class="form-control" type="text" name="Topography" required="true" />
                     </div>
                     <div class='form-group'>
                         <button class="btn btn-primary">Simpan</button>
@@ -39,9 +39,10 @@
                 <thead>
                     <tr>
                         <th data-hide="phone, tablet">NO</th>
-                        <th data-hide="phone, tablet">ID Topography</th>
-                        <th data-hide="phone, tablet">Nama Topography</th>
+                        <th data-hide="phone, tablet">ID </th>
+                        <th data-hide="phone, tablet">Topography</th>
                         <th data-hide="phone, tablet">Create Date</th>
+                        <th data-hide="phone, tablet">Update Date</th>
                         <th data-sort-ignore="true" class="min-width">Action</th>
                     </tr>
                 </thead>
@@ -67,21 +68,22 @@
                 </div>
                 <tbody>
                     <?php
-                    if ($data_pasien->num_rows() > 0) {
-                        foreach ($data_pasien->result() as $row) {
+                    if ($topography->num_rows() > 0) {
+                        foreach ($topography->result() as $row) {
                             echo "
 			<tr>
-				<td>$row->NIK</td>
-				<td>$row->MRN</td>
-				<td>$row->First_Name</td>
-				<td>$row->Family_Name</td>
+				<td>$row->ID</td>
+				<td>$row->ID_Topography</td>
+				<td>$row->Topography</td>
+				<td>$row->Create_Date</td>
+				<td>$row->Update_Date</td>
 				<td >
 					<a class='glyphicon glyphicon-pencil' 
-					href='" . site_url("Pasien/ubah/$row->NIK") . "' >	</a>
+					href='" . site_url("Pasien/ubah/$row->ID_Topography") . "' >	</a>
 					
 					<a class='glyphicon glyphicon-trash' 
                                         onclick='return confirm(\"Data Akan Di Hapus\")'
-					href='" . site_url("Pasien/hapus/$row->NIK") . "' >	</a>
+					href='" . site_url("Pasien/hapus/$row->ID_Topography") . "' >	</a>
 					
 				</td>
 			</tr>
