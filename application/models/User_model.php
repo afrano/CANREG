@@ -6,7 +6,8 @@ class User_model extends ci_model {
     public $data_pasien = 'data_pasien';
     public $data_tumor_pasien = 'data_tumor_pasien';
     public $Topography = 'Topography';
-                function __construct() {
+
+    function __construct() {
         parent::__construct();
     }
 
@@ -23,10 +24,29 @@ class User_model extends ci_model {
         return $query;
     }
 
+//    public function insertTeat($ID, $teatment, $Create_Date) {
+//        $data = $this->db->query("INSERT INTO treatment_pasien values('','$ID',$teatment[$x]','$Create_Date')");
+//        return $data;
+//    }
+
     function get_allPasien() {
+        $data = $this->db->query('SELECT * from data_pasien ');
+        return $data;
+//        
+//        $this->db->join('data_tumor_pasien', "data_tumor_pasien.NIK = $this->data_pasien.NIK", 'LEFT');
+//        $query = $this->db->get($this->data_pasien);
+//        return $query;
+    }
+
+    function get_joinPasienTumor() {
         $this->db->join('data_tumor_pasien', "data_tumor_pasien.NIK = $this->data_pasien.NIK", 'LEFT');
         $query = $this->db->get($this->data_pasien);
         return $query;
+    }
+
+    public function CekPasien($where) {
+        $data = $this->db->query('SELECT * from data_pasien where NIK = "' . $where . '" ');
+        return $data;
     }
 
     function get_byid($id_user) {
@@ -55,6 +75,14 @@ class User_model extends ci_model {
         if ($query)
             return $query;
         return false;
+    }
+
+    public function Simpan($table, $data) {
+        return $this->db->insert($table, $data);
+    }
+
+    public function SimpanArray($table, $data) {
+        return $this->db->insert($table, $data);
     }
 
     function tambahTopography($data_user) {

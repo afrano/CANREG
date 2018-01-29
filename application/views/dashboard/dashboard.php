@@ -117,6 +117,7 @@
                                 <ul class="nav nav-second-level">
                                     <li> <a href="<?= site_url('Pasien/addPasien') ?>">Add Data Pasien</a> </li>
                                     <li> <a href="<?= site_url('Pasien') ?>">All Database</a> </li>
+                                    
                                 </ul>
                             </li>
 
