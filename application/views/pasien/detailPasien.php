@@ -4,56 +4,56 @@
             <form class="row" action="<?= site_url('Pasien/tambah_pasien') ?>" method="POST" >
                 <div class="col-sm-6">
                     <div class="white-box">
-                        <h3 class="box-title m-b-0">Form 1 Data Pasien</h3>
+                        <h3 class="box-title m-b-0">Detail Data : <text style="color: #ff3300"> <?=$row->First_Name?></text></h3>
                         <p class="text-muted m-b-30 font-13"> Kementrian Kesehatan Republik Indonesia </p>
 
                         <div class="form-group row">
                             <label for="example-text-input" class="col-2 col-form-label">NIK</label>
                             <div class="col-10">
-                                <input class="form-control" name="NIK" required="" type="text"  value="" placeholder="16 Digit NIK" id="example-text-input">
+                                <input class="form-control" name="NIK" type="text" readonly=""  value="<?=$row->NIK?>" placeholder="16 Digit NIK" id="example-text-input">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-search-input" class="col-2 col-form-label">MRN</label>
                             <div class="col-10">
-                                <input class="form-control" name="MRN" required="" type="search" value="" placeholder="Tujuh digit kode RS | NO MR" id="example-search-input">
+                                <input class="form-control" name="MRN" type="search" readonly=""  value="<?=$row->MRN?>" placeholder="Tujuh digit kode RS | NO MR" id="example-search-input">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-2 col-form-label">First Name</label>
                             <div class="col-10">
-                                <input class="form-control" required="" name="First_Name" type="text" value="" placeholder="Nama Awal" >
+                                <input class="form-control" readonly="" name="First_Name" type="text" value="<?=$row->First_Name?>" placeholder="Nama Awal" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-2 col-form-label">Middle Name</label>
                             <div class="col-10">
-                                <input class="form-control" name="Middle_Name" type="text" value="" placeholder="Nama Tengah" id="example-url-input">
+                                <input class="form-control" name="Middle_Name" type="text"  readonly="" value="<?=$row->Middle_Name?>" placeholder="Nama Tengah" id="example-url-input">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-tel-input" class="col-2 col-form-label">Family Name</label>
                             <div class="col-10">
-                                <input class="form-control" name="Family_Name" value="" placeholder="Nama Keluarga" id="example-tel-input">
+                                <input class="form-control" name="Family_Name" readonly="" value="<?=$row->Family_Name?>" placeholder="Nama Keluarga" id="example-tel-input">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-password-input" class="col-2 col-form-label">Place Of Birth</label>
                             <div class="col-10">
-                                <input class="form-control" type="date" name="Place_Of_Birth" value="" id="example-password-input">
+                                <input class="form-control" type="date" name="Place_Of_Birth" readonly="" value="<?=$row->Place_Of_Birth?>" id="example-password-input">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-password-input" class="col-2 col-form-label">Date Of Birth</label>
                             <div class="col-10">
-                                <input class="form-control" type="date" name="Date_Of_Birth" value="" id="example-password-input">
+                                <input class="form-control" type="date" name="Date_Of_Birth" readonly="" value="<?=$row->Date_Of_Birth?>" id="example-password-input">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="example-number-input" class="col-2 col-form-label">Alamat Tetap</label>
                             <div class="col-10">
-                                <input class="form-control" name="ID_Alamat_Tetap" type="text" value="" id="example-number-input">
+                                <input class="form-control" name="ID_Alamat_Tetap" readonly="" value="<?=$row->ID_Alamat_Tetap?>" type="text" id="example-number-input">
                             </div>
                         </div>
 
@@ -104,7 +104,7 @@
 
                 <div class="col-sm-6">
                     <div class="white-box">
-                        <h3 class="box-title m-b-0">Form 2 Data Pasien </h3>
+                        <h3 class="box-title m-b-0">Detail Data : <text style="color: #ff3300"> <?=$row->First_Name?></text></h3>
                         <p class="text-muted m-b-30 font-13"> Kementrian Kesehatan Republik Indonesia </p>
 
                         <div class="form-group row">
@@ -259,63 +259,52 @@
                             <div class="col-lg-11">
                                 <div class="example">
                                     <h5 class="box-title m-t-30">Most Valid Basic of Diagnosis Cancer :</h5>
-                                    <select  name="Diagnosis" onchange="Kode()"  class="custom-select col-12" >
-                                        <option value="">Pilih </option>
-                                        <?php
-                                        $query = $this->db->get('diagnosis_cancer');
-                                        foreach ($query->result() as $row) {
-                                            echo "<option value='$row->ID_Diagnosis'>$row->Diagnosis</option>";
-                                        }
-                                        ?>
+                                    <select name="ID_Diagnosis" class="custom-select col-12" id="inlineFormCustomSelect">
+                                        <option selected>0. Death Certificate Only</option>
+                                        <option value="1">1. Clinical Only</option>
+                                        <option value="2">2. Clin. Invest./Ult Soun</option>
+                                        <option value="3">3. Surgery/Autopsy</option>
+                                        <option value="4">4. Laboratory Test</option>
+                                        <option value="5">5. Cytology</option>
+                                        <option value="6">6. Histology of metastase</option>
+                                        <option value="7">7. Histology of primary</option>
+                                        <option value="8">8. Autopsy/Histology</option>
+                                        <option value="9">9. Unknown</option>
                                     </select>
                                 </div>
                             </div>
+
                             <div class="col-lg-1">
                                 <div class="example">
                                     <h5 class="box-title m-t-30">Kode</h5>
                                     <input type="text" class="form-control input-daterange-timepicker" readonly="" name="ID_Diagnosis" value="" />
                                 </div>
                             </div>
-                            <script language = "javascript">
-                                function Kode() {
-                                    var ID_Diagnosis = document.forms[0].Diagnosis.value;
-                                    document.forms[0].ID_Diagnosis.value = ID_Diagnosis;
-                                }
-                            </script>
-
                         </div><br>
 
                         <div class="row">
                             <div class="col-lg-11">
                                 <div class="example">
                                     <h5 class="box-title m-t-30">Clinical ext. of disease before treatment :</h5>
-                                 
-
-                                    <select  name="Disease" onchange="Kode2()"  class="custom-select col-12" >
-                                        <option value="">Pilih </option>
-                                        <?php
-                                        $query = $this->db->get('disease');
-                                        foreach ($query->result() as $row) {
-                                            echo "<option value='$row->ID_Disease'>$row->Disease</option>";
-                                        }
-                                        ?>
+                                    <select name="ID_Disease" class="custom-select col-12" id="inlineFormCustomSelect">
+                                        <option selected>1. In situ</option>
+                                        <option value="1">2. Localized</option>
+                                        <option value="2">3. Direct Extension</option>
+                                        <option value="3">4. Regional LN Involvement</option>
+                                        <option value="4">5. Direct extension with regional LN Involvement</option>
+                                        <option value="5">6. Distant metastases</option>
+                                        <option value="6">8. Not applicable</option>
+                                        <option value="7">9. Unknown</option>
                                     </select>
-
                                 </div>
                             </div>
 
                             <div class="col-lg-1">
                                 <div class="example">
                                     <h5 class="box-title m-t-30">Kode</h5>
-                                    <input type="text" class="form-control input-daterange-timepicker" readonly="" name="ID_Disease" value="" />
+                                    <input type="text" class="form-control input-daterange-timepicker" readonly="" name="daterange" value="" />
                                 </div>
                             </div>
-                              <script language = "javascript">
-                                function Kode2() {
-                                    var ID_Disease = document.forms[0].Disease.value;
-                                    document.forms[0].ID_Disease.value = ID_Disease;
-                                }
-                            </script>
                         </div><br>
 
                         <table style="width:35%">
@@ -378,12 +367,12 @@
                                     <input type="text" name="Diagnosis_Klinis"   class="Morphology form-control nama" placeholder="Diagnosis Klinis">
                                 </div>
                             </div>
-                        </div>
+                        </div><br>
                         <div class="row">
                             <div class="col-lg-11">
-                                <div class="example"> <div class="col-md-4">
+                                <div class="example">
                                     <h5 class="box-title m-t-30">Diagnosis Date :</h5>
-                                   
+                                    <div class="col-md-12">
                                         <input class="form-control" name="Diagnosis_Date" type="date" value="" id="example-password-input">
                                     </div>
                                 </div>
@@ -772,19 +761,19 @@
                                 <div class="col-lg-4">
                                     <div class="example">
                                         <h5 class="box-title m-t-30">Admission date</h5>
-                                        <input class="form-control input-daterange-datepicker" type="text" name="admission" value="" />
+                                        <input class="form-control input-daterange-datepicker" type="text" name="daterange" value="" />
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="example">
                                         <h5 class="box-title m-t-30">Registrar</h5>
-                                        <input type="text" class="form-control input-daterange-timepicker" name="registrar" value="" />
+                                        <input type="text" class="form-control input-daterange-timepicker" name="daterange" value="" />
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="example">
                                         <h5 class="box-title m-t-30">Verifier</h5>
-                                        <input class="form-control input-limit-datepicker" type="text" name="verifier" value="" />
+                                        <input class="form-control input-limit-datepicker" type="text" name="daterange" value="" />
                                     </div>
                                 </div>
                             </div>
@@ -792,19 +781,19 @@
                                 <div class="col-lg-4">
                                     <div class="example">
                                         <h5 class="box-title m-t-30">Date last contact</h5>
-                                        <input class="form-control input-daterange-datepicker" type="text" name="datelastcontact" value="" />
+                                        <input class="form-control input-daterange-datepicker" type="text" name="daterange" value="" />
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="example">
                                         <h5 class="box-title m-t-30">Date of abstract</h5>
-                                        <input type="text" class="form-control input-daterange-timepicker" name="dateofabstract" value="" />
+                                        <input type="text" class="form-control input-daterange-timepicker" name="daterange" value="" />
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="example">
                                         <h5 class="box-title m-t-30">Date of Verification</h5>
-                                        <input class="form-control input-limit-datepicker" type="text" name="dateofverification" value="" />
+                                        <input class="form-control input-limit-datepicker" type="text" name="daterange" value="" />
                                     </div>
                                 </div>
                             </div>
@@ -812,49 +801,27 @@
                                 <div class="col-lg-4">
                                     <div class="example">
                                         <h5 class="box-title m-t-30">Status</h5>
-                                        <select  name="status" onchange="Kode1()"  class="custom-select col-12" >
-                                            <option value="">Pilih Status</option>
-                                            <?php
-                                            $query = $this->db->get('status');
-                                            foreach ($query->result() as $row) {
-                                                echo "<option value='$row->ID_Status'>$row->Status</option>";
-                                            }
-                                            ?>
+                                        <select class="custom-select col-12" id="inlineFormCustomSelect">
+                                            <option selected>1. Hidup</option>
+                                            <option value="1">2. Meninggal</option>
+                                            <option value="2">9. Unknown</option>
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="col-lg-1">
                                     <div class="example">
                                         <h5 class="box-title m-t-30">Kode</h5>
-                                        <input type="text" readonly="" class="form-control input-daterange-timepicker" name="ID_Status" value="" />
+                                        <input type="text" class="form-control input-daterange-timepicker" name="daterange" value="" />
                                     </div>
                                 </div>
-                                <script language = "javascript">
-                                    function Kode1() {
-                                        var status = document.forms[0].status.value;
-                                        document.forms[0].ID_Status.value = status;
-                                    }
-                                </script>
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <div class="form-group">
-                    <a href="#popup">
-                        <div class="col-md-5 pull-right">
-                            <button class="btn btn-skype btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Submit</button>
-                        </div></a>
-                    <div id="popup">
-                        <div class="window">
-                            <a href="#" class="close-button" title="Close">X</a>
-                            <h2><font color=white>SUKSES DISIMPAN!</font></h2>
-                        </div>
-                    </div>
-
-
-                </div><br>
+                    <!--                <div class="form-group">
+                                        <button class="btn btn-primary">Simpan</button>
+                    </div>--></div><br>
                 </div>
                 </div>  
             </form>

@@ -35,7 +35,10 @@ class Pasien extends CI_Controller {
     function tambah_pasien() {
         $Create_Date = Date("Y-m-d H:i:s", time() + 60 * 360);
         $NIK = $_POST['NIK'];
-        $ID_Distant_Metastases = 1;
+
+        $ID_Distant_Metastases = $_POST['ID_Distant_Metastases'];
+        $jumlah_ID_Distant_Metastases = count($ID_Distant_Metastases);
+
         $ID_Treatment = $_POST['ID_Treatment'];
         $jumlah_dipilih = count($ID_Treatment);
 
@@ -66,11 +69,11 @@ class Pasien extends CI_Controller {
             'ID_Morphology' => $_POST['ID_Morphology'],
             'ID_Diagnosis' => $_POST['ID_Diagnosis'],
             'ID_Disease' => $_POST['ID_Disease'],
-            'ID_Treatment' => $ID_Treatment[$x],
+            'ID_Treatment' => '145314',
             'Diagnosis_Klinis' => $_POST['Diagnosis_Klinis'],
             'Diagnosis_Date' => $_POST['Diagnosis_Date'],
             'ID_Behaviour' => $_POST['ID_Behaviour'],
-            'ID_Distant_Metastases' => $ID_Distant_Metastases,
+            'ID_Distant_Metastases' => '145314',
             'No_Of_Metastases' => $_POST['No_Of_Metastases'],
             'ID_Grade' => $_POST['ID_Grade'],
             'ID_Stage' => $_POST['ID_Stage'],
@@ -83,6 +86,14 @@ class Pasien extends CI_Controller {
             'ID_Sublocation' => $_POST['ID_Sublocation'],
             'Create_Date' => $Create_Date,
         );
+        for ($x = 0; $x < $jumlah_dipilih; $x++) {
+            $this->db->query("INSERT INTO treatment_pasien values('','$ID_Treatment[$x]','$NIK','$Create_Date','')");
+        }
+
+        for ($x1 = 0; $x1 < $jumlah_ID_Distant_Metastases; $x1++) {
+            $this->db->query("INSERT INTO distant_metastases_pasien values('','$ID_Distant_Metastases[$x1]','$NIK','$Create_Date','')");
+        }
+
         if ($Cek == NULL) {
             $this->user_model->Simpan('data_pasien', $datapasien);
             $this->user_model->Simpan('data_tumor_pasien', $datatumor);
@@ -93,11 +104,42 @@ class Pasien extends CI_Controller {
             $this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Maaf Data Sudah Ada</strong></div>");
             redirect('Pasien');
         }
-        
-        for ($x = 0; $x < $jumlah_dipilih; $x++) {
-            $this->db->query("INSERT INTO treatment_pasien values('','$ID_Treatment[$x]','$NIK','$Create_Date','')");
-        }
         redirect('Pasien');
+    }
+
+    function detailPasien($NIK = null) {
+        cek_hakakses(array(1));
+        if ($data_user = $this->user_model->get_DetilPasien($NIK)) {
+            $this->form_validation->set_rules('username', 'Username', 'required');
+//   $this->form_validation->set_rules('password', 'password', 'required');
+            $this->form_validation->set_rules('nama', 'nama', 'required');
+            $this->form_validation->set_rules('hak_akses', 'hak_akses', 'required');
+            $this->form_validation->set_rules('status', 'status', 'required');
+            if ($this->form_validation->run()) {
+                $data_simpan = array(
+                    'username' => $_POST['username'],
+//         'password' => md5($_POST['password']),
+                    'nama' => $_POST['nama'],
+                    'hak_akses' => $_POST['hak_akses'],
+                    'status' => $_POST['status'],
+                );
+
+                if ($this->user_model->ubah($NIK, $data_simpan)) {
+                    $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
+                    redirect('pasien/v_pasien');
+                } else {
+                    $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
+                    redirect('pasien/v_pasien');
+                }
+            } else {
+                $data['row'] = $data_user->row();
+                $data['isi'] = 'pasien/detailPasien';
+                $data['title'] = 'Data User';
+                $this->load->view('dashboard/dashboard', $data);
+            }
+        } else {
+            echo 'Data tidak Ditemukan';
+        }
     }
 
     public function DataTumorPasien() {

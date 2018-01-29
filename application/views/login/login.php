@@ -17,7 +17,6 @@
         <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
         <!-- color CSS -->
         <link href="<?php echo base_url(); ?>assets/css/colors/megna.css" id="theme"  rel="stylesheet">
-
     </head>
     <body>
         <!-- Preloader -->
@@ -51,10 +50,10 @@
                 <form action="<?= site_url('login/cek_login') ?>" id="form-login" method="post" accept-charset="utf-8">
                     <?php
                     if (validation_errors()) {
-                        echo "<div class='alert alert-danger'>" . validation_errors() . "</div>";
+                        echo "<div><br> <text style='color : red'>" . validation_errors() . "</div>";
                     }
                     if ($this->session->flashdata('pesan_error')) {
-                        echo "<div class='alert alert-danger'>" . $this->session->flashdata('pesan_error') . "</div>";
+                        echo "<center><br><text style='color : red'>" . $this->session->flashdata('pesan_error') . "</center>";
                     }
                     ?>
                     <div class="form-group m-t-40">

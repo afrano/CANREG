@@ -12,12 +12,13 @@
             <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="7">
                 <thead>
                     <tr>
-                        <th data-hide="phone, tablet">NIK</th>
-                        <th data-hide="phone, tablet">MRN</th>
-                        <th data-hide="phone, tablet">First Name</th>
-                        <th data-hide="phone, tablet">Family Name</th>
-                        <th data-sort-ignore="true" class="min-width">Action</th>
-                    </tr>
+                        <th data-hide="phone, tablet"><center>NO</center></th>
+                <th data-hide="phone, tablet"><center>NIK</center></th>
+                <th data-hide="phone, tablet"><center>MRN</center></th>
+                <th data-hide="phone, tablet"><center>First Name</center></th>
+                <th data-hide="phone, tablet"><center>Family Name</center></th>
+                <th data-sort-ignore="true" class="min-width"><center>Action</center></th>
+                </tr>
                 </thead>
                 <div class="form-inline padding-bottom-15">
                     <div class="row">
@@ -37,23 +38,27 @@
                 </div>
                 <tbody>
                     <?php
+                    $no = 0;
                     if ($data_pasien->num_rows() > 0) {
                         foreach ($data_pasien->result() as $row) {
+                            $no++;
                             echo "
 			<tr>
-				<td>$row->NIK</td>
-				<td>$row->MRN</td>
-				<td>$row->First_Name</td>
-				<td>$row->Family_Name</td>
-				<td >
+                                <td><center>$no</center></td>
+				<td><center>$row->NIK</center></td>
+				<td><center>$row->MRN</center></td>
+				<td><center>$row->First_Name</center></td>
+				<td><center>$row->Family_Name</center></td>
+				<td ><center>
 					<a class='glyphicon glyphicon-pencil' 
-					href='" . site_url("Pasien/ubah/$row->NIK") . "' >	</a>
+					href='" . site_url("Pasien/ubah/$row->NIK") . "' ></a>
 					
 					<a class='glyphicon glyphicon-trash' 
                                         onclick='return confirm(\"Data Akan Di Hapus\")'
-					href='" . site_url("Pasien/hapus/$row->NIK") . "' >	</a>
-					
-				</td>
+					href='" . site_url("Pasien/hapus/$row->NIK") . "' ></a>
+					<a class='glyphicon glyphicon-eye-open' 
+					href='" . site_url("Pasien/detailPasien/$row->NIK") . "' ></a>
+				</center></td>
 			</tr>
 					";
                         }

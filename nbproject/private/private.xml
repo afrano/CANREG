@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Pasien.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/profile/profile.php</file>
+            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Login.php</file>
+            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/login/login.php</file>
             <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/dashboard/dashboard.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/pasien/FormPasien.php</file>
             <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/pasien/addPasien.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/models/User_model.php</file>
         </group>
     </open-files>
 </project-private>

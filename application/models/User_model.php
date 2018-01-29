@@ -56,6 +56,17 @@ class User_model extends ci_model {
         return false;
     }
 
+    function get_DetilPasien($NIK) {
+//        $this->db->join('data_tumor_pasien', "data_tumor_pasien.NIK = $this->data_pasien.NIK", 'LEFT');
+//        $query = $this->db->get($this->nama_tabel);
+//        return $query;
+
+        $query = $this->db->get_where($this->data_pasien, array('NIK' => $NIK));
+        if ($query)
+            return $query;
+        return false;
+    }
+
     function get_byNIK($NIK) {
         $query = $this->db->get_where($this->data_tumor_pasien, array('NIK' => $NIK));
         if ($query)

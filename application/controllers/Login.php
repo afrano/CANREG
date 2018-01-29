@@ -34,7 +34,7 @@ class Login extends CI_Controller {
                 $this->session->set_userdata($data_sesi);
                 redirect('dashboard');
             } else {
-                $this->session->set_flashdata('pesan_error', 'Gagal Login Username/Password salah');
+                $this->session->set_flashdata('pesan_error', 'Gagal Login Username/Password salah !!!');
                 redirect('login');
             }
         } else {

@@ -117,13 +117,13 @@
                                 <ul class="nav nav-second-level">
                                     <li> <a href="<?= site_url('Pasien/addPasien') ?>">Add Data Pasien</a> </li>
                                     <li> <a href="<?= site_url('Pasien') ?>">All Database</a> </li>
-                                    
+
                                 </ul>
                             </li>
 
                             <li> <a href="javascript:void(0);" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu"> Setting <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li> <a href="javascript:void(0);" class="waves-effect"><iclass="linea-icon linea-basic fa-fw"></i> <span class="hide-menu"> Database Tumor <span class="fa arrow"></span></span></a>
+                                    <li><a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> Database Tumor <span class="fa arrow"></span></span></a>
                                         <ul class="nav nav-second-level">
                                             <li> <a href="<?= site_url('Tumor/Topography') ?>"><text style="color: #006666"><b>Topography</b></text></a> </li>
                                             <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #990033"><b>Morphology</b></text></a> </li>
@@ -140,29 +140,27 @@
                                             <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #006666"><b>In Situ Hybridization </b></text></a> </li>
                                             <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #990033"><b>Jenis Biopsy / Type of biopsy </b></text></a> </li>
                                             <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #006666"><b>Sublocation of Breast Tumor</b></text></a> </li>
-
                                         </ul>
                                     </li>
+                                    <li> <a href="add-patient.html">ICE-10</a> </li>
+                                    <li> <a href="edit-patient.html">ICCC Code</a> </li>
+                                </ul>
                             </li>
-                            <li> <a href="add-patient.html">ICE-10</a> </li>
-                            <li> <a href="edit-patient.html">ICCC Code</a> </li>
-                        </ul>
-                        </li>
 
-                        <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-chart p-r-10"></i> <span class="hide-menu"> Reports <span class="fa arrow"></span></span></a>
-                            <ul class="nav nav-second-level">
-                                <li> <a href="payment-report.html">Export Page</a></li>
-                                <li> <a href="income-report.html">Export Data</a></li>
-                            </ul>
-                        </li>
+                            <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-chart p-r-10"></i> <span class="hide-menu"> Reports <span class="fa arrow"></span></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li> <a href="payment-report.html">Export Page</a></li>
+                                    <li> <a href="income-report.html">Export Data</a></li>
+                                </ul>
+                            </li>
 
 
-                        <li> <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-user-md p-r-10"></i> <span class="hide-menu"> User <span class="fa arrow"></span></span></a>
-                            <ul class="nav nav-second-level">
-                                <li> <a href="<?= site_url('user') ?>">Data User</a> </li>
-                                <li> <a href='<?= site_url('user/tambah_user') ?>'>Tambah User</a> </li>
-                            </ul>
-                        </li>
+                            <li> <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-user-md p-r-10"></i> <span class="hide-menu"> User <span class="fa arrow"></span></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li> <a href="<?= site_url('user') ?>">Data User</a> </li>
+                                    <li> <a href='<?= site_url('user/tambah_user') ?>'>Tambah User</a> </li>
+                                </ul>
+                            </li>
 
                         </ul>
                     <?php } ?>
