@@ -32,10 +32,16 @@ class User_model extends ci_model {
     function get_allPasien() {
         $data = $this->db->query('SELECT * from data_pasien ');
         return $data;
-//        
+
+//        select * from data_Pasien p, data_tumor_pasien dt, treatment_pasien tp where p.NIK = "213" and dt.NIK = "213" and tp.NIK = "213"
 //        $this->db->join('data_tumor_pasien', "data_tumor_pasien.NIK = $this->data_pasien.NIK", 'LEFT');
 //        $query = $this->db->get($this->data_pasien);
 //        return $query;
+    }
+
+    function get_DetailPasien($NIK) {
+        $data = $this->db->query('select * from data_Pasien p, data_tumor_pasien dt, treatment_pasien tp where p.NIK = "' . $NIK . '" and dt.NIK = "' . $NIK . '" and tp.NIK = "' . $NIK . '"');
+        return $data;
     }
 
     function get_joinPasienTumor() {
@@ -131,6 +137,13 @@ class User_model extends ci_model {
         if ($query)
             return $query;
         return false;
+    }
+
+    function get_all_provinsi() {
+        $this->db->select('*');
+        $this->db->from('wilayah_provinsi');
+        $query = $this->db->get();
+        return $query->result();
     }
 
 }

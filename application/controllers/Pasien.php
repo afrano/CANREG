@@ -27,10 +27,13 @@ class Pasien extends CI_Controller {
     }
 
     public function addPasien() {
+        $data['provinsi'] = $this->user_model->get_all_provinsi();
         $data['isi'] = 'pasien/addPasien';
         $data['title'] = 'Data User';
         $this->load->view('dashboard/dashboard', $data);
     }
+
+    
 
     function tambah_pasien() {
         $Create_Date = Date("Y-m-d H:i:s", time() + 60 * 360);
@@ -105,6 +108,41 @@ class Pasien extends CI_Controller {
             redirect('Pasien');
         }
         redirect('Pasien');
+    }
+
+    function get_DetailPasien($NIK = null) {
+        cek_hakakses(array(1));
+        if ($data_user = $this->user_model->get_DetilPasien($NIK)) {
+            $this->form_validation->set_rules('username', 'Username', 'required');
+//   $this->form_validation->set_rules('password', 'password', 'required');
+            $this->form_validation->set_rules('nama', 'nama', 'required');
+            $this->form_validation->set_rules('hak_akses', 'hak_akses', 'required');
+            $this->form_validation->set_rules('status', 'status', 'required');
+            if ($this->form_validation->run()) {
+                $data_simpan = array(
+                    'username' => $_POST['username'],
+//         'password' => md5($_POST['password']),
+                    'nama' => $_POST['nama'],
+                    'hak_akses' => $_POST['hak_akses'],
+                    'status' => $_POST['status'],
+                );
+
+                if ($this->user_model->ubah($NIK, $data_simpan)) {
+                    $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
+                    redirect('pasien/v_pasien');
+                } else {
+                    $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
+                    redirect('pasien/v_pasien');
+                }
+            } else {
+                $data['row'] = $data_user->row();
+                $data['isi'] = 'pasien/detailPasien';
+                $data['title'] = 'Data User';
+                $this->load->view('dashboard/dashboard', $data);
+            }
+        } else {
+            echo 'Data tidak Ditemukan';
+        }
     }
 
     function detailPasien($NIK = null) {

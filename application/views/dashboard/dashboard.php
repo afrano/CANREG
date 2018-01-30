@@ -17,7 +17,7 @@
         <!-- color CSS -->
         <link href="<?php echo base_url(); ?>assets/css/colors/megna.css" id="theme" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css" />
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
 
         <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -45,7 +45,7 @@
 
 
         <!-- color CSS -->
-
+        <script src="<?php echo base_url(); ?>assets/jquery.min.js"></script>
         <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/jquery.autocomplete.js'></script>
         <link href='<?php echo base_url(); ?>assets/js/jquery.autocomplete.css' rel='stylesheet' />
         <script type='text/javascript'>
@@ -73,6 +73,50 @@
                 });
             });
         </script>
+        <script>
+            $(document).ready(function () {
+                $("#provinsi").change(function () {
+                    var url = "<?php echo site_url('autocomplete/add_ajax_kab'); ?>/" + $(this).val();
+                    $('#kabupaten').load(url);
+                    return false;
+                })
+
+                $("#kabupaten").change(function () {
+                    var url = "<?php echo site_url('autocomplete/add_ajax_kec'); ?>/" + $(this).val();
+                    $('#kecamatan').load(url);
+                    return false;
+                })
+
+                $("#kecamatan").change(function () {
+                    var url = "<?php echo site_url('autocomplete/add_ajax_des'); ?>/" + $(this).val();
+                    $('#desa').load(url);
+                    return false;
+                })
+                
+                
+                  $("#provinsi1").change(function () {
+                    var url = "<?php echo site_url('autocomplete/add_ajax_kab'); ?>/" + $(this).val();
+                    $('#kabupaten1').load(url);
+                    return false;
+                })
+
+                $("#kabupaten1").change(function () {
+                    var url = "<?php echo site_url('autocomplete/add_ajax_kec'); ?>/" + $(this).val();
+                    $('#kecamatan1').load(url);
+                    return false;
+                })
+
+                $("#kecamatan1").change(function () {
+                    var url = "<?php echo site_url('autocomplete/add_ajax_des'); ?>/" + $(this).val();
+                    $('#desa1').load(url);
+                    return false;
+                })
+            }
+                
+    );
+        </script>
+
+
 
     </head>
 
@@ -115,7 +159,7 @@
 
                             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu"> Data Pasien <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li> <a href="<?= site_url('Pasien/addPasien') ?>">Add Data Pasien</a> </li>
+                                    <li> <a href="<?= site_url('Pasien/addPasien') ?>">ADD Data Pasien</a> </li>
                                     <li> <a href="<?= site_url('Pasien') ?>">All Database</a> </li>
 
                                 </ul>
@@ -123,7 +167,7 @@
 
                             <li> <a href="javascript:void(0);" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu"> Setting <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> Database Tumor <span class="fa arrow"></span></span></a>
+                                    <li><a href="javascript:void(0);" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> Database Tumor <span class="fa arrow"></span></span></a>
                                         <ul class="nav nav-second-level">
                                             <li> <a href="<?= site_url('Tumor/Topography') ?>"><text style="color: #006666"><b>Topography</b></text></a> </li>
                                             <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #990033"><b>Morphology</b></text></a> </li>

@@ -227,14 +227,7 @@
                             <div class="col-lg-11">
                                 <div class="example">
                                     <h5 class="box-title m-t-30">Topography :</h5>
-                                    <input type="search" class="Topography form-control nama" placeholder="Nama Topography">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-1">
-                                <div class="example">
-                                    <h5 class="box-title m-t-30">Kode</h5>
-                                    <input type="text" id="ID_Topography" name="ID_Topography" required="" readonly=""  class="autocomplete form-control nama" >
+                                    <input type="search" value="<?=$row->Place_Of_Birth?>" readonly="" class="Topography form-control nama" placeholder="Nama Topography">
                                 </div>
                             </div>
                         </div><br>
@@ -243,14 +236,7 @@
                             <div class="col-lg-11">
                                 <div class="example">
                                     <h5 class="box-title m-t-30">Morphology :</h5>
-                                    <input type="search"   class="Morphology form-control nama" placeholder="Nama Morphology">
-                                </div>
-                            </div>
-
-                            <div class="col-lg-1">
-                                <div class="example">
-                                    <h5 class="box-title m-t-30">Kode</h5>
-                                    <input type="text" id="ID_Morphology" name="ID_Morphology" readonly=""  class="autocompleteb form-control " >
+                                    <input type="search" value="<?=$row->Place_Of_Birth?>" readonly=""   class="Morphology form-control nama" placeholder="Nama Morphology">
                                 </div>
                             </div>
                         </div><br>
@@ -260,27 +246,13 @@
                                 <div class="example">
                                     <h5 class="box-title m-t-30">Most Valid Basic of Diagnosis Cancer :</h5>
                                     <select name="ID_Diagnosis" class="custom-select col-12" id="inlineFormCustomSelect">
-                                        <option selected>0. Death Certificate Only</option>
-                                        <option value="1">1. Clinical Only</option>
-                                        <option value="2">2. Clin. Invest./Ult Soun</option>
-                                        <option value="3">3. Surgery/Autopsy</option>
-                                        <option value="4">4. Laboratory Test</option>
-                                        <option value="5">5. Cytology</option>
-                                        <option value="6">6. Histology of metastase</option>
-                                        <option value="7">7. Histology of primary</option>
-                                        <option value="8">8. Autopsy/Histology</option>
-                                        <option value="9">9. Unknown</option>
+                                        <option selected><?=$row->Place_Of_Birth?></option>
+                                      
                                     </select>
                                 </div>
                             </div>
-
-                            <div class="col-lg-1">
-                                <div class="example">
-                                    <h5 class="box-title m-t-30">Kode</h5>
-                                    <input type="text" class="form-control input-daterange-timepicker" readonly="" name="ID_Diagnosis" value="" />
-                                </div>
-                            </div>
-                        </div><br>
+                        </div>
+                        <br>
 
                         <div class="row">
                             <div class="col-lg-11">

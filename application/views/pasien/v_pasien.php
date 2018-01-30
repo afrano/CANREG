@@ -57,7 +57,7 @@
                                         onclick='return confirm(\"Data Akan Di Hapus\")'
 					href='" . site_url("Pasien/hapus/$row->NIK") . "' ></a>
 					<a class='glyphicon glyphicon-eye-open' 
-					href='" . site_url("Pasien/detailPasien/$row->NIK") . "' ></a>
+					href='" . site_url("Pasien/get_DetailPasien/$row->NIK") . "' ></a>
 				</center></td>
 			</tr>
 					";
