@@ -38,6 +38,14 @@ class Pasien extends CI_Controller {
         $this->form_validation->set_rules('NIK', 'NIK', 'required');
         $NIK = $_POST['NIK'];
 
+        $kode_rumahsakit = $_POST['Kode_RumahSakit'];
+        $tgl_periksa = $_POST['Tgl_Periksa'];
+        $nama_RumahSakit = $_POST['nama_RumahSakit'];
+        $unit_ID = $_POST['unit_ID'];
+        $unit = $_POST['unit'];
+        $No_PALAB = $_POST['No_PALAB'];
+
+        $jumlahSource = count($kode_rumahsakit);
 
         $ID_Distant_Metastases = $_POST['ID_Distant_Metastases'];
         $jumlah_ID_Distant_Metastases = count($ID_Distant_Metastases);
@@ -81,11 +89,9 @@ class Pasien extends CI_Controller {
             'ID_Morphology' => $_POST['ID_Morphology'],
             'ID_Diagnosis' => $_POST['Diagnosis'],
             'ID_Disease' => $_POST['Disease'],
-            'ID_Treatment' => '145314',
             'Diagnosis_Klinis' => $_POST['Diagnosis_Klinis'],
             'Diagnosis_Date' => $_POST['Diagnosis_Date'],
             'ID_Behaviour' => $_POST['Behaviour'],
-            'ID_Distant_Metastases' => '145314',
             'No_Of_Metastases' => $_POST['No_Of_Metastases'],
             'ID_Grade' => $_POST['Grade'],
             'ID_Stage' => $_POST['Stage'],
@@ -100,22 +106,19 @@ class Pasien extends CI_Controller {
             'Create_Date' => $Create_Date,
         );
 
-        $sources_follow_up = array(
-            'NIK' => $NIK,
-            'Tgl_Periksa' => '1', // $_POST['Tgl_Periksa'],
-            'Kode_Rumah_Sakit' => '1', //$_POST['ID_Morphology'],
-            'Unit_ID' => '1', // $_POST['ID_Diagnosis'],
-            'Unit' => '1', //$_POST['ID_Disease'],
-            'No_Pa/Lab' => '145314',
-            'Admission_Date' => $_POST['Admission_Date'],
-            'Date_Last_Contact' => $_POST['Date_Last_Contact'],
-            'id_status' => $_POST['status'],
-            'Registrar' => $_POST['Registrar'],
-            'Date_Of_Abstract' => $_POST['Date_Of_Abstract'],
-            'Verifeir' => $_POST['Verifeir'],
-            'Date_Of_Verification' => $_POST['Date_Of_Verification'],
-            'Create_Date' => $Create_Date,
-        );
+
+        $Admission_Date = $_POST['Admission_Date'];
+        $Date_Last_Contact = $_POST['Date_Last_Contact'];
+        $id_status = $_POST['status'];
+        $Registrar = $_POST['Registrar'];
+        $Date_Of_Abstract = $_POST['Date_Of_Abstract'];
+        $Verifeir = $_POST['Verifeir'];
+        $Date_Of_Verification = $_POST['Date_Of_Verification'];
+
+        for ($sp = 0; $sp < $jumlahSource; $sp++) {
+            $this->db->query("INSERT INTO sources_follow_up values('','$NIK','$tgl_periksa[$sp]','$kode_rumahsakit[$sp]','$nama_RumahSakit[$sp]',"
+                    . "'$unit_ID[$sp]','$unit[$sp]','$No_PALAB[$sp]','$Admission_Date','$Date_Last_Contact','$id_status','$Registrar','$Date_Of_Abstract','$Verifeir','$Date_Of_Verification','$Create_Date','')");
+        }
 
         for ($x = 0; $x < $jumlah_dipilih; $x++) {
             $this->db->query("INSERT INTO treatment_pasien values('','$ID_Treatment[$x]','$NIK','$Create_Date','')");
@@ -128,12 +131,10 @@ class Pasien extends CI_Controller {
         if ($Cek == NULL) {
             $this->user_model->Simpan('data_pasien', $datapasien);
             $this->user_model->Simpan('data_tumor_pasien', $datatumor);
-            $this->user_model->Simpan('sources_follow_up', $sources_follow_up);
             $this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Data Berhasil Disimpan</strong></div>");
             redirect('Pasien');
         } else {
             $this->user_model->Simpan('data_tumor_pasien', $datatumor);
-            $this->user_model->Simpan('sources_follow_up', $sources_follow_up);
             $this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Maaf Data Sudah Ada</strong></div>");
             redirect('Pasien');
         }
@@ -144,35 +145,34 @@ class Pasien extends CI_Controller {
         cek_hakakses(array(1));
         if ($data_user = $this->user_model->get_DetilPasien($NIK)) {
             $this->form_validation->set_rules('username', 'Username', 'required');
-//   $this->form_validation->set_rules('password', 'password', 'required');
             $this->form_validation->set_rules('nama', 'nama', 'required');
             $this->form_validation->set_rules('hak_akses', 'hak_akses', 'required');
             $this->form_validation->set_rules('status', 'status', 'required');
-            if ($this->form_validation->run()) {
-                $data_simpan = array(
-                    'username' => $_POST['username'],
-//         'password' => md5($_POST['password']),
-                    'nama' => $_POST['nama'],
-                    'hak_akses' => $_POST['hak_akses'],
-                    'status' => $_POST['status'],
-                );
-
-                if ($this->user_model->ubah($NIK, $data_simpan)) {
-                    $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
-                    redirect('pasien/v_pasien');
-                } else {
-                    $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
-                    redirect('pasien/v_pasien');
-                }
-            } else {
+//            if ($this->form_validation->run()) {
+//                $data_simpan = array(
+//                    'username' => $_POST['username'],
+//                    'nama' => $_POST['nama'],
+//                    'hak_akses' => $_POST['hak_akses'],
+//                    'status' => $_POST['status'],
+//                );
+//
+//                if ($this->user_model->ubah($NIK, $data_simpan)) {
+//                    $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
+//                    redirect('pasien/v_pasien');
+//                } else {
+//                    $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
+//                    redirect('pasien/v_pasien');
+//                }
+//            } else {
                 $data['row'] = $data_user->row();
                 $data['isi'] = 'pasien/detailPasien';
                 $data['title'] = 'Data User';
                 $this->load->view('dashboard/dashboard', $data);
-            }
-        } else {
-            echo 'Data tidak Ditemukan';
-        }
+     //       }
+        } 
+//        else {
+//            echo 'Data tidak Ditemukan';
+//        }
     }
 
     function detailPasien($NIK = null) {

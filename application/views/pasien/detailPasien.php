@@ -53,7 +53,7 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-2 col-form-label">Alamat Tetap</label>
                             <div class="col-10">
-                                <input class="form-control" name="ID_Alamat_Tetap" readonly="" value="<?=$row->ID_Alamat_Tetap?>" type="text" id="example-number-input">
+                                <input class="form-control" name="ID_Alamat_Tetap" readonly="" value="<?=$row->Alamat_Tetap?>" type="text" id="example-number-input">
                             </div>
                         </div>
 
@@ -110,7 +110,7 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-md-11 col-form-label">&nbsp&nbspAlamat Sementara</label>
                             <div class="col-12">
-                                <input class="form-control" type="text" value="" id="example-number-input">
+                                <input class="form-control" type="text" value="<?=$row->Alamat_Sementara?>" readonly="" id="example-number-input">
                             </div>
                         </div>
 
@@ -211,7 +211,7 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-12">
-                                <input class="form-control" name="No_Telpon" type="number-input" value="" placeholder="Masukan Nomor Telpon" id="example-tel-input">
+                                <input class="form-control" value="<?=$row->No_Telpon?>" readonly="" name="No_Telpon" type="number-input" value="" placeholder="Masukan Nomor Telpon" id="example-tel-input">
                             </div>
                         </div><br><br><br><br>
 

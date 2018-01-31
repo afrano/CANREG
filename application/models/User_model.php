@@ -6,6 +6,7 @@ class User_model extends ci_model {
     public $data_pasien = 'data_pasien';
     public $data_tumor_pasien = 'data_tumor_pasien';
     public $Topography = 'Topography';
+    public $morphology = 'morphology';
 
     function __construct() {
         parent::__construct();
@@ -20,6 +21,13 @@ class User_model extends ci_model {
     function get_Topography() {
         $this->db->select('*');
         $this->db->from('Topography');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    function get_Morphology() {
+        $this->db->select('*');
+        $this->db->from('morphology');
         $query = $this->db->get();
         return $query;
     }
@@ -65,6 +73,9 @@ class User_model extends ci_model {
     function get_DetilPasien($NIK) {
 //        $this->db->join('data_tumor_pasien', "data_tumor_pasien.NIK = $this->data_pasien.NIK", 'LEFT');
 //        $query = $this->db->get($this->nama_tabel);
+//        select * from data_pasien dp, data_tumor_pasien dtp, wilayah_provinsi wp where dp.NIK = 145314005 and dtp.NIK = 145314005 and wp.id = dp.id_Provinsi
+//        
+//        
 //        return $query;
 
         $query = $this->db->get_where($this->data_pasien, array('NIK' => $NIK));
@@ -75,6 +86,20 @@ class User_model extends ci_model {
 
     function get_byNIK($NIK) {
         $query = $this->db->get_where($this->data_tumor_pasien, array('NIK' => $NIK));
+        if ($query)
+            return $query;
+        return false;
+    }
+
+    function get_byKode($Kode) {
+        $query = $this->db->get_where($this->Topography, array('ID_Topography' => $Kode));
+        if ($query)
+            return $query;
+        return false;
+    }
+
+    function get_byKodeMorpology($Kode) {
+        $query = $this->db->get_where($this->morphology, array('ID_Morphology' => $Kode));
         if ($query)
             return $query;
         return false;
@@ -109,8 +134,20 @@ class User_model extends ci_model {
         return false;
     }
 
+    function tambahMorphology($data_user) {
+        $query = $this->db->insert('morphology', $data_user);
+        if ($query)
+            return $query;
+        return false;
+    }
+
     public function CekTumor($where) {
         $data = $this->db->query('SELECT * from topography where id_topography = "' . $where . '" ');
+        return $data;
+    }
+
+    public function CekMorphology($id) {
+        $data = $this->db->query('SELECT * from morphology where id_morphology = "' . $id . '" ');
         return $data;
     }
 
@@ -134,6 +171,29 @@ class User_model extends ci_model {
         $this->db->where('NIK', $NIK);
         $query = $this->db->delete($this->data_tumor_pasien, $this->data_pasien);
         //  $query1 = $this->db->delete($this->data_pasien);
+        if ($query)
+            return $query;
+        return false;
+    }
+
+    // untuk topography
+    public function Hapusdata($table, $where) {
+        return $this->db->delete($table, $where);
+    }
+
+    function ubahTopography($id, $Data) {
+        $this->db->where('ID_Topography', $id);
+        $query = $this->db->update('topography', $Data, array('ID_Topography' => $id));
+        if ($query)
+            return $query;
+        return false;
+    }
+
+    //-------------------------
+
+    function ubahMorphology($id, $Data) {
+        $this->db->where('ID_Morphology', $id);
+        $query = $this->db->update('morphology', $Data, array('ID_Morphology' => $id));
         if ($query)
             return $query;
         return false;

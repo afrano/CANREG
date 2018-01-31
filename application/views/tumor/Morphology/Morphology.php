@@ -3,17 +3,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"><strong><center>Tambah Topography</center></strong></h4>
+                <h4 class="modal-title"><strong><center>Tambah Morphology</center></strong></h4>
             </div>
             <div class="modal-body">
-                <form class="form-group" action="<?= site_url('Tumor/addTopography') ?>" method="POST" >
+                <form class="form-group" action="<?= site_url('Tumor/addMorphology') ?>" method="POST" >
                     <div class="form-group">
-                        <label>ID Topography :</label>
-                        <input class="form-control" type="text" name="ID_Topography" required="true" />
+                        <label>ID Morphology :</label>
+                        <input class="form-control" type="text" name="ID_Morphology" required="true" />
                     </div>
                     <div class="form-group">
-                        <label>Nama Topography :</label>
-                        <input class="form-control" type="text" name="Topography" required="true" />
+                        <label>Nama Morphology :</label>
+                        <input class="form-control" type="text" name="Morphology" required="true" />
                     </div>
                     <div class='form-group'>
                         <button class="btn btn-primary">Simpan</button>
@@ -39,8 +39,8 @@
                 <thead>
                     <tr>
                         <th data-hide="phone, tablet">NO</th>
-                        <th data-hide="phone, tablet">ID </th>
-                        <th data-hide="phone, tablet">Topography</th>
+                        <th data-hide="phone, tablet">Kode</th>
+                        <th data-hide="phone, tablet">Morphology</th>
                         <th data-hide="phone, tablet">Create Date</th>
                         <th data-hide="phone, tablet">Update Date</th>
                         <th data-sort-ignore="true" class="min-width">Action</th>
@@ -48,7 +48,7 @@
                 </thead>
                 <div class="form-inline padding-bottom-15">
                     <div class="col-sm-12 text-right m-b-20">
-                        <label><strong><center>Data Topography</center></strong></label>
+                        <label><strong><center>Data Morphology</center></strong></label>
                     </div>
                     <div class="row">
 
@@ -60,7 +60,7 @@
                                     <i class='glyphicon glyphicon-plus'> Tambah</i> 
                                 </a>
                                 <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
-
+                             
                             </div>
 
                         </div>
@@ -69,23 +69,24 @@
                 <tbody>
                     <?php
                     $no = 0;
-                    if ($topography->num_rows() > 0) {
-                        foreach ($topography->result() as $row) {
-                             $no++;
+                   
+                    if ($Morphology->num_rows() > 0) {
+                        foreach ($Morphology->result() as $row) {
+                            $no++;
                             echo "
 			<tr>
 				<td>$no</td>
-				<td>$row->ID_Topography</td>
-				<td>$row->Topography</td>
+				<td>$row->ID_Morphology</td>
+				<td>$row->Morphology</td>
 				<td>$row->Create_Date</td>
 				<td>$row->Update_Date</td>
 				<td >
 					<a class='glyphicon glyphicon-pencil' 
-					href='" . site_url("Tumor/ubahTopography/$row->ID_Topography") . "' >	</a>
+					href='" . site_url("Tumor/ubahMorphology/$row->ID_Morphology") . "' >	</a>
 					
 					<a class='glyphicon glyphicon-trash' 
                                         onclick='return confirm(\"Data Akan Di Hapus\")'
-					href='" . site_url("Tumor/hapusTopography/$row->ID_Topography") . "' >	</a>
+					href='" . site_url("Tumor/hapusMorphology/$row->ID_Morphology") . "' >	</a>
 					
 				</td>
 			</tr>
@@ -104,6 +105,7 @@
                         </td>
                     </tr>
                 </tfoot>
+                 
             </table>
         </div>
     </div>

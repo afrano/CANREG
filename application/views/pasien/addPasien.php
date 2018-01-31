@@ -694,20 +694,20 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td><input type="date"></input></td>
-                                                <td>Kode Rumah Sakit</td>
-                                                <td>e.g RSUP Dr. Sarjidto</td>
-                                                <td>Unit ID</td>
-                                                <td>Unit</td>
-                                                <td>No.PA/Lab</td>
+                                                <td><input name="Tgl_Periksa[]" type="date"></td>
+                                                <td><input name="Kode_RumahSakit[]" type="text" size="10"></td>
+                                                <td><input name="nama_RumahSakit[]" type="text" size="10"></td>
+                                                <td><input name="unit_ID[]"type="text" size="10"></td>
+                                                <td><input name="unit[]"type="text" size="10"></td>
+                                                <td><input name="No_PALAB[]"type="text" size="10"></td>
                                             </tr>
                                             <tr>
-                                                <td><input type="date"/></td>
-                                                <td>Kode Rumah Sakit</td>
-                                                <td>e.g RSUP Dr. Sarjidto</td>
-                                                <td>Unit ID</td>
-                                                <td>Unit</td>
-                                                <td>No.PA/Lab</td>
+                                                <td><input name="Tgl_Periksa[]" type="date"></td>
+                                                <td><input name="Kode_RumahSakit[]" type="text" size="10"></td>
+                                                <td><input name="nama_RumahSakit[]" type="text" size="10"></td>
+                                                <td><input name="unit_ID[]"type="text" size="10"></td>
+                                                <td><input name="unit[]"type="text" size="10"></td>
+                                                <td><input name="No_PALAB[]"type="text" size="10"></td>
                                             </tr>
                                         </tbody>
 
