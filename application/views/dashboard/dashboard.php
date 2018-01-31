@@ -8,6 +8,8 @@
         <meta name="author" content="">
         <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/plugins/images/favicon.png">
         <title>Webane Indonesia</title>
+
+
         <!-- Bootstrap Core CSS -->
         <link href="<?php echo base_url(); ?>assets/css/popup.css" rel="stylesheet">
         <!-- animation CSS -->
@@ -30,7 +32,7 @@
         <!-- Bootstrap Core CSS -->
         <link href="<?php echo base_url(); ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
-        <!--alerts CSS -->
+        <!--alerts CSS -->      
         <link href="<?php echo base_url(); ?>assets/plugins/bower_components/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
         <!-- Menu CSS -->
         <link href="<?php echo base_url(); ?>assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
@@ -42,7 +44,6 @@
         <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
         <!-- color CSS -->
         <link href="<?php echo base_url(); ?>assets/css/colors/megna.css" id="theme" rel="stylesheet">
-
 
         <!-- color CSS -->
         <script src="<?php echo base_url(); ?>assets/jquery.min.js"></script>
@@ -92,9 +93,9 @@
                     $('#desa').load(url);
                     return false;
                 })
-                
-                
-                  $("#provinsi1").change(function () {
+
+
+                $("#provinsi1").change(function () {
                     var url = "<?php echo site_url('autocomplete/add_ajax_kab'); ?>/" + $(this).val();
                     $('#kabupaten1').load(url);
                     return false;
@@ -112,11 +113,9 @@
                     return false;
                 })
             }
-                
-    );
+
+            );
         </script>
-
-
 
     </head>
 
@@ -256,8 +255,6 @@
                                 </ul>
                             </li>
                             <li> <a href="<?= site_url('Dashboard') ?>" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>
-
-
                             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu"> Data Pasien <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
                                     <li> <a href="<?= site_url('Pasien/addPasien') ?>">Add Data Pasien</a> </li>
@@ -273,7 +270,7 @@
             <div id="page-wrapper">
                 <style type="text/css">
                     #main {
-                        background-color: #ccccff;
+                        background-color: #000\9;
                     }
                     #menu1{
                         background-color: #cc66ff;
@@ -305,14 +302,12 @@
         </div>
         <!-- /#wrapper -->
         <!-- jQuery -->
-        <script src="<?php echo base_url(); ?>assets/js/custom.min.js"></script>
+
         <!-- Editable -->
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/jquery-datatables-editable/jquery.dataTables.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/datatables/dataTables.bootstrap.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/tiny-editable/mindmup-editabletable.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/tiny-editable/numeric-input-example.js"></script>
-
-
 
 
         <!-- Menu Plugin JavaScript -->
@@ -321,13 +316,19 @@
         <script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.js"></script>
         <!--Wave Effects -->
         <script src="<?php echo base_url(); ?>assets/js/waves.js"></script>
-
+        <!--Morris JavaScript -->
+        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/raphael/raphael-min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/morrisjs/morris.js"></script>
+        <!-- Sparkline chart JavaScript -->
         <!-- Sparkline chart JavaScript -->
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
         <!-- jQuery peity -->
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/peity/jquery.peity.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/peity/jquery.peity.init.js"></script>
+
+
         <!-- Custom Theme JavaScript -->
+<!--        <script src="<?php echo base_url(); ?>assets/js/custom.min.js"></script>-->
         <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/dashboard1.js"></script>
         <!--Style Switcher -->

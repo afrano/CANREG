@@ -16,7 +16,7 @@
                         <div class="form-group row">
                             <label for="example-search-input" class="col-2 col-form-label">MRN</label>
                             <div class="col-10">
-                                <input class="form-control" name="MRN" required="" type="search" value="" placeholder="Tujuh digit kode RS | NO MR" id="example-search-input">
+                                <input class="form-control" name="MRN" required="" type="text" value="" placeholder="Tujuh digit kode RS | NO MR" id="example-search-input">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -53,13 +53,13 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-2 col-form-label">Alamat Tetap</label>
                             <div class="col-10">
-                                <input class="form-control" name="ID_Alamat_Tetap" type="text" value="" id="example-number-input">
+                                <input class="form-control" name="Alamat_Tetap" type="text" value="" id="example-number-input">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-12">
 
-                                <select name="prov" class="form-control" id="provinsi">
+                                <select name="id_provinsi" class="form-control" id="provinsi">
                                     <option>- Select Provinsi -</option>
                                     <?php
                                     foreach ($provinsi as $prov) {
@@ -72,7 +72,7 @@
 
                         <div class="form-group ">
                             <div class="col-sm-12">
-                                <select name="kab" class="form-control" id="kabupaten">
+                                <select name="id_kabupaten" class="form-control" id="kabupaten">
                                     <option value=''>- Select Kabupaten -</option>
                                 </select>
                             </div>
@@ -80,7 +80,7 @@
 
                         <div class="form-group ">
                             <div class="col-sm-12">
-                                <select name="kec" class="form-control" id="kecamatan">
+                                <select name="id_kecamatan" class="form-control" id="kecamatan">
                                     <option>- Select Kecamatan -</option>
                                 </select>
                             </div>
@@ -102,13 +102,13 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-md-11 col-form-label">&nbsp&nbspAlamat Sementara</label>
                             <div class="col-12">
-                                <input class="form-control" type="text" value="" id="example-number-input">
+                                <input class="form-control" name="Alamat_sementara" type="text" value="" required="" id="example-number-input">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <select name="prov" class="form-control" id="provinsi1">
+                                <select name="id_provinsi_1" class="form-control" id="provinsi1">
                                     <option>- Select Provinsi -</option>
                                     <?php
                                     foreach ($provinsi as $prov) {
@@ -121,7 +121,7 @@
 
                         <div class="form-group ">
                             <div class="col-sm-12">
-                                <select name="kab" class="form-control" id="kabupaten1">
+                                <select name="id_kabupaten_1" class="form-control" id="kabupaten1">
                                     <option value=''>- Select Kabupaten -</option>
                                 </select>
                             </div>
@@ -129,7 +129,7 @@
 
                         <div class="form-group ">
                             <div class="col-sm-12">
-                                <select name="kec" class="form-control" id="kecamatan1">
+                                <select name="id_kecamatan_1" class="form-control" id="kecamatan1">
                                     <option>- Select Kecamatan -</option>
                                 </select>
                             </div>
@@ -138,7 +138,7 @@
                         <div class="form-group ">
 
                             <div class="col-sm-12">
-                                <input class="form-control" required="" name="kode_pos" type="text" value="" placeholder="Kode Pos" >                           
+                                <input class="form-control" required="" name="kode_pos1" type="text" value="" placeholder="Kode Pos" >                           
                             </div>
                         </div>
 
@@ -198,7 +198,7 @@
                         <div class="form-group ">
                             <div class="col-sm-12">
                                 <select class="custom-select col-12" name="ID_Occupation" id="inlineFormCustomSelect">
-                                   <option value="">-- Occupation -- </option>
+                                    <option value="">-- Occupation -- </option>
                                     <?php
                                     $query = $this->db->get('occupation');
                                     foreach ($query->result() as $row) {
@@ -317,7 +317,6 @@
                             </script>
                         </div>
                         <br>
-
                         <div name="Treatment_Reporting" onclick="checkbox()">
                             <table style="width:35%">
                                 <div class="example">
@@ -338,7 +337,7 @@
 //                                                     ";
 //                                            } else {
                                             echo "  
-                                                 <th>&nbsp;<input type='checkbox' name='datacheckbox' class='form-check-input' value='$row->ID_Treatment' >  &nbsp;  &nbsp; $row->Treatment_Reporting &nbsp;</th></tr> ";
+                                                 <th>&nbsp;<input type='checkbox' name='ID_Treatment[]' class='form-check-input' value='$row->ID_Treatment' >  &nbsp;  &nbsp; $row->Treatment_Reporting &nbsp;</th></tr> ";
                                         }
                                         ?>
                                     </label>
@@ -425,7 +424,7 @@
                                         //  $total = 0;
                                         foreach ($query->result() as $row1) {
                                             echo "  
-                                                 <th>&nbsp;<input type='checkbox' name='datacheckbox1' class='form-check-input' value='$row1->ID_Distant_Metastases' >  &nbsp;  &nbsp; $row1->Distant_Metastases &nbsp;</th></tr> ";
+                                                 <th>&nbsp;<input type='checkbox' name='ID_Distant_Metastases[]' class='form-check-input' value='$row1->ID_Distant_Metastases' >  &nbsp;  &nbsp; $row1->Distant_Metastases &nbsp;</th></tr> ";
                                         }
                                         ?>
                                     </label>
@@ -564,10 +563,13 @@
                                     <h5 class="box-title m-t-30">Immunohistokimia / immunohistochemistry :</h5>
                                     <div class="col-md-12">
                                         <select name="ID_Immunohistokimia" class="custom-select col-12" id="inlineFormCustomSelect">
-                                            <option selected>1. In situ</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            <option value="">-- Pilih -- </option>
+                                            <?php
+                                            $query = $this->db->get('Immunohistokimia');
+                                            foreach ($query->result() as $row) {
+                                                echo "<option value='$row->ID_Immunohistokimia'>$row->Immunohistokimia</option>";
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div></div></div>
@@ -588,10 +590,13 @@
                                     <h5 class="box-title m-t-30">In Situ Hybridization :</h5>
                                     <div class="col-md-12">
                                         <select name="ID_Hybridization" class="custom-select col-12" id="inlineFormCustomSelect">
-                                            <option selected>1. In situ</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            <option value="">-- Pilih -- </option>
+                                            <?php
+                                            $query = $this->db->get('Hybridization');
+                                            foreach ($query->result() as $row) {
+                                                echo "<option value='$row->ID_Hybridization'>$row->Hybridization</option>";
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -672,8 +677,6 @@
                         </div>
 
 
-
-
                         <div class="row">
                             <div class="col-lg-11">
                                 <div class="example">
@@ -706,8 +709,6 @@
                                                 <td>Unit</td>
                                                 <td>No.PA/Lab</td>
                                             </tr>
-
-
                                         </tbody>
 
                                     </table>
@@ -720,7 +721,7 @@
                                 <div class="example">
                                     <h5 class="box-title m-t-30"> Kesimpulan :</h5>
                                     <div class="col-md-12">
-                                        <textarea class="form-control" rows="5"></textarea>
+                                        <textarea class="form-control" name="kesimpulan" required="" placeholder="Masukan kesimpulan . . ." rows="5"></textarea>
                                     </div>
                                 </div>
 
@@ -734,19 +735,19 @@
                                         <div class="col-lg-4">
                                             <div class="example">
                                                 <h5 class="box-title m-t-30">Admission date</h5>
-                                                <input class="form-control input-daterange-datepicker" type="text" name="admission" value="" />
+                                                <input class="form-control input-daterange-datepicker" type="date" required="" name="Admission_Date" value="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="example">
                                                 <h5 class="box-title m-t-30">Registrar</h5>
-                                                <input type="text" class="form-control input-daterange-timepicker" name="registrar" value="" />
+                                                <input type="text" class="form-control input-daterange-timepicker" placeholder="Registrar" required="" name="Registrar" value="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="example">
                                                 <h5 class="box-title m-t-30">Verifier</h5>
-                                                <input class="form-control input-limit-datepicker" type="text" name="verifier" value="" />
+                                                <input class="form-control input-limit-datepicker" required="" type="text" placeholder="Verifier" name="Verifeir" value="" />
                                             </div>
                                         </div>
                                     </div>
@@ -754,19 +755,19 @@
                                         <div class="col-lg-4">
                                             <div class="example">
                                                 <h5 class="box-title m-t-30">Date last contact</h5>
-                                                <input class="form-control input-daterange-datepicker" type="text" name="datelastcontact" value="" />
+                                                <input class="form-control input-daterange-datepicker" type="date" name="Date_Last_Contact" value="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="example">
                                                 <h5 class="box-title m-t-30">Date of abstract</h5>
-                                                <input type="text" class="form-control input-daterange-timepicker" name="dateofabstract" value="" />
+                                                <input type="date" required="" class="form-control input-daterange-timepicker" name="Date_Of_Abstract" value="" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="example">
                                                 <h5 class="box-title m-t-30">Date of Verification</h5>
-                                                <input class="form-control input-limit-datepicker" type="text" name="dateofverification" value="" />
+                                                <input class="form-control input-limit-datepicker" required="" type="date" name="Date_Of_Verification" value="" />
                                             </div>
                                         </div>
                                     </div>
@@ -789,7 +790,7 @@
                                         <div class="col-lg-1">
                                             <div class="example">
                                                 <h5 class="box-title m-t-30">Kode</h5>
-                                                <input type="text" readonly="" class="form-control input-daterange-timepicker" name="ID_Status" value="" />
+                                                <input type="text" readonly="" required="" class="form-control input-daterange-timepicker" name="ID_Status" value="" />
                                             </div>
                                         </div>
                                         <script language = "javascript">
@@ -814,8 +815,6 @@
                                     <h2><font color=white>SUKSES DISIMPAN!</font></h2>
                                 </div>
                             </div>
-
-
                         </div><br>
                     </div>
                 </div>  

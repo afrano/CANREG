@@ -33,11 +33,11 @@ class Pasien extends CI_Controller {
         $this->load->view('dashboard/dashboard', $data);
     }
 
-    
-
     function tambah_pasien() {
         $Create_Date = Date("Y-m-d H:i:s", time() + 60 * 360);
+        $this->form_validation->set_rules('NIK', 'NIK', 'required');
         $NIK = $_POST['NIK'];
+
 
         $ID_Distant_Metastases = $_POST['ID_Distant_Metastases'];
         $jumlah_ID_Distant_Metastases = count($ID_Distant_Metastases);
@@ -53,16 +53,25 @@ class Pasien extends CI_Controller {
             'Family_Name' => $_POST['Family_Name'],
             'Place_Of_Birth' => $_POST['Place_Of_Birth'],
             'Date_Of_Birth' => $_POST['Date_Of_Birth'],
-            'ID_Alamat_Tetap' => $_POST['ID_Alamat_Tetap'],
-            'ID_Alamat_Sementara' => $_POST['ID_Alamat_Sementara'],
+            'Alamat_Tetap' => $_POST['Alamat_Tetap'],
+            'ID_Provinsi' => $_POST['id_provinsi'],
+            'id_kabupaten' => $_POST['id_kabupaten'],
+            'id_kecamatan' => $_POST['id_kecamatan'],
+            'kode_pos' => $_POST['kode_pos'],
+            'Alamat_Sementara' => $_POST['Alamat_sementara'],
+            'id_provinsi_1' => $_POST['id_provinsi_1'],
+            'id_kabupaten_1' => $_POST['id_kabupaten_1'],
+            'id_kecamatan_1' => $_POST['id_kecamatan_1'],
+            'kode_pos1' => $_POST['kode_pos1'],
             'ID_Sex' => $_POST['ID_Sex'],
             'ID_Race' => $_POST['ID_Race'],
             'ID_Religion' => $_POST['ID_Religion'],
-            'ID_Status_Pernikahan' => $_POST['ID_Status_Pernikahan'],
+            'id_status_hubungan' => $_POST['ID_Status_Pernikahan'],
             'ID_Occupation' => $_POST['ID_Occupation'],
             'No_Telpon' => $_POST['No_Telpon'],
             'Create_Date' => $Create_Date,
         );
+
         $Cek = 0;
         $Cek = $this->user_model->CekPasien($NIK)->result_array();
 
@@ -70,25 +79,44 @@ class Pasien extends CI_Controller {
             'NIK' => $NIK,
             'ID_Topography' => $_POST['ID_Topography'],
             'ID_Morphology' => $_POST['ID_Morphology'],
-            'ID_Diagnosis' => $_POST['ID_Diagnosis'],
-            'ID_Disease' => $_POST['ID_Disease'],
+            'ID_Diagnosis' => $_POST['Diagnosis'],
+            'ID_Disease' => $_POST['Disease'],
             'ID_Treatment' => '145314',
             'Diagnosis_Klinis' => $_POST['Diagnosis_Klinis'],
             'Diagnosis_Date' => $_POST['Diagnosis_Date'],
-            'ID_Behaviour' => $_POST['ID_Behaviour'],
+            'ID_Behaviour' => $_POST['Behaviour'],
             'ID_Distant_Metastases' => '145314',
             'No_Of_Metastases' => $_POST['No_Of_Metastases'],
-            'ID_Grade' => $_POST['ID_Grade'],
-            'ID_Stage' => $_POST['ID_Stage'],
-            'ID_Laterality' => $_POST['ID_Laterality'],
+            'ID_Grade' => $_POST['Grade'],
+            'ID_Stage' => $_POST['Stage'],
+            'ID_Laterality' => $_POST['Laterality'],
             'ID_Immunohistokimia' => $_POST['ID_Immunohistokimia'],
             'Date_IHC' => $_POST['Date_IHC'],
             'ID_Hybridization' => $_POST['ID_Hybridization'],
             'Date' => $_POST['Date'],
-            'ID_Biopsy' => $_POST['ID_Biopsy'],
-            'ID_Sublocation' => $_POST['ID_Sublocation'],
+            'ID_Biopsy' => $_POST['Biopsy'],
+            'ID_Sublocation' => $_POST['Sublocation'],
+            'Kesimpulan' => $_POST['kesimpulan'],
             'Create_Date' => $Create_Date,
         );
+
+        $sources_follow_up = array(
+            'NIK' => $NIK,
+            'Tgl_Periksa' => '1', // $_POST['Tgl_Periksa'],
+            'Kode_Rumah_Sakit' => '1', //$_POST['ID_Morphology'],
+            'Unit_ID' => '1', // $_POST['ID_Diagnosis'],
+            'Unit' => '1', //$_POST['ID_Disease'],
+            'No_Pa/Lab' => '145314',
+            'Admission_Date' => $_POST['Admission_Date'],
+            'Date_Last_Contact' => $_POST['Date_Last_Contact'],
+            'id_status' => $_POST['status'],
+            'Registrar' => $_POST['Registrar'],
+            'Date_Of_Abstract' => $_POST['Date_Of_Abstract'],
+            'Verifeir' => $_POST['Verifeir'],
+            'Date_Of_Verification' => $_POST['Date_Of_Verification'],
+            'Create_Date' => $Create_Date,
+        );
+
         for ($x = 0; $x < $jumlah_dipilih; $x++) {
             $this->db->query("INSERT INTO treatment_pasien values('','$ID_Treatment[$x]','$NIK','$Create_Date','')");
         }
@@ -100,10 +128,12 @@ class Pasien extends CI_Controller {
         if ($Cek == NULL) {
             $this->user_model->Simpan('data_pasien', $datapasien);
             $this->user_model->Simpan('data_tumor_pasien', $datatumor);
+            $this->user_model->Simpan('sources_follow_up', $sources_follow_up);
             $this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Data Berhasil Disimpan</strong></div>");
             redirect('Pasien');
         } else {
             $this->user_model->Simpan('data_tumor_pasien', $datatumor);
+            $this->user_model->Simpan('sources_follow_up', $sources_follow_up);
             $this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Maaf Data Sudah Ada</strong></div>");
             redirect('Pasien');
         }
