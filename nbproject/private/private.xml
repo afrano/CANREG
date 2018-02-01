@@ -3,24 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Pasien.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/tumor/Topography/ubah_Topography.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/pasien/detailPasien.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Daftar.php</file>
+            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/wilayah/Provinsi/Provinsi.php</file>
+            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/tumor/Disease_treatment/Disease_Treatment.php</file>
             <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/dashboard/dashboard.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/user/ubah_user.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/User.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Dashboard.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/pasien/addPasien.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/models/User_model.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/tumor/Topography/Topography.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/pasien/v_pasien.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Login.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/login/login.php</file>
             <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/tumor/Morphology/Morphology.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/tumor/Basic_Diagnosis/Basic_Diagnosis.php</file>
+            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/wilayah/Kabupaten/Kabupaten.php</file>
+            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Welcome.php</file>
+            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Wilayah.php</file>
             <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Tumor.php</file>
             <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/tumor/Morphology/ubah_Morphology.php</file>
+            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/models/User_model.php</file>
         </group>
     </open-files>
 </project-private>

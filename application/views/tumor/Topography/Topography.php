@@ -16,7 +16,7 @@
                         <input class="form-control" type="text" name="Topography" required="true" />
                     </div>
                     <div class='form-group'>
-                        <button class="btn btn-primary">Simpan</button>
+                        <button class="btn btn-skype">Simpan</button>
                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Close</button>
                     </div>
                 </form>
@@ -56,7 +56,7 @@
 
                             <div class="form-group">
 
-                                <a href="#" data-toggle="modal" data-target="#add-new-event"  class='btn btn-primary'>
+                                <a href="#" data-toggle="modal" data-target="#add-new-event"  class='btn btn-skype'>
                                     <i class='glyphicon glyphicon-plus'> Tambah</i> 
                                 </a>
                                 <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
@@ -69,8 +69,8 @@
                 <tbody>
                     <?php
                     $no = 0;
-                    if ($topography->num_rows() > 0) {
-                        foreach ($topography->result() as $row) {
+                    if ($alldata->num_rows() > 0) {
+                        foreach ($alldata->result() as $row) {
                              $no++;
                             echo "
 			<tr>

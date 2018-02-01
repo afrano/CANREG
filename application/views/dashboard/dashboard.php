@@ -170,7 +170,7 @@
                                         <ul class="nav nav-second-level">
                                             <li> <a href="<?= site_url('Tumor/Topography') ?>">Topography</a> </li>
                                             <li> <a href="<?= site_url('Tumor/Morphology') ?>">Morphology</a> </li>
-                                            <li> <a href="<?= site_url('Tumor/Basic_Diagnosis') ?>">diagnosis Cancer</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/BasicDiagnosis') ?>">diagnosis Cancer</a> </li>
                                             <li> <a href="<?= site_url('Tumor/Diseasetreatment') ?>">disease before treatment</text></a> </li>
                                             <li> <a href="<?= site_url('Tumor/TeatmentReporting') ?>">Treatment at reporting</a> </li>
                                             <li> <a href="<?= site_url('Tumor/Behaviour') ?>">Behaviour</a> </li>
@@ -184,8 +184,15 @@
                                             <li> <a href="<?= site_url('Tumor/Sublocation') ?>">Sublocation of Breast Tumor</a> </li>
                                         </ul>
                                     </li>
-                                
-                                  </ul>
+                                    <li><a href="javascript:void(0);" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> Database Wilayah <span class="fa arrow"></span></span></a>
+
+                                        <ul class="nav nav-second-level">
+                                            <li> <a href="<?= site_url('Wilayah') ?>">Provinsi</a> </li>
+                                            <li> <a href="<?= site_url('Wilayah/Kabupaten') ?>">Kabupaten</a> </li>
+                                        </ul>
+
+                                    </li>
+                                </ul>
                             </li>
 
                             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-chart p-r-10"></i> <span class="hide-menu"> Reports <span class="fa arrow"></span></span></a>

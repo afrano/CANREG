@@ -19,7 +19,7 @@
                     <input class="form-control" name="Topography" value="<?= $row->Topography ?>" required="true"/>
                 </div>
                 <div class='form-group'>
-                    <button class="btn btn-primary">Simpan</button>
+                    <button class="btn btn-skype">Simpan</button>
                 </div>
             </form>
         </div>

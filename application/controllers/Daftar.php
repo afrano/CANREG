@@ -21,7 +21,7 @@ class Daftar extends CI_Controller {
                     'username' => $_POST['username'],
                     'password' => md5($_POST['password']),
                     'nama' => $_POST['nama'],
-                    'hak_akses' => 2,
+                    'hak_akses' => 3,
                     'status' => 0,
                 );
 

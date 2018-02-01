@@ -13,37 +13,16 @@ class User_model extends ci_model {
         parent::__construct();
     }
 
-    function get_all() {
-        $this->db->join('akses', "akses.id_akses = $this->nama_tabel.hak_akses", 'LEFT');
-        $query = $this->db->get($this->nama_tabel);
-        return $query;
-    }
-
-    function get_Topography() {
-        $this->db->select('*');
-        $this->db->from('topography');
-        $query = $this->db->get();
-        return $query;
-    }
-
-    function get_Morphology() {
-        $this->db->select('*');
-        $this->db->from('morphology');
-        $query = $this->db->get();
-        return $query;
-    }
-
-    function get_Basic() {
-        $this->db->select('*');
-        $this->db->from('diagnosis_cancer');
-        $query = $this->db->get();
-        return $query;
-    }
-
     function get_alldata($table) {
         $this->db->select('*');
         $this->db->from($table);
         $query = $this->db->get();
+        return $query;
+    }
+
+    function get_all() {
+        $this->db->join('akses', "akses.id_akses = $this->nama_tabel.hak_akses", 'LEFT');
+        $query = $this->db->get($this->nama_tabel);
         return $query;
     }
 
@@ -101,27 +80,6 @@ class User_model extends ci_model {
         return false;
     }
 
-    function get_byKode($Kode) {
-        $query = $this->db->get_where($this->Topography, array('ID_Topography' => $Kode));
-        if ($query)
-            return $query;
-        return false;
-    }
-
-    function get_byKodeMorpology($Kode) {
-        $query = $this->db->get_where($this->morphology, array('ID_Morphology' => $Kode));
-        if ($query)
-            return $query;
-        return false;
-    }
-
-    function get_byBasic($Kode) {
-        $query = $this->db->get_where($this->diagnosis_cancer, array('ID_Diagnosis' => $Kode));
-        if ($query)
-            return $query;
-        return false;
-    }
-
     function getdata_bykode($tabel, $ID, $Kode) {
         $query = $this->db->get_where($tabel, array($ID => $Kode));
         if ($query)
@@ -147,24 +105,6 @@ class User_model extends ci_model {
         return $this->db->insert($table, $data);
     }
 
-    public function SimpanArray($table, $data) {
-        return $this->db->insert($table, $data);
-    }
-
-    function tambahTopography($data_user) {
-        $query = $this->db->insert('topography', $data_user);
-        if ($query)
-            return $query;
-        return false;
-    }
-
-    function tambahMorphology($data_user) {
-        $query = $this->db->insert('morphology', $data_user);
-        if ($query)
-            return $query;
-        return false;
-    }
-
     function tambahData($table, $data_user) {
         $query = $this->db->insert($table, $data_user);
         if ($query)
@@ -172,18 +112,8 @@ class User_model extends ci_model {
         return false;
     }
 
-    public function CekTumor($where) {
-        $data = $this->db->query('SELECT * from topography where id_topography = "' . $where . '" ');
-        return $data;
-    }
-
-    public function CekdataTumor($tabel, $where, $id) {
+    public function Cekdata($tabel, $where, $id) {
         $data = $this->db->query('SELECT * from ' . $tabel . ' where ' . $where . ' = "' . $id . '" ');
-        return $data;
-    }
-
-    public function CekMorphology($id) {
-        $data = $this->db->query('SELECT * from morphology where id_morphology = "' . $id . '" ');
         return $data;
     }
 
@@ -212,24 +142,6 @@ class User_model extends ci_model {
         return false;
     }
 
-    function ubahTopography($id, $Data) {
-        $this->db->where('ID_Topography', $id);
-        $query = $this->db->update('topography', $Data, array('ID_Topography' => $id));
-        if ($query)
-            return $query;
-        return false;
-    }
-
-    //-------------------------
-
-    function ubahMorphology($id, $Data) {
-        $this->db->where('ID_Morphology', $id);
-        $query = $this->db->update('morphology', $Data, array('ID_Morphology' => $id));
-        if ($query)
-            return $query;
-        return false;
-    }
-
     function ubahdata($tabel, $where, $id, $data) {
         $this->db->where($where, $id);
         $query = $this->db->update($tabel, $data, array($where => $id));
@@ -238,7 +150,6 @@ class User_model extends ci_model {
         return false;
     }
 
-   
     public function Hapusdata($table, $where) {
         return $this->db->delete($table, $where);
     }
