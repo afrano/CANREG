@@ -19,7 +19,7 @@
         <!-- color CSS -->
         <link href="<?php echo base_url(); ?>assets/css/colors/megna.css" id="theme" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css" />
-        <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
+<!--        <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.3.min.js"></script>-->
 
         <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -46,7 +46,7 @@
         <link href="<?php echo base_url(); ?>assets/css/colors/megna.css" id="theme" rel="stylesheet">
 
         <!-- color CSS -->
-        <script src="<?php echo base_url(); ?>assets/jquery.min.js"></script>
+<!--        <script src="<?php echo base_url(); ?>assets/jquery.min.js"></script>-->
         <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/jquery.autocomplete.js'></script>
         <link href='<?php echo base_url(); ?>assets/js/jquery.autocomplete.css' rel='stylesheet' />
         <script type='text/javascript'>
@@ -168,32 +168,30 @@
                                 <ul class="nav nav-second-level">
                                     <li><a href="javascript:void(0);" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> Database Tumor <span class="fa arrow"></span></span></a>
                                         <ul class="nav nav-second-level">
-                                            <li> <a href="<?= site_url('Tumor/Topography') ?>"><text style="color: #006666"><b>Topography</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #990033"><b>Morphology</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #006666"><b>Most Valid Basic of diagnosis Cancer</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #990033"><b>Clinical ext. of disease before treatment</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #006666"><b>Treatment at reporting institution</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #990033"><b>Diagnosis Klinis</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #006666"><b>Behaviour</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #990033"><b>Distant metastastases</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #006666"><b>Grade</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #990033"><b>Stage</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #006666"><b>Laterality</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #990033"><b>Immunohistokimia /Immunohistochemistry</b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #006666"><b>In Situ Hybridization </b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #990033"><b>Jenis Biopsy / Type of biopsy </b></text></a> </li>
-                                            <li> <a href="<?= site_url('Pasien') ?>"><text style="color: #006666"><b>Sublocation of Breast Tumor</b></text></a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Topography') ?>">Topography</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Morphology') ?>">Morphology</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Basic_Diagnosis') ?>">diagnosis Cancer</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Diseasetreatment') ?>">disease before treatment</text></a> </li>
+                                            <li> <a href="<?= site_url('Tumor/TeatmentReporting') ?>">Treatment at reporting</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Behaviour') ?>">Behaviour</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Distantmetastastases') ?>">Distant metastastases</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Grade') ?>">Grade</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Stage') ?>">Stage</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Laterality') ?>">Laterality</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Immunohistokimia') ?>">Immunohistokimia</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Hybridization') ?>">In Situ Hybridization</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Biopsy') ?>">Type of biopsy</a> </li>
+                                            <li> <a href="<?= site_url('Tumor/Sublocation') ?>">Sublocation of Breast Tumor</a> </li>
                                         </ul>
                                     </li>
-                                    <li> <a href="add-patient.html">ICE-10</a> </li>
-                                    <li> <a href="edit-patient.html">ICCC Code</a> </li>
-                                </ul>
+                                
+                                  </ul>
                             </li>
 
                             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-chart p-r-10"></i> <span class="hide-menu"> Reports <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li> <a href="payment-report.html">Export Page</a></li>
-                                    <li> <a href="income-report.html">Export Data</a></li>
+                                    <li> <a href="Dashboard">Export Page</a></li>
+                                    <li> <a href="Dashboard">Export Data</a></li>
                                 </ul>
                             </li>
 
@@ -233,8 +231,8 @@
 
                             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-chart p-r-10"></i> <span class="hide-menu"> Reports <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li> <a href="payment-report.html">Export Page</a></li>
-                                    <li> <a href="income-report.html">Export Data</a></li>
+                                    <li> <a href="Dashboard">Export Page</a></li>
+                                    <li> <a href="Dashboard">Export Data</a></li>
                                 </ul>
                             </li>
 

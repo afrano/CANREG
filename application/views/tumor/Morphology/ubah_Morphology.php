@@ -1,7 +1,8 @@
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-8 center-block">
         <div class="white-box">
+               <a href="<?= site_url('Tumor/Morphology') ?>"> <<<< Back </a>
             <center><label><h4><strong>Edit Morphology</strong></h4></label></center>
             <?php
             if (validation_errors()) {

@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-8 center-block">
         <div class="white-box">
             <h3><center><text style="color: #009999"><b>Profile <?= $row->nama ?></b></center></h3>
             <?php

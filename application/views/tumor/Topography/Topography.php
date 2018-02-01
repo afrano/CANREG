@@ -48,7 +48,7 @@
                 </thead>
                 <div class="form-inline padding-bottom-15">
                     <div class="col-sm-12 text-right m-b-20">
-                        <label><strong><center>Data Topography</center></strong></label>
+                        <label><h4><strong><center>DATA TOPOGRAPHY</center></strong></h4></label>
                     </div>
                     <div class="row">
 

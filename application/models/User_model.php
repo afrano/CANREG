@@ -5,8 +5,9 @@ class User_model extends ci_model {
     public $nama_tabel = 'tb_user';
     public $data_pasien = 'data_pasien';
     public $data_tumor_pasien = 'data_tumor_pasien';
-    public $Topography = 'Topography';
+    public $Topography = 'topography';
     public $morphology = 'morphology';
+    public $diagnosis_cancer = 'diagnosis_cancer';
 
     function __construct() {
         parent::__construct();
@@ -20,7 +21,7 @@ class User_model extends ci_model {
 
     function get_Topography() {
         $this->db->select('*');
-        $this->db->from('Topography');
+        $this->db->from('topography');
         $query = $this->db->get();
         return $query;
     }
@@ -32,10 +33,19 @@ class User_model extends ci_model {
         return $query;
     }
 
-//    public function insertTeat($ID, $teatment, $Create_Date) {
-//        $data = $this->db->query("INSERT INTO treatment_pasien values('','$ID',$teatment[$x]','$Create_Date')");
-//        return $data;
-//    }
+    function get_Basic() {
+        $this->db->select('*');
+        $this->db->from('diagnosis_cancer');
+        $query = $this->db->get();
+        return $query;
+    }
+
+    function get_alldata($table) {
+        $this->db->select('*');
+        $this->db->from($table);
+        $query = $this->db->get();
+        return $query;
+    }
 
     function get_allPasien() {
         $data = $this->db->query('SELECT * from data_pasien ');
@@ -105,6 +115,20 @@ class User_model extends ci_model {
         return false;
     }
 
+    function get_byBasic($Kode) {
+        $query = $this->db->get_where($this->diagnosis_cancer, array('ID_Diagnosis' => $Kode));
+        if ($query)
+            return $query;
+        return false;
+    }
+
+    function getdata_bykode($tabel, $ID, $Kode) {
+        $query = $this->db->get_where($tabel, array($ID => $Kode));
+        if ($query)
+            return $query;
+        return false;
+    }
+
     function get_byusername($id_user) {
         $query = $this->db->get_where($this->nama_tabel, array('username' => $id_user));
         if ($query)
@@ -141,8 +165,20 @@ class User_model extends ci_model {
         return false;
     }
 
+    function tambahData($table, $data_user) {
+        $query = $this->db->insert($table, $data_user);
+        if ($query)
+            return $query;
+        return false;
+    }
+
     public function CekTumor($where) {
         $data = $this->db->query('SELECT * from topography where id_topography = "' . $where . '" ');
+        return $data;
+    }
+
+    public function CekdataTumor($tabel, $where, $id) {
+        $data = $this->db->query('SELECT * from ' . $tabel . ' where ' . $where . ' = "' . $id . '" ');
         return $data;
     }
 
@@ -176,11 +212,6 @@ class User_model extends ci_model {
         return false;
     }
 
-    // untuk topography
-    public function Hapusdata($table, $where) {
-        return $this->db->delete($table, $where);
-    }
-
     function ubahTopography($id, $Data) {
         $this->db->where('ID_Topography', $id);
         $query = $this->db->update('topography', $Data, array('ID_Topography' => $id));
@@ -197,6 +228,19 @@ class User_model extends ci_model {
         if ($query)
             return $query;
         return false;
+    }
+
+    function ubahdata($tabel, $where, $id, $data) {
+        $this->db->where($where, $id);
+        $query = $this->db->update($tabel, $data, array($where => $id));
+        if ($query)
+            return $query;
+        return false;
+    }
+
+   
+    public function Hapusdata($table, $where) {
+        return $this->db->delete($table, $where);
     }
 
     function get_all_provinsi() {

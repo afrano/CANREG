@@ -48,7 +48,7 @@
                 </thead>
                 <div class="form-inline padding-bottom-15">
                     <div class="col-sm-12 text-right m-b-20">
-                        <label><strong><center>Data Morphology</center></strong></label>
+                        <h4><strong><center>DATA MORPHOLOGY</center></strong></h4>
                     </div>
                     <div class="row">
 
