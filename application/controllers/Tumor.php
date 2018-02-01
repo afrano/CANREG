@@ -46,7 +46,7 @@ class Tumor extends ci_controller {
                 }
             } else {
                 $this->session->set_flashdata('pesan_error', 'Data Sudah ada');
-                redirect($method);
+                redirect(base_url() .$method);
             }
         } else {
             $data['isi'] = $isinya;

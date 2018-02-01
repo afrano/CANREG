@@ -1,5 +1,8 @@
 <?php
 
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
 class Login extends CI_Controller {
 
     function __construct() {
@@ -8,7 +11,7 @@ class Login extends CI_Controller {
 
     function index() {
         if ($this->session->userdata('berhasil_login')) {
-            redirect('dashboard');
+            redirect(base_url() .'dashboard');
         } else {
             $this->load->view('login/login');
         }
@@ -32,7 +35,7 @@ class Login extends CI_Controller {
                     'berhasil_login' => true
                 );
                 $this->session->set_userdata($data_sesi);
-                redirect('dashboard');
+                redirect(base_url() . 'dashboard');
             } else {
                 $this->session->set_flashdata('pesan_error', 'Gagal Login Username/Password salah !!!');
                 redirect('login');

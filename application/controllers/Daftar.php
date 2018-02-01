@@ -1,5 +1,8 @@
 <?php
 
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
 class Daftar extends CI_Controller {
 
     function __construct() {
@@ -15,7 +18,7 @@ class Daftar extends CI_Controller {
         if ($this->form_validation->run()) {
             if ($_POST['password'] != $_POST['password1']) {
                 $this->session->set_flashdata('pesan_error', 'Password Tidak Sama');
-                redirect('daftar');
+                redirect(base_url() +'daftar');
             } else {
                 $data_simpan = array(
                     'username' => $_POST['username'],
@@ -26,11 +29,11 @@ class Daftar extends CI_Controller {
                 );
 
                 if ($this->user_model->tambah($data_simpan)) {
-                    $this->session->set_flashdata('pesan_error', 'User Berhasil DIsimpan');
-                    redirect('login');
+                    $this->session->set_flashdata('pesan_error', 'User Berhasil Disimpan');
+                    redirect(base_url() +'login');
                 } else {
                     $this->session->set_flashdata('pesan_error', 'User Gagal Disimpan');
-                    redirect('login');
+                    redirect(base_url() +'login');
                 }
             }
         } else {

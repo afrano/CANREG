@@ -149,7 +149,7 @@
                                 <a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/plugins/images/users/d1.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"><text style="color: yellow"> <b> <?= $this->session->userdata('nama') ?> </b><span class="fa arrow"></span></span>
                                 </a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="<?= site_url("profile") ?>"><i class="ti-user"></i> My Profile</a></li>
+                                    <li><a href="<?php echo base_url(); ?>profile"><i class="ti-user"></i> My Profile</a></li>
                                     <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>                                    
                                 </ul>
                             </li>
