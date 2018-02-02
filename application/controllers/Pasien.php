@@ -12,14 +12,7 @@ class Pasien extends CI_Controller {
         cek_hakakses(array(1, 2, 3));
     }
 
-    private function _cek_login() {
-        if (!$this->session->userdata('useradmin')) {
-            redirect(base_url() . 'login');
-        }
-    }
-
     public function index() {
-        cek_hakakses(array(1));
         $data['data_pasien'] = $this->user_model->get_allPasien();
         $data['isi'] = 'pasien/v_pasien';
         $data['title'] = 'Data User';
@@ -36,8 +29,8 @@ class Pasien extends CI_Controller {
     function tambah_pasien() {
         $Create_Date = Date("Y-m-d H:i:s", time() + 60 * 360);
         $this->form_validation->set_rules('NIK', 'NIK', 'required');
+        
         $NIK = $_POST['NIK'];
-
         $kode_rumahsakit = $_POST['Kode_RumahSakit'];
         $tgl_periksa = $_POST['Tgl_Periksa'];
         $nama_RumahSakit = $_POST['nama_RumahSakit'];
@@ -132,13 +125,13 @@ class Pasien extends CI_Controller {
             $this->user_model->Simpan('data_pasien', $datapasien);
             $this->user_model->Simpan('data_tumor_pasien', $datatumor);
             $this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Data Berhasil Disimpan</strong></div>");
-            redirect('Pasien');
+            redirect(base_url() . 'Pasien');
         } else {
             $this->user_model->Simpan('data_tumor_pasien', $datatumor);
             $this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Maaf Data Sudah Ada</strong></div>");
             redirect('Pasien');
         }
-        redirect('Pasien');
+        redirect(base_url() . 'Pasien');
     }
 
     function get_DetailPasien($NIK = null) {
@@ -164,12 +157,12 @@ class Pasien extends CI_Controller {
 //                    redirect('pasien/v_pasien');
 //                }
 //            } else {
-                $data['row'] = $data_user->row();
-                $data['isi'] = 'pasien/detailPasien';
-                $data['title'] = 'Data User';
-                $this->load->view('dashboard/dashboard', $data);
-     //       }
-        } 
+            $data['row'] = $data_user->row();
+            $data['isi'] = 'pasien/detailPasien';
+            $data['title'] = 'Data User';
+            $this->load->view('dashboard/dashboard', $data);
+            //       }
+        }
 //        else {
 //            echo 'Data tidak Ditemukan';
 //        }
@@ -194,10 +187,10 @@ class Pasien extends CI_Controller {
 
                 if ($this->user_model->ubah($NIK, $data_simpan)) {
                     $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
-                    redirect('pasien/v_pasien');
+                    redirect(base_url() . 'pasien/v_pasien');
                 } else {
                     $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
-                    redirect('pasien/v_pasien');
+                    redirect(base_url() . 'pasien/v_pasien');
                 }
             } else {
                 $data['row'] = $data_user->row();
@@ -268,10 +261,10 @@ class Pasien extends CI_Controller {
 
                 if ($this->user_model->ubah($id_user, $data_simpan)) {
                     $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
-                    redirect('pasien/v_pasien');
+                    redirect(base_url() . 'pasien/v_pasien');
                 } else {
                     $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
-                    redirect('pasien/v_pasien');
+                    redirect(base_url() . 'pasien/v_pasien');
                 }
             } else {
                 $data['row'] = $data_user->row();
@@ -292,11 +285,11 @@ class Pasien extends CI_Controller {
                 if ($row->status == 0) {
 //sesuaikan nama tabelnya dan primary key nya
                     $this->db->update('tb_user', array('status' => 1), array('id_user' => $id));
-                    redirect('user');
+                    redirect(base_url() . 'user');
                 } else {
 //sesuaikan nama tabelnya dan primary key nya
                     $this->db->update('tb_user', array('status' => 0), array('id_user' => $id));
-                    redirect('user');
+                    redirect(base_url() . 'user');
                 }
             } else {
                 echo 'Data Tidak Ditemukan';
@@ -311,14 +304,81 @@ class Pasien extends CI_Controller {
         if ($this->user_model->get_byNIK($NIK)) {
             if ($this->user_model->hapusPasien($NIK)) {
                 $this->session->set_flashdata('pesan_sukses', 'Data berhasil Di Hapus');
-                redirect('Pasien');
+                redirect(base_url() . 'Pasien');
             } else {
                 $this->session->set_flashdata('pesan_error', 'Data Gagal Di Hapus');
-                redirect('Pasien');
+                redirect(base_url() . 'Pasien');
             }
         } else {
             echo "Data Tidak Ditemukan";
         }
+    }
+
+    //--------------------------------------- autocom
+
+    public function topography() {
+        // tangkap variabel keyword dari URL
+        $keyword = $this->uri->segment(3);
+
+        // cari di database
+        $data = $this->db->from('topography')->like('Topography', $keyword)->get();
+
+        // format keluaran di dalam array
+        foreach ($data->result() as $row) {
+
+            $arr['query'] = $keyword;
+            $arr['suggestions'][] = array(
+                'value' => $row->Topography,
+                'ID_Topography' => $row->ID_Topography
+            );
+        }
+
+        echo json_encode($arr);
+    }
+
+    public function Morphology() {
+        // tangkap variabel keyword dari URL
+        $keyword = $this->uri->segment(3);
+
+        // cari di database
+        $data = $this->db->from('morphology')->like('Morphology', $keyword)->get();
+
+        // format keluaran di dalam array
+        foreach ($data->result() as $row) {
+            $arr['query'] = $keyword;
+            $arr['suggestions'][] = array(
+                'value' => $row->Morphology,
+                'ID_Morphology' => $row->ID_Morphology
+            );
+        }
+        echo json_encode($arr);
+    }
+
+    public function add_ajax_kab($id_prov) {
+        $query = $this->db->get_where('wilayah_kabupaten', array('provinsi_id' => $id_prov));
+        $data = "<option value=''>- Select Kabupaten -</option>";
+        foreach ($query->result() as $value) {
+            $data .= "<option value='" . $value->id . "'>" . $value->nama . "</option>";
+        }
+        echo $data;
+    }
+
+    public function add_ajax_kec($id_kab) {
+        $query = $this->db->get_where('wilayah_kecamatan', array('kabupaten_id' => $id_kab));
+        $data = "<option value=''> - Select Kecamatan - </option>";
+        foreach ($query->result() as $value) {
+            $data .= "<option value='" . $value->id . "'>" . $value->nama . "</option>";
+        }
+        echo $data;
+    }
+
+    public function add_ajax_des($id_kec) {
+        $query = $this->db->get_where('wilayah_desa', array('kecamatan_id' => $id_kec));
+        $data = "<option value=''> - Kode Pos - </option>";
+        foreach ($query->result() as $value) {
+            $data .= "<option value='" . $value->id . "'>" . $value->nama . "</option>";
+        }
+        echo $data;
     }
 
 }
