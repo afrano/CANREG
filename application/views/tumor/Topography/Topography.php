@@ -58,6 +58,7 @@
 
                                 <a href="#" data-toggle="modal" data-target="#add-new-event"  class='btn btn-skype'>
                                     <i class='glyphicon glyphicon-plus'> Tambah</i> 
+
                                 </a>
                                 <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
 
@@ -70,8 +71,9 @@
                     <?php
                     $no = 0;
                     if ($alldata->num_rows() > 0) {
+
                         foreach ($alldata->result() as $row) {
-                             $no++;
+                            $no++;
                             echo "
 			<tr>
 				<td>$no</td>
@@ -91,6 +93,9 @@
 			</tr>
 					";
                         }
+                        echo '<center><a href="#" data-toggle="modal" data-target="#add-new-event"  class="btn ">
+                                    Total Row : '.$no.'</i> 
+                                    </a></center>';
                     }
                     ?>
                 </tbody>
