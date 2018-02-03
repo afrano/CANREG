@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
-            <form class="row" action="<?= site_url('Pasien/tambah_pasien') ?>" method="POST" >
+            <form class="row" action="<?php echo base_url(); ?>Pasien/tambah_pasien" method="POST" >
                 <div class="col-sm-6">
                     <div class="white-box">
                         <h3 class="box-title m-b-0">Form 1 Data Pasien</h3>
@@ -39,7 +39,7 @@
                         <div class="form-group row">
                             <label for="example-password-input" class="col-2 col-form-label">Place Of Birth</label>
                             <div class="col-10">
-                                <input class="form-control" type="date" name="Place_Of_Birth" value="" id="example-password-input">
+                                <input class="form-control" type="text" name="Place_Of_Birth" value="" id="example-password-input">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
 
-                                <select name="id_provinsi" class="form-control" id="provinsi">
+                                <select name="ID_Provinsi" class="form-control" id="provinsi">
                                     <option>- Select Provinsi -</option>
                                     <?php
                                     foreach ($provinsi as $prov) {
@@ -101,7 +101,7 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-md-11 col-form-label">&nbsp&nbspAlamat Sementara</label>
                             <div class="col-12">
-                                <input class="form-control" name="Alamat_sementara" type="text" value="" required="" id="example-number-input">
+                                <input class="form-control" name="Alamat_Sementara" type="text" value="" required="" id="example-number-input">
                             </div>
                         </div>
 
@@ -183,7 +183,7 @@
                         </div>
                         <div class="form-group ">
                             <div class="col-sm-12">
-                                <select class="custom-select col-12" name="ID_Status_Pernikahan" id="inlineFormCustomSelect">
+                                <select class="custom-select col-12" name="id_status_hubungan" id="inlineFormCustomSelect">
                                     <option value="">-- Status Pernikahan -- </option>
                                     <?php
                                     $query = $this->db->get('status_hubungan');
@@ -298,7 +298,6 @@
                                             }
                                             ?>
                                         </select>
-
                                     </div>
                                 </div>
 

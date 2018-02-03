@@ -47,10 +47,10 @@ class User_model extends ci_model {
         return $query;
     }
 
-    public function CekPasien($where) {
-        $data = $this->db->query('SELECT * from data_pasien where NIK = "' . $where . '" ');
-        return $data;
-    }
+//    public function CekPasien($where) {
+//        $data = $this->db->query('SELECT * from data_pasien where NIK = "' . $where . '" ');
+//        return $data;
+//    }
 
     function get_byid($id_user) {
         $query = $this->db->get_where($this->nama_tabel, array('id_user' => $id_user));
@@ -101,9 +101,6 @@ class User_model extends ci_model {
         return false;
     }
 
-    public function Simpan($table, $data) {
-        return $this->db->insert($table, $data);
-    }
 
     function tambahData($table, $data_user) {
         $query = $this->db->insert($table, $data_user);

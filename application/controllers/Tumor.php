@@ -207,7 +207,7 @@ class Tumor extends ci_controller {
 
     public function BasicDiagnosis() {
         $data['alldata'] = $this->user_model->get_alldata('diagnosis_cancer');
-        $data['isi'] = 'tumor/BasicDiagnosis/BasicDiagnosis';
+        $data['isi'] = 'tumor/Basic_Diagnosis/BasicDiagnosis';
         $data['title'] = 'Data User';
         $this->load->view('dashboard/dashboard', $data);
     }
@@ -217,7 +217,7 @@ class Tumor extends ci_controller {
         $kode = 'ID_Diagnosis';
         $nama = 'Diagnosis';
         $method = 'Tumor/BasicDiagnosis';
-        $isinya = 'tumor/BasicDiagnosis/BasicDiagnosis';
+        $isinya = 'tumor/Basic_Diagnosis/BasicDiagnosis';
         $ID = $_POST[$kode];
         $this->form_validation->set_rules($kode, $kode, 'required');
         $this->form_validation->set_rules($nama, $nama, 'required');
@@ -254,7 +254,7 @@ class Tumor extends ci_controller {
         $table = 'diagnosis_cancer';
         $nama = 'Diagnosis';
         $Kode = 'ID_Diagnosis';
-        $isinya = 'tumor/BasicDiagnosis/ubah_Basic';
+        $isinya = 'tumor/Basic_Diagnosis/ubah_Basic';
         $Date = Date("Y-m-d H:i:s", time() + 60 * 360);
         $method = 'Tumor/BasicDiagnosis';
         if ($data_tumor = $this->user_model->getdata_bykode($table, $Kode, $ID)) {

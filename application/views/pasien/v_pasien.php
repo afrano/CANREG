@@ -26,7 +26,7 @@
                         <div class="col-sm-12 text-right m-b-20">
 
                             <div class="form-group">
-                                <a href='<?= site_url('user/tambah_user') ?>' class='btn btn-primary'>
+                                <a href='<?= base_url('user/tambah_user') ?>' class='btn btn-primary'>
                                     <i class='glyphicon glyphicon-plus'> Tambah</i> 
                                 </a>
                                 <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
@@ -51,13 +51,13 @@
 				<td><center>$row->Family_Name</center></td>
 				<td ><center>
 					<a class='glyphicon glyphicon-pencil' 
-					href='" . site_url("Pasien/ubah/$row->NIK") . "' ></a>
+					href='" . base_url("Pasien/ubah/$row->NIK") . "' ></a>
 					
 					<a class='glyphicon glyphicon-trash' 
                                         onclick='return confirm(\"Data Akan Di Hapus\")'
-					href='" . site_url("Pasien/hapus/$row->NIK") . "' ></a>
+					href='" . base_url("Pasien/hapus/$row->NIK") . "' ></a>
 					<a class='glyphicon glyphicon-eye-open' 
-					href='" . site_url("Pasien/get_DetailPasien/$row->NIK") . "' ></a>
+					href='" . base_url("Pasien/DetailPasien/$row->NIK") . "' ></a>
 				</center></td>
 			</tr>
 					";
