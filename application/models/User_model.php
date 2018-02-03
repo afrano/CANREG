@@ -29,11 +29,6 @@ class User_model extends ci_model {
     function get_allPasien() {
         $data = $this->db->query('SELECT * from data_pasien ');
         return $data;
-
-//        select * from data_Pasien p, data_tumor_pasien dt, treatment_pasien tp where p.NIK = "213" and dt.NIK = "213" and tp.NIK = "213"
-//        $this->db->join('data_tumor_pasien', "data_tumor_pasien.NIK = $this->data_pasien.NIK", 'LEFT');
-//        $query = $this->db->get($this->data_pasien);
-//        return $query;
     }
 
     function get_DetailPasien($NIK) {
@@ -100,7 +95,6 @@ class User_model extends ci_model {
             return $query;
         return false;
     }
-
 
     function tambahData($table, $data_user) {
         $query = $this->db->insert($table, $data_user);

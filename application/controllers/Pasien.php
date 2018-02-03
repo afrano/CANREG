@@ -61,7 +61,7 @@ class Pasien extends CI_Controller {
         $unit = $_POST['unit'];
         $No_PALAB = $_POST['No_PALAB'];
 
-        $jumlahSource = count($kode_rumahsakit);
+        $jumlahSource = count($tgl_periksa);
 
         $ID_Distant_Metastases = $_POST['ID_Distant_Metastases'];
         $jumlah_ID_Distant_Metastases = count($ID_Distant_Metastases);
@@ -120,18 +120,22 @@ class Pasien extends CI_Controller {
             'Create_Date' => $Create_Date,
         );
 
+        $registrar = array(
+            'NIK' => $NIK,
+            'Admission_Date' => $_POST['Admission_Date'],
+            'Date_Last_Contact' => $_POST['Date_Last_Contact'],
+            'id_status' => $_POST['ID_Status'],
+            'Registrar' => $_POST['Registrar'],
+            'Date_Of_Abstract' => $_POST['Date_Of_Abstract'],
+            'Verifeir' => $_POST['Verifeir'],
+            'Date_Of_Verification' => $_POST['Date_Of_Verification'],
+            'Create_Date' => $Create_Date,
+        );
 
-        $Admission_Date = $_POST['Admission_Date'];
-        $Date_Last_Contact = $_POST['Date_Last_Contact'];
-        $id_status = $_POST['status'];
-        $Registrar = $_POST['Registrar'];
-        $Date_Of_Abstract = $_POST['Date_Of_Abstract'];
-        $Verifeir = $_POST['Verifeir'];
-        $Date_Of_Verification = $_POST['Date_Of_Verification'];
 
         for ($sp = 0; $sp < $jumlahSource; $sp++) {
             $this->db->query("INSERT INTO sources_follow_up values('','$NIK','$tgl_periksa[$sp]','$kode_rumahsakit[$sp]','$nama_RumahSakit[$sp]',"
-                    . "'$unit_ID[$sp]','$unit[$sp]','$No_PALAB[$sp]','$Admission_Date','$Date_Last_Contact','$id_status','$Registrar','$Date_Of_Abstract','$Verifeir','$Date_Of_Verification','$Create_Date','')");
+                    . "'$unit_ID[$sp]','$unit[$sp]','$No_PALAB[$sp]','$Create_Date','')");
         }
 
         for ($x = 0; $x < $jumlah_dipilih; $x++) {
@@ -145,10 +149,12 @@ class Pasien extends CI_Controller {
         if ($Cek == NULL) {
             $this->user_model->tambahData('data_pasien', $datapasien);
             $this->user_model->tambahData('data_tumor_pasien', $datatumor);
+            $this->user_model->tambahData('registrar', $registrar);
             $this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Data Berhasil Disimpan</strong></div>");
             redirect(base_url() . 'Pasien');
         } else {
             $this->user_model->tambahData('data_tumor_pasien', $datatumor);
+            $this->user_model->tambahData('registrar', $registrar);
             $this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Maaf Data Sudah Ada</strong></div>");
             redirect('Pasien');
         }
@@ -158,10 +164,10 @@ class Pasien extends CI_Controller {
     function DetailPasien($NIK = null) {
         cek_hakakses(array(1));
         if ($data_user = $this->user_model->get_DetilPasien($NIK)) {
-            $this->form_validation->set_rules('username', 'Username', 'required');
-            $this->form_validation->set_rules('nama', 'nama', 'required');
-            $this->form_validation->set_rules('hak_akses', 'hak_akses', 'required');
-            $this->form_validation->set_rules('status', 'status', 'required');
+//            $this->form_validation->set_rules('username', 'Username', 'required');
+//            $this->form_validation->set_rules('nama', 'nama', 'required');
+//            $this->form_validation->set_rules('hak_akses', 'hak_akses', 'required');
+//            $this->form_validation->set_rules('status', 'status', 'required');
 //            if ($this->form_validation->run()) {
 //                $data_simpan = array(
 //                    'username' => $_POST['username'],

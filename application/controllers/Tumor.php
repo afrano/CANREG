@@ -46,7 +46,7 @@ class Tumor extends ci_controller {
                 }
             } else {
                 $this->session->set_flashdata('pesan_error', 'Data Sudah ada');
-                redirect(base_url() .$method);
+                redirect(base_url() . $method);
             }
         } else {
             $data['isi'] = $isinya;
@@ -154,14 +154,20 @@ class Tumor extends ci_controller {
         }
     }
 
-    function ubahMorphology($ID = null) {
+    function ubahMorphology($ID = null, $ID2 = null) {
+        if ($ID2 == null) {
+            $kapsul = $ID;
+        } else {
+            $kapsul = "$ID" . "/$ID2";
+        }
         $table = 'morphology';
         $nama = 'Morphology';
         $Kode = 'ID_Morphology';
         $isinya = 'tumor/Morphology/ubah_Morphology';
         $Date = Date("Y-m-d H:i:s", time() + 60 * 360);
         $method = 'Tumor/Morphology';
-        if ($data_tumor = $this->user_model->getdata_bykode($table, $Kode, $ID)) {
+        if ($data_tumor = $this->user_model->getdata_bykode($table, $Kode, $kapsul)) {
+
             $this->form_validation->set_rules($Kode, $Kode, 'required');
             $this->form_validation->set_rules($nama, $nama, 'required');
             if ($this->form_validation->run()) {
@@ -170,7 +176,7 @@ class Tumor extends ci_controller {
                     $nama => $_POST[$nama],
                     'Update_date' => $Date,
                 );
-                if ($this->user_model->ubahdata($table, $Kode, $ID, $datatumor)) {
+                if ($this->user_model->ubahdata($table, $Kode, $kapsul, $datatumor)) {
                     $this->session->set_flashdata('pesan_sukses', 'Data Berhasil Disimpan');
                     redirect($method);
                 } else {
@@ -188,12 +194,17 @@ class Tumor extends ci_controller {
         }
     }
 
-    function hapusMorphology($kode = null) {
+    function hapusMorphology($kode = null, $kode2 = null) {
+        if ($kode2 == null) {
+            $kapsul = $kode;
+        } else {
+            $kapsul = "$ID" . "/$ID2";
+        }
         $table = 'morphology';
         $where = 'ID_Morphology';
         $method = 'Tumor/Morphology';
-        if ($this->user_model->getdata_bykode($table, $where, $kode)) {
-            if ($this->user_model->Hapusdata($table, array($where => $kode))) {
+        if ($this->user_model->getdata_bykode($table, $where, $kapsul)) {
+            if ($this->user_model->Hapusdata($table, array($where => $kapsul))) {
                 $this->session->set_flashdata('pesan_sukses', 'Data berhasil Di Hapus');
                 redirect($method);
             } else {
@@ -594,7 +605,6 @@ class Tumor extends ci_controller {
             echo "Data Tidak Ditemukan";
         }
     }
-    
 
     //-----------------------------------------------------
     public function Distantmetastastases() {
@@ -1382,4 +1392,5 @@ class Tumor extends ci_controller {
             echo "Data Tidak Ditemukan";
         }
     }
+
 }
