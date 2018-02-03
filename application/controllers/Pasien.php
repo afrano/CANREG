@@ -162,144 +162,20 @@ class Pasien extends CI_Controller {
     }
 
     function DetailPasien($NIK = null) {
-        cek_hakakses(array(1));
         if ($data_user = $this->user_model->get_DetilPasien($NIK)) {
-//            $this->form_validation->set_rules('username', 'Username', 'required');
-//            $this->form_validation->set_rules('nama', 'nama', 'required');
-//            $this->form_validation->set_rules('hak_akses', 'hak_akses', 'required');
-//            $this->form_validation->set_rules('status', 'status', 'required');
-//            if ($this->form_validation->run()) {
-//                $data_simpan = array(
-//                    'username' => $_POST['username'],
-//                    'nama' => $_POST['nama'],
-//                    'hak_akses' => $_POST['hak_akses'],
-//                    'status' => $_POST['status'],
-//                );
-//
-//                if ($this->user_model->ubah($NIK, $data_simpan)) {
-//                    $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
-//                    redirect('pasien/v_pasien');
-//                } else {
-//                    $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
-//                    redirect('pasien/v_pasien');
-//                }
-//            } else {
             $data['row'] = $data_user->row();
             $data['isi'] = 'pasien/detailPasien';
             $data['title'] = 'Data User';
             $this->load->view('dashboard/dashboard', $data);
-            //       }
         }
-//        else {
-//            echo 'Data tidak Ditemukan';
-//        }
     }
 
-//    function detailPasien($NIK = null) {
-//        cek_hakakses(array(1));
-//        if ($data_user = $this->user_model->get_DetilPasien($NIK)) {
-//            $this->form_validation->set_rules('username', 'Username', 'required');
-////   $this->form_validation->set_rules('password', 'password', 'required');
-//            $this->form_validation->set_rules('nama', 'nama', 'required');
-//            $this->form_validation->set_rules('hak_akses', 'hak_akses', 'required');
-//            $this->form_validation->set_rules('status', 'status', 'required');
-//            if ($this->form_validation->run()) {
-//                $data_simpan = array(
-//                    'username' => $_POST['username'],
-////         'password' => md5($_POST['password']),
-//                    'nama' => $_POST['nama'],
-//                    'hak_akses' => $_POST['hak_akses'],
-//                    'status' => $_POST['status'],
-//                );
-//
-//                if ($this->user_model->ubah($NIK, $data_simpan)) {
-//                    $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
-//                    redirect(base_url() . 'pasien/v_pasien');
-//                } else {
-//                    $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
-//                    redirect(base_url() . 'pasien/v_pasien');
-//                }
-//            } else {
-//                $data['row'] = $data_user->row();
-//                $data['isi'] = 'pasien/detailPasien';
-//                $data['title'] = 'Data User';
-//                $this->load->view('dashboard/dashboard', $data);
-//            }
-//        } else {
-//            echo 'Data tidak Ditemukan';
-//        }
-//    }
-//    public function DataTumorPasien() {
-//        $NIK = 1;
-//        $Create_Date = Date("Y-m-d H:i:s", time() + 60 * 360);
-//        $ID_Distant_Metastases = 1;
-//        foreach ($_POST['ID_Treatment[]'] as $selected) {
-//            $datatumor = array(
-//                'NIK' => $NIK,
-//                'ID_Topography' => $_POST['ID_Topography'],
-//                'ID_Morphology' => $_POST['ID_Morphology'],
-//                'ID_Diagnosis' => $_POST['ID_Diagnosis'],
-//                'ID_Disease' => $_POST['ID_Disease'],
-//                'ID_Treatment' => $selected,
-//                'Diagnosis_Klinis' => $_POST['Diagnosis_Klinis'],
-//                'Diagnosis_Date' => $_POST['Diagnosis_Date'],
-//                'ID_Behaviour' => $_POST['ID_Behaviour'],
-//                'ID_Distant_Metastases' => $ID_Distant_Metastases,
-//                'No_Of_Metastases' => $_POST['No_Of_Metastases'],
-//                'ID_Grade' => $_POST['ID_Grade'],
-//                'ID_Stage' => $_POST['ID_Stage'],
-//                'ID_Laterality' => $_POST['ID_Laterality'],
-//                'ID_Immunohistokimia' => $_POST['ID_Immunohistokimia'],
-//                'Date_IHC' => $_POST['Date_IHC'],
-//                'ID_Hybridization' => $_POST['ID_Hybridization'],
-//                'Date' => $_POST['Date'],
-//                'ID_Biopsy' => $_POST['ID_Biopsy'],
-//                'ID_Sublocation' => $_POST['ID_Sublocation'],
-//                'Create_Date' => $Create_Date,
-//            );
-//        }
-//
-//        $this->User_model->tambahData('data_tumor_pasien', $datatumor);
-//        $this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Data Berhasil Disimpan</strong></div>");
-//        header('location:' . base_url() . 'Pasien');
-////        } else {
-////            $this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Maaf Data Sudah Ada</strong></div>");
-////            header('location:' . base_url() . 'Tumor/Topography');
-////        }
-//    }
-
-    function ubah($id_user = null) {
-        cek_hakakses(array(1));
-        if ($data_user = $this->user_model->get_byid($id_user)) {
-            $this->form_validation->set_rules('username', 'Username', 'required');
-//   $this->form_validation->set_rules('password', 'password', 'required');
-            $this->form_validation->set_rules('nama', 'nama', 'required');
-            $this->form_validation->set_rules('hak_akses', 'hak_akses', 'required');
-            $this->form_validation->set_rules('status', 'status', 'required');
-            if ($this->form_validation->run()) {
-                $data_simpan = array(
-                    'username' => $_POST['username'],
-//         'password' => md5($_POST['password']),
-                    'nama' => $_POST['nama'],
-                    'hak_akses' => $_POST['hak_akses'],
-                    'status' => $_POST['status'],
-                );
-
-                if ($this->user_model->ubah($id_user, $data_simpan)) {
-                    $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
-                    redirect(base_url() . 'pasien/v_pasien');
-                } else {
-                    $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
-                    redirect(base_url() . 'pasien/v_pasien');
-                }
-            } else {
-                $data['row'] = $data_user->row();
-                $data['isi'] = 'pasien/v_pasien';
-                $data['title'] = 'Data User';
-                $this->load->view('dashboard/dashboard', $data);
-            }
-        } else {
-            echo 'Data tidak Ditemukan';
+    function ubah($NIK = null) {
+        if ($data_user = $this->user_model->get_DetilPasien($NIK)) {
+            $data['row'] = $data_user->row();
+            $data['isi'] = 'pasien/ubah_Pasien';
+            $data['title'] = 'Data User';
+            $this->load->view('dashboard/dashboard', $data);
         }
     }
 

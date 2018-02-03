@@ -864,9 +864,16 @@
 
                 <div class="form-group">
                     <a href="#popup">
-                        <div class="col-md-5 pull-right">
-                            <button class="btn btn-facebook glyphicon  glyphicon-print btn-lg btn-block text-uppercase waves-effect waves-light" type="submit"> Cetak</button>
+                        <div class="col-md-3 pull-right">
+                            <button class="btn btn-facebook glyphicon  glyphicon-print btn-lg btn-block text-uppercase waves-effect waves-light" type="submit"> Print</button>
                         </div></a>
+                    <a>
+                        <div class="col-md-3 pull-right">
+                            <?php echo "<a class='btn btn-success glyphicon  glyphicon-edit btn-lg btn-block text-uppercase waves-effect waves-light' 
+					href='" . site_url("Pasien/ubah/$row->NIK") . " ' >	
+                    Edit</a>"; ?>
+                        </div>
+                    </a>
                 </div>
 
                 <br>
