@@ -19,9 +19,16 @@ class Pasien extends CI_Controller {
         $this->load->view('dashboard/dashboard', $data);
     }
 
-    public function addPasien() {
+    public function addPasien() { // nanti ini dihapus
         $data['provinsi'] = $this->user_model->get_all_provinsi();
         $data['isi'] = 'pasien/addPasien';
+        $data['title'] = 'Data User';
+        $this->load->view('dashboard/dashboard', $data);
+    }
+
+    public function tambah() {
+        $data['provinsi'] = $this->user_model->get_all_provinsi();
+        $data['isi'] = 'pasien/tambah_Pasien';
         $data['title'] = 'Data User';
         $this->load->view('dashboard/dashboard', $data);
     }
@@ -171,33 +178,58 @@ class Pasien extends CI_Controller {
     }
 
     function ubah($NIK = null) {
-        if ($data_user = $this->user_model->get_DetilPasien($NIK)) {
-            $data['row'] = $data_user->row();
-            $data['isi'] = 'pasien/ubah_Pasien';
-            $data['title'] = 'Data User';
-            $this->load->view('dashboard/dashboard', $data);
-        }
-    }
+        $isinya = 'pasien/ubah_Pasien';
+        $Date = Date("Y-m-d H:i:s", time() + 60 * 360);
+        $method = 'Pasien/DetailPasien';
 
-    function aktif($id) {
-        cek_hakakses(array(1));
-        if (isset($id)) { //memastikan ID user exist
-            if ($data_user = $this->user_model->get_byid($id)) { //cek databse id_user ada
-                $row = $data_user->row();
-                if ($row->status == 0) {
-//sesuaikan nama tabelnya dan primary key nya
-                    $this->db->update('tb_user', array('status' => 1), array('id_user' => $id));
-                    redirect(base_url() . 'user');
+        if ($data_user = $this->user_model->get_DetilPasien($NIK)) {
+            $this->form_validation->set_rules('NIK', 'NIK', 'required');
+            $this->form_validation->set_rules('MRN', 'MRN', 'required');
+
+            if ($this->form_validation->run()) {
+                $datapasien = array(
+                    'NIK' => $_POST['NIK'],
+                    'MRN' => $_POST['MRN'],
+                    'First_Name' => $_POST['First_Name'],
+                    'Middle_Name' => $_POST['Middle_Name'],
+                    'Family_Name' => $_POST['Family_Name'],
+                    'Place_Of_Birth' => $_POST['Place_Of_Birth'],
+                    'Date_Of_Birth' => $_POST['Date_Of_Birth'],
+                    'Alamat_Tetap' => $_POST['Alamat_Tetap'],
+//                    'ID_Provinsi' => $_POST['ID_Provinsi'],
+//                    'id_kabupaten' => $_POST['id_kabupaten'],
+//                    'id_kecamatan' => $_POST['id_kecamatan'],
+                    'kode_pos' => $_POST['kode_pos'],
+                    'Alamat_Sementara' => $_POST['Alamat_Sementara'],
+//                    'id_provinsi_1' => $_POST['id_provinsi_1'],
+//                    'id_kabupaten_1' => $_POST['id_kabupaten_1'],
+//                    'id_kecamatan_1' => $_POST['id_kecamatan_1'],
+                    'kode_pos1' => $_POST['kode_pos1'],
+//                    'ID_Sex' => $_POST['ID_Sex'],
+//                    'ID_Race' => $_POST['ID_Race'],
+//                    'ID_Religion' => $_POST['ID_Religion'],
+//                    'id_status_hubungan' => $_POST['id_status_hubungan'],
+//                    'ID_Occupation' => $_POST['ID_Occupation'],
+                    'No_Telpon' => $_POST['No_Telpon'],
+                    'Update_Date' => $Create_Date,
+                );
+
+                if ($this->user_model->ubahdata('data_pasien', 'NIK', $NIK, $datapasien)) {
+
+                    $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DiUpdate');
+                    redirect($method);
                 } else {
-//sesuaikan nama tabelnya dan primary key nya
-                    $this->db->update('tb_user', array('status' => 0), array('id_user' => $id));
-                    redirect(base_url() . 'user');
+                    $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
+                    redirect($method);
                 }
             } else {
-                echo 'Data Tidak Ditemukan';
+                $data['row'] = $data_user->row();
+                $data['isi'] = $isinya;
+                $data['title'] = 'Data User';
+                $this->load->view('dashboard/dashboard', $data);
             }
         } else {
-            echo 'error disallowed uri';
+            echo 'Data tidak Ditemukan';
         }
     }
 

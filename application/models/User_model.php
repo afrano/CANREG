@@ -42,10 +42,6 @@ class User_model extends ci_model {
         return $query;
     }
 
-//    public function CekPasien($where) {
-//        $data = $this->db->query('SELECT * from data_pasien where NIK = "' . $where . '" ');
-//        return $data;
-//    }
 
     function get_byid($id_user) {
         $query = $this->db->get_where($this->nama_tabel, array('id_user' => $id_user));
@@ -55,13 +51,6 @@ class User_model extends ci_model {
     }
 
     function get_DetilPasien($NIK) {
-//        $this->db->join('data_tumor_pasien', "data_tumor_pasien.NIK = $this->data_pasien.NIK", 'LEFT');
-//        $query = $this->db->get($this->nama_tabel);
-//        select * from data_pasien dp, data_tumor_pasien dtp, wilayah_provinsi wp where dp.NIK = 145314005 and dtp.NIK = 145314005 and wp.id = dp.id_Provinsi
-//        
-//        
-//        return $query;
-
         $query = $this->db->get_where($this->data_pasien, array('NIK' => $NIK));
         if ($query)
             return $query;

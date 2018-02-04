@@ -4,9 +4,9 @@
             <center><br>
                 <h3><strong><text style="color: #666666">KEMENTRIAN KESEHATAN REPUBLIK INDONESIA</text></strong></h3>
                 <h4> <strong><text style="color: #666666">EDIT DATA PASIEN</text></strong> </h4>
-                <center>
+            
                     <p class="text-muted m-b-30 font-13"> Detail Data Pasien : <?= $row->First_Name ?>  <?= $row->Middle_Name ?> / NIK <?= $row->NIK ?> </p></center>
-                <form class="row" action="" method="POST" >
+             </center>   <form class="row" action="" method="POST" >
                     <div class="col-sm-6">
 
                         <div class="white-box">
@@ -56,7 +56,7 @@
                             <div class="form-group row">
                                 <label for="example-number-input" class="col-4 col-form-label">Alamat Tetap</label>
                                 <div class="col-8">
-                                    <input class="form-control" name="ID_Alamat_Tetap" value="<?= $row->Alamat_Tetap ?>" type="text" id="example-number-input">
+                                    <input class="form-control" name="Alamat_Tetap" value="<?= $row->Alamat_Tetap ?>" type="text" id="example-number-input">
                                 </div>
                             </div>
 
@@ -67,7 +67,7 @@
                                     $query = $this->db->get('wilayah_provinsi');
                                     foreach ($query->result() as $row1) {
                                         if ($row1->id == $row->ID_Provinsi) {
-                                            echo "<input class='form-control' name='ID_Alamat_Tetap' value='$row1->nama' type='text' id='example-number-input'>          ";
+                                            echo "<input class='form-control' name='ID_Provinsi' value='$row1->nama' type='text' id='example-number-input'>          ";
                                         } else {
                                             echo "";
                                         }
@@ -84,7 +84,7 @@
                                     $query = $this->db->get('wilayah_kabupaten');
                                     foreach ($query->result() as $row1) {
                                         if ($row1->id == $row->id_kabupaten) {
-                                            echo "<input class='form-control' name='ID_Alamat_Tetap' value='$row1->nama' type='text' id='example-number-input'>          ";
+                                            echo "<input class='form-control' name='id_kabupaten' value='$row1->nama' type='text' id='example-number-input'>          ";
                                         } else {
                                             echo "";
                                         }
@@ -101,7 +101,7 @@
                                     $query = $this->db->get('wilayah_kecamatan');
                                     foreach ($query->result() as $row1) {
                                         if ($row1->id == $row->id_kecamatan) {
-                                            echo "<input class='form-control' name='ID_Alamat_Tetap'  value='$row1->nama' type='text' id='example-number-input'>          ";
+                                            echo "<input class='form-control' name='id_kecamatan'  value='$row1->nama' type='text' id='example-number-input'>          ";
                                         } else {
                                             echo "";
                                         }
@@ -113,7 +113,7 @@
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-4 col-form-label">Kode Pos</label>
                                 <div class="col-8">
-                                    <input class="form-control" name="NIK" type="text"  value="<?= $row->kode_pos ?>" placeholder="16 Digit NIK" id="example-text-input">
+                                    <input class="form-control" name="kode_pos" type="text"  value="<?= $row->kode_pos ?>" placeholder="16 Digit NIK" id="example-text-input">
                                 </div>
                             </div>
 
@@ -129,7 +129,7 @@
                             <div class="form-group row">
                                 <label for="example-number-input" class="col-5 col-form-label">Alamat Sementara</label>
                                 <div class="col-7">
-                                    <input class="form-control" name="ID_Alamat_Tetap"  value="<?= $row->Alamat_Sementara ?>" type="text" id="example-number-input">
+                                    <input class="form-control" name="Alamat_Sementara"  value="<?= $row->Alamat_Sementara ?>" type="text" id="example-number-input">
                                 </div>
                             </div>
 
@@ -142,7 +142,7 @@
                                     $query = $this->db->get('wilayah_provinsi');
                                     foreach ($query->result() as $row1) {
                                         if ($row1->id == $row->id_provinsi_1) {
-                                            echo "<input class='form-control' name='ID_Alamat_Tetap'  value='$row1->nama' type='text' id='example-number-input'>          ";
+                                            echo "<input class='form-control' name='id_provinsi_1'  value='$row1->nama' type='text' id='example-number-input'>          ";
                                         } else {
                                             echo "";
                                         }
@@ -159,7 +159,7 @@
                                     $query = $this->db->get('wilayah_kabupaten');
                                     foreach ($query->result() as $row1) {
                                         if ($row1->id == $row->id_kabupaten_1) {
-                                            echo "<input class='form-control' name='ID_Alamat_Tetap' value='$row1->nama' type='text' id='example-number-input'>          ";
+                                            echo "<input class='form-control' name='id_kabupaten_1' value='$row1->nama' type='text' id='example-number-input'>          ";
                                         } else {
                                             echo "";
                                         }
@@ -176,7 +176,7 @@
                                     $query = $this->db->get('wilayah_kecamatan');
                                     foreach ($query->result() as $row1) {
                                         if ($row1->id == $row->id_kecamatan_1) {
-                                            echo "<input class='form-control' name='ID_Alamat_Tetap' value='$row1->nama' type='text' id='example-number-input'>          ";
+                                            echo "<input class='form-control' name='id_kecamatan_1' value='$row1->nama' type='text' id='example-number-input'>          ";
                                         } else {
                                             echo "";
                                         }
@@ -190,7 +190,7 @@
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-5 col-form-label">Kode Pos</label>
                                 <div class="col-7">
-                                    <input class="form-control" name="NIK" type="text"  value="<?= $row->kode_pos1 ?>" placeholder="16 Digit NIK" id="example-text-input">
+                                    <input class="form-control" name="kode_pos1" type="text"  value="<?= $row->kode_pos1 ?>" placeholder="16 Digit NIK" id="example-text-input">
                                 </div>
                             </div>
 
@@ -203,7 +203,7 @@
                                     $query = $this->db->get('sex');
                                     foreach ($query->result() as $row1) {
                                         if ($row1->id_sex == $row->ID_Sex) {
-                                            echo "<input class='form-control' value='$row1->sex' type='text' id='example-number-input'>          ";
+                                            echo "<input class='form-control' name='ID_Sex' value='$row1->sex' type='text' id='example-number-input'>          ";
                                         } else {
                                             echo "";
                                         }
@@ -220,7 +220,7 @@
                                     foreach ($query->result() as $row1) {
                                         if ($row1->id_race == $row->ID_Race) {
 
-                                            echo "<input class='form-control'  value='$row1->race' type='text' id='example-number-input'>          ";
+                                            echo "<input class='form-control' name='ID_Race'  value='$row1->race' type='text' id='example-number-input'>          ";
                                         } else {
                                             echo "";
                                         }
@@ -237,7 +237,7 @@
                                     foreach ($query->result() as $row1) {
                                         if ($row1->id_religion == $row->ID_Religion) {
 
-                                            echo "<input class='form-control'  value='$row1->religion' type='text' id='example-number-input'>          ";
+                                            echo "<input class='form-control' name='ID_Religion'  value='$row1->religion' type='text' id='example-number-input'>          ";
                                         } else {
                                             echo "";
                                         }
@@ -253,7 +253,7 @@
                                     $query = $this->db->get('status_hubungan');
                                     foreach ($query->result() as $row1) {
                                         if ($row1->id_hubungan == $row->id_status_hubungan) {
-                                            echo "<input class='form-control'  value='$row1->status_hubungan' type='text' id='example-number-input'>          ";
+                                            echo "<input class='form-control' name='id_status_hubungan'  value='$row1->status_hubungan' type='text' id='example-number-input'>          ";
                                         } else {
                                             echo "";
                                         }
@@ -269,7 +269,7 @@
                                     $query = $this->db->get('occupation');
                                     foreach ($query->result() as $row1) {
                                         if ($row1->id_occupation == $row->ID_Occupation) {
-                                            echo "<input class='form-control'  value='$row1->Occupation' type='text' id='example-number-input'>          ";
+                                            echo "<input class='form-control' name='ID_Occupation'  value='$row1->Occupation' type='text' id='example-number-input'>          ";
                                         } else {
                                             echo "";
                                         }
@@ -281,7 +281,7 @@
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-5 col-form-label">No. Telp/Hp</label>
                                 <div class="col-7">
-                                    <input class="form-control" name="NIK" type="text" value="<?= $row->No_Telpon ?>" placeholder="16 Digit NIK" id="example-text-input">
+                                    <input class="form-control" name="No_Telpon" type="text" value="<?= $row->No_Telpon ?>" placeholder="16 Digit NIK" id="example-text-input">
                                 </div>
                             </div>
 
@@ -311,7 +311,7 @@
                                                             $query = $this->db->get('data_tumor_pasien');
                                                             foreach ($query->result() as $row1) {
                                                                 if ($row1->NIK == $row->NIK) {
-                                                                    echo ' <input type="search" value=' . $row1->ID_Topography . '  class="Morphology form-control nama" placeholder="Nama Morphology">';
+                                                                    echo ' <input type="search" value=' . $row1->ID_Topography . ' name="ID_Topography"  class="Morphology form-control nama" placeholder="Nama Morphology">';
                                                                 } else {
                                                                     echo "";
                                                                 }
@@ -330,7 +330,7 @@
                                                             $query = $this->db->get('data_tumor_pasien');
                                                             foreach ($query->result() as $row1) {
                                                                 if ($row1->NIK == $row->NIK) {
-                                                                    echo ' <input type="search" value=' . $row1->ID_Morphology . '  class="Morphology form-control nama" placeholder="Nama Morphology">';
+                                                                    echo ' <input type="search" name="ID_Morphology" value=' . $row1->ID_Morphology . '  class="Morphology form-control nama" placeholder="Nama Morphology">';
                                                                 } else {
                                                                     echo "";
                                                                 }
