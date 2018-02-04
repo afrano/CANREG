@@ -19,15 +19,15 @@ class Pasien extends CI_Controller {
         $this->load->view('dashboard/dashboard', $data);
     }
 
-    public function addPasien() { // nanti ini dihapus
+    public function addPasien() { 
         $data['provinsi'] = $this->user_model->get_all_provinsi();
-        $data['isi'] = 'pasien/addPasien';
+        $data['isi'] = 'pasien/tambah_Pasien';
         $data['title'] = 'Data User';
         $this->load->view('dashboard/dashboard', $data);
     }
 
     public function tambah() {
-        $data['provinsi'] = $this->user_model->get_all_provinsi();
+        $data['provinsi'] = $this->user_model->get_all_provinsi();// nanti ini dihapus
         $data['isi'] = 'pasien/tambah_Pasien';
         $data['title'] = 'Data User';
         $this->load->view('dashboard/dashboard', $data);
@@ -68,7 +68,7 @@ class Pasien extends CI_Controller {
         $unit = $_POST['unit'];
         $No_PALAB = $_POST['No_PALAB'];
 
-        $jumlahSource = count($tgl_periksa);
+        $jumlahSource = count($nama_RumahSakit);
 
         $ID_Distant_Metastases = $_POST['ID_Distant_Metastases'];
         $jumlah_ID_Distant_Metastases = count($ID_Distant_Metastases);
