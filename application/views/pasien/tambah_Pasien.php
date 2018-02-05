@@ -15,7 +15,7 @@
                         <div class="form-group row">
                             <label for="example-text-input" class="col-4 col-form-label">NIK</label>
                             <div class="col-8">
-                                <input class="form-control" name="NIK" type="text"  value="" placeholder="16 Digit NIK" id="example-text-input">
+                                <input class="form-control" name="NIK" type="text"  value="" required="" placeholder="16 Digit NIK" id="example-text-input">
                             </div>
                         </div>
                         <div class="form-group row">
@@ -809,7 +809,7 @@
                                 <a href="#popup">
                                     <br>
                                     <div class="col-md-5 pull-right">
-                                        <button class="btn btn-skype btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Submit</button>
+                                        <button class="btn btn-facebook glyphicon  glyphicon-upload btn-lg btn-block text-uppercase waves-effect waves-light" type="submit"> Simpan</button>
 
                                     </div>
                                     <br><br></a>
