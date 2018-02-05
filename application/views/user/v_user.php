@@ -57,7 +57,7 @@
                 <thead>
                     <tr>
 
-                        <th>ID</th>
+                        <th>NO</th>
                         <th data-hide="phone, tablet">Email</th>
                         <th data-hide="phone, tablet">Nama</th>
                         <th data-hide="phone, tablet">Hal Akses</th>
@@ -83,8 +83,10 @@
                 </div>
                 <tbody>
                     <?php
+                    $no =0;
                     if ($data_user->num_rows() > 0) {
                         foreach ($data_user->result() as $row) {
+                             $no++;
                             if ($row->status == 0) {
                                 $link = "<a class='glyphicon glyphicon-cog' style='color:red'	href='" . site_url("user/aktif/$row->id_user") . "' ></a>";
                             } else {
@@ -92,7 +94,7 @@
                             }
                             echo "
 			<tr>
-				<td>$row->id_user</td>
+				<td>$no</td>
 				<td>$row->username</td>
 				<td>$row->nama</td>
 				<td>$row->nama_akses</td>

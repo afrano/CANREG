@@ -19,15 +19,8 @@ class Pasien extends CI_Controller {
         $this->load->view('dashboard/dashboard', $data);
     }
 
-    public function addPasien() { 
+    public function addPasien() {
         $data['provinsi'] = $this->user_model->get_all_provinsi();
-        $data['isi'] = 'pasien/tambah_Pasien';
-        $data['title'] = 'Data User';
-        $this->load->view('dashboard/dashboard', $data);
-    }
-
-    public function tambah() {
-        $data['provinsi'] = $this->user_model->get_all_provinsi();// nanti ini dihapus
         $data['isi'] = 'pasien/tambah_Pasien';
         $data['title'] = 'Data User';
         $this->load->view('dashboard/dashboard', $data);
@@ -58,6 +51,33 @@ class Pasien extends CI_Controller {
         $this->form_validation->set_rules('id_status_hubungan', 'id_status_hubungan', 'required');
         $this->form_validation->set_rules('ID_Occupation', 'ID_Occupation', 'required');
         $this->form_validation->set_rules('No_Telpon', 'No_Telpon', 'required');
+
+        $this->form_validation->set_rules('ID_Topography', 'ID_Topography', 'required');
+        $this->form_validation->set_rules('ID_Morphology', 'ID_Morphology', 'required');
+        $this->form_validation->set_rules('Diagnosis', 'Diagnosis', 'required');
+        $this->form_validation->set_rules('Disease', 'Disease', 'required');
+        $this->form_validation->set_rules('Diagnosis_Klinis', 'Diagnosis_Klinis', 'required');
+        $this->form_validation->set_rules('Diagnosis_Date', 'Diagnosis_Date', 'required');
+        $this->form_validation->set_rules('Behaviour', 'Behaviour', 'required');
+        $this->form_validation->set_rules('No_Of_Metastases', 'No_Of_Metastases', 'required');
+        $this->form_validation->set_rules('Grade', 'Grade', 'required');
+        $this->form_validation->set_rules('Stage', 'Stage', 'required');
+        $this->form_validation->set_rules('Laterality', 'Laterality', 'required');
+        $this->form_validation->set_rules('ID_Immunohistokimia', 'ID_Immunohistokimia', 'required');
+        $this->form_validation->set_rules('Date_IHC', 'Date_IHC', 'required');
+        $this->form_validation->set_rules('ID_Hybridization', 'ID_Hybridization', 'required');
+        $this->form_validation->set_rules('Date', 'Date', 'required');
+        $this->form_validation->set_rules('Biopsy', 'Biopsy', 'required');
+        $this->form_validation->set_rules('Sublocation', 'Sublocation', 'required');
+        $this->form_validation->set_rules('kesimpulan', 'kesimpulan', 'required');
+
+        $this->form_validation->set_rules('ID_Status', 'ID_Status', 'required');
+        $this->form_validation->set_rules('Date_Of_Verification', 'Date_Of_Verification', 'required');
+        $this->form_validation->set_rules('Date_Of_Abstract', 'Date_Of_Abstract', 'required');
+        $this->form_validation->set_rules('Date_Last_Contact', 'Date_Last_Contact', 'required');
+        $this->form_validation->set_rules('Verifeir', 'Verifeir', 'required');
+        $this->form_validation->set_rules('Registrar', 'Registrar', 'required');
+        $this->form_validation->set_rules('Admission_Date', 'Admission_Date', 'required');
 
 
         $NIK = $_POST['NIK'];
@@ -158,14 +178,15 @@ class Pasien extends CI_Controller {
             $this->user_model->tambahData('data_tumor_pasien', $datatumor);
             $this->user_model->tambahData('registrar', $registrar);
             $this->session->set_flashdata("sukses", "<div class='alert alert-success'><strong>Data Berhasil Disimpan</strong></div>");
-            redirect(base_url() . 'Pasien');
+            redirect(base_url() . 'Pasien/DetailPasien/' . $NIK . '');
         } else {
             $this->user_model->tambahData('data_tumor_pasien', $datatumor);
             $this->user_model->tambahData('registrar', $registrar);
-            $this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Maaf Data Sudah Ada</strong></div>");
-            redirect('Pasien');
+            $this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Maaf Data Pasien Sudah Ada</strong></div>");
+            redirect(base_url() . 'Pasien/DetailPasien/' . $NIK . '');
         }
-        redirect(base_url() . 'Pasien');
+        $this->session->set_flashdata("alert", "<div class='alert alert-danger'><strong>Gagal Menyimpan Data</strong></div>");
+        redirect(base_url() . 'Pasien/tambah_pasien');
     }
 
     function DetailPasien($NIK = null) {
@@ -180,7 +201,6 @@ class Pasien extends CI_Controller {
     function ubah($NIK = null) {
         $isinya = 'pasien/ubah_Pasien';
         $Date = Date("Y-m-d H:i:s", time() + 60 * 360);
-        $method = 'Pasien/DetailPasien';
 
         if ($data_user = $this->user_model->get_DetilPasien($NIK)) {
             $this->form_validation->set_rules('NIK', 'NIK', 'required');
@@ -196,31 +216,71 @@ class Pasien extends CI_Controller {
                     'Place_Of_Birth' => $_POST['Place_Of_Birth'],
                     'Date_Of_Birth' => $_POST['Date_Of_Birth'],
                     'Alamat_Tetap' => $_POST['Alamat_Tetap'],
-//                    'ID_Provinsi' => $_POST['ID_Provinsi'],
-//                    'id_kabupaten' => $_POST['id_kabupaten'],
-//                    'id_kecamatan' => $_POST['id_kecamatan'],
+                    'ID_Provinsi' => $_POST['ID_Provinsi'],
+                    'id_kabupaten' => $_POST['id_kabupaten'],
+                    'id_kecamatan' => $_POST['id_kecamatan'],
                     'kode_pos' => $_POST['kode_pos'],
                     'Alamat_Sementara' => $_POST['Alamat_Sementara'],
-//                    'id_provinsi_1' => $_POST['id_provinsi_1'],
-//                    'id_kabupaten_1' => $_POST['id_kabupaten_1'],
-//                    'id_kecamatan_1' => $_POST['id_kecamatan_1'],
+                    'id_provinsi_1' => $_POST['id_provinsi_1'],
+                    'id_kabupaten_1' => $_POST['id_kabupaten_1'],
+                    'id_kecamatan_1' => $_POST['id_kecamatan_1'],
                     'kode_pos1' => $_POST['kode_pos1'],
-//                    'ID_Sex' => $_POST['ID_Sex'],
-//                    'ID_Race' => $_POST['ID_Race'],
-//                    'ID_Religion' => $_POST['ID_Religion'],
-//                    'id_status_hubungan' => $_POST['id_status_hubungan'],
-//                    'ID_Occupation' => $_POST['ID_Occupation'],
+                    'ID_Sex' => $_POST['ID_Sex'],
+                    'ID_Race' => $_POST['ID_Race'],
+                    'ID_Religion' => $_POST['ID_Religion'],
+                    'id_status_hubungan' => $_POST['id_status_hubungan'],
+                    'ID_Occupation' => $_POST['ID_Occupation'],
                     'No_Telpon' => $_POST['No_Telpon'],
-                    'Update_Date' => $Create_Date,
+                    'Update_Date' => $Date,
                 );
 
-                if ($this->user_model->ubahdata('data_pasien', 'NIK', $NIK, $datapasien)) {
+//                $datatumor = array(
+//                    'NIK' => $NIK,
+//                    'ID_Topography' => $_POST['ID_Topography'],
+//                    'ID_Morphology' => $_POST['ID_Morphology'],
+//                    'ID_Diagnosis' => $_POST['Diagnosis'],
+//                    'ID_Disease' => $_POST['Disease'],
+//                    'Diagnosis_Klinis' => $_POST['Diagnosis_Klinis'],
+//                    'Diagnosis_Date' => $_POST['Diagnosis_Date'],
+//                    'ID_Behaviour' => $_POST['Behaviour'],
+//                    'No_Of_Metastases' => $_POST['No_Of_Metastases'],
+//                    'ID_Grade' => $_POST['Grade'],
+//                    'ID_Stage' => $_POST['Stage'],
+//                    'ID_Laterality' => $_POST['Laterality'],
+//                    'ID_Immunohistokimia' => $_POST['ID_Immunohistokimia'],
+//                    'Date_IHC' => $_POST['Date_IHC'],
+//                    'ID_Hybridization' => $_POST['ID_Hybridization'],
+//                    'Date' => $_POST['Date'],
+//                    'ID_Biopsy' => $_POST['Biopsy'],
+//                    'ID_Sublocation' => $_POST['Sublocation'],
+//                    'Kesimpulan' => $_POST['kesimpulan'],
+//                    'Update_Date' => $Date,
+//                );
+//                $registrar = array(
+//                    'NIK' => $NIK,
+//                    'Admission_Date' => $_POST['Admission_Date'],
+//                    'Date_Last_Contact' => $_POST['Date_Last_Contact'],
+//                    'id_status' => $_POST['ID_Status'],
+//                    'Registrar' => $_POST['Registrar'],
+//                    'Date_Of_Abstract' => $_POST['Date_Of_Abstract'],
+//                    'Verifeir' => $_POST['Verifeir'],
+//                    'Date_Of_Verification' => $_POST['Date_Of_Verification'],
+//                    'Update_Date' => $Date,
+//                );
 
+
+
+                if ($this->user_model->ubahdata('data_pasien', 'NIK', $NIK, $datapasien)) {
+                    //      $this->user_model->ubahdata('data_tumor_pasien', 'NIK', $NIK, $datatumor);
+                    //   $this->user_model->ubahdata('distant_metastases_pasien', 'NIK', $NIK, $datapasien);
+                    //   $this->user_model->ubahdata('sources_follow_up', 'NIK', $NIK, $datapasien);
+                    //   $this->user_model->ubahdata('treatment_pasien', 'NIK', $NIK, $datapasien);
+                    //    $this->user_model->ubahdata('registrar', 'NIK', $NIK, $registrar);
                     $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DiUpdate');
-                    redirect($method);
+                    redirect(base_url() . 'Pasien/DetailPasien/' . $NIK . '');
                 } else {
                     $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
-                    redirect($method);
+                    redirect(base_url() . 'Pasien/DetailPasien/' . $NIK . '');
                 }
             } else {
                 $data['row'] = $data_user->row();
@@ -239,6 +299,11 @@ class Pasien extends CI_Controller {
         $method = 'Pasien';
         if ($this->user_model->getdata_bykode($table, $where, $kode)) {
             if ($this->user_model->Hapusdata($table, array($where => $kode))) {
+                $this->user_model->Hapusdata('data_tumor_pasien', array($where => $kode));
+                $this->user_model->Hapusdata('distant_metastases_pasien', array($where => $kode));
+                $this->user_model->Hapusdata('sources_follow_up', array($where => $kode));
+                $this->user_model->Hapusdata('treatment_pasien', array($where => $kode));
+                $this->user_model->Hapusdata('registrar', array($where => $kode));
                 $this->session->set_flashdata('pesan_sukses', 'Data berhasil Di Hapus');
                 redirect($method);
             } else {

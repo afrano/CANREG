@@ -15,57 +15,57 @@
                         <div class="form-group row">
                             <label for="example-text-input" class="col-4 col-form-label">NIK</label>
                             <div class="col-8">
-                                <input class="form-control" name="NIK" type="text"  value="" required="" placeholder="16 Digit NIK" id="example-text-input">
+                                <input class="form-control" name="NIK" required="" type="text"  value="" placeholder="16 Digit NIK" id="example-text-input">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-search-input" class="col-4 col-form-label">MRN</label>
                             <div class="col-8">
-                                <input class="form-control" name="MRN" type="search"  value="" placeholder="Tujuh digit kode RS | NO MR" id="example-search-input">
+                                <input class="form-control" name="MRN" type="search" required=""  value="" placeholder="Tujuh digit kode RS | NO MR" id="example-search-input">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-4 col-form-label">First Name </label>
                             <div class="col-8">
-                                <input class="form-control" name="First_Name" type="text" value="" placeholder="Nama Awal" >
+                                <input class="form-control" name="First_Name" type="text" required="" value="" placeholder="Nama Awal" >
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-4 col-form-label">Middle Name</label>
                             <div class="col-8">
-                                <input class="form-control" name="Middle_Name" type="text" value="" placeholder="Nama Tengah" id="example-url-input">
+                                <input class="form-control" name="Middle_Name" type="text" required="" value="" placeholder="Nama Tengah" id="example-url-input">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-tel-input" class="col-4 col-form-label">Family Name</label>
                             <div class="col-8">
-                                <input class="form-control" name="Family_Name" value="" placeholder="Nama Keluarga" id="example-tel-input">
+                                <input class="form-control" name="Family_Name" required="" value="" placeholder="Nama Keluarga" id="example-tel-input">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-password-input" class="col-4 col-form-label">Place Of Birth</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" name="Place_Of_Birth" placeholder="Tempat Lahir"  value="" id="example-password-input">
+                                <input class="form-control" type="text" required="" name="Place_Of_Birth" placeholder="Tempat Lahir"  value="" id="example-password-input">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-password-input" class="col-4 col-form-label">Date Of Birth</label>
                             <div class="col-8">
-                                <input class="form-control" type="date" name="Date_Of_Birth"  value="" id="example-password-input">
+                                <input class="form-control" type="date" required="" name="Date_Of_Birth"  value="" id="example-password-input">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="example-number-input" class="col-4 col-form-label">Alamat Tetap</label>
                             <div class="col-8">
-                                <input class="form-control" name="Alamat_Tetap" value="" placeholder="Alamat Tetap" type="text" id="example-number-input">
+                                <input class="form-control" name="Alamat_Tetap" required="" value="" placeholder="Alamat Tetap" type="text" id="example-number-input">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="example-number-input" class="col-4 col-form-label">Provinsi</label>
                             <div class="col-8">
-                                <select name="ID_Provinsi" class="form-control" id="provinsi">
+                                <select name="ID_Provinsi" required="" class="form-control" id="provinsi">
                                     <option>- Select Provinsi -</option>
                                     <?php
                                     foreach ($provinsi as $prov) {
@@ -80,7 +80,7 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-4 col-form-label">Kabupaten</label>
                             <div class="col-8">
-                                <select name="id_kabupaten" class="form-control" id="kabupaten">
+                                <select name="id_kabupaten" required="" class="form-control" id="kabupaten">
                                     <option value=''>- Select Kabupaten -</option>
                                 </select>
                             </div>
@@ -88,7 +88,7 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-4 col-form-label">Kecamatan</label>
                             <div class="col-8">
-                                <select name="id_kecamatan" class="form-control" id="kecamatan">
+                                <select name="id_kecamatan" required="" class="form-control" id="kecamatan">
                                     <option>- Select Kecamatan -</option>
                                 </select>
                             </div>
@@ -112,7 +112,7 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-5 col-form-label">Provinsi</label>
                             <div class="col-7">
-                                <select name="id_provinsi_1" class="form-control" id="provinsi1">
+                                <select name="id_provinsi_1" required="" class="form-control" id="provinsi1">
                                     <option>- Select Provinsi -</option>
                                     <?php
                                     foreach ($provinsi as $prov) {
@@ -125,7 +125,7 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-5 col-form-label">Kabupaten</label>
                             <div class="col-7">
-                                <select name="id_kabupaten_1" class="form-control" id="kabupaten1">
+                                <select name="id_kabupaten_1" required="" class="form-control" id="kabupaten1">
                                     <option value=''>- Select Kabupaten -</option>
                                 </select>
                             </div>
@@ -133,7 +133,7 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-5 col-form-label">Kecamatan</label>
                             <div class="col-7">
-                                <select name="id_kecamatan_1" class="form-control" id="kecamatan1">
+                                <select name="id_kecamatan_1" required=""  class="form-control" id="kecamatan1">
                                     <option>- Select Kecamatan -</option>
                                 </select>
                             </div>
@@ -147,7 +147,7 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-5 col-form-label">SEX</label>
                             <div class="col-7">
-                                <select class="custom-select col-12" name="ID_Sex" id="inlineFormCustomSelect">
+                                <select class="custom-select col-12" required="" name="ID_Sex" id="inlineFormCustomSelect">
                                     <option value="">-- Pilih Jenis Kelamin -- </option>
                                     <?php
                                     $query = $this->db->get('sex');
@@ -161,7 +161,7 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-5 col-form-label">Race</label>
                             <div class="col-7"> 
-                                <select class="custom-select col-12" name="ID_Race" id="inlineFormCustomSelect">
+                                <select class="custom-select col-12" required="" name="ID_Race" id="inlineFormCustomSelect">
                                     <option value="">-- Pilih Suku -- </option>
                                     <?php
                                     $query = $this->db->get('race');
@@ -175,7 +175,7 @@
                         <div class="form-group row">
                             <label for="example-number-input" class="col-5 col-form-label">Religion</label>
                             <div class="col-7"> 
-                                <select class="custom-select col-12" name="ID_Religion" id="inlineFormCustomSelect">
+                                <select class="custom-select col-12" required="" name="ID_Religion" id="inlineFormCustomSelect">
                                     <option value="">-- Pilih Agama -- </option>
                                     <?php
                                     $query = $this->db->get('religion');
@@ -227,7 +227,9 @@
 
     <div class="row">
         <div class="col-sm-12 white-box" >
-            <center>
+            <center><br>
+                <h4><strong><text style="color: #666666">KEMENTRIAN KESEHATAN REPUBLIK INDONESIA</text></strong></h4>
+
                 <hr align="right " width="100%"  color="cccccc">
                 <h5> <strong><text style="color: #999999">DATA TUMOR</text></strong> </h5>
                 <hr align="right" width="100%" color="cccccc">
@@ -264,7 +266,6 @@
                     </div>
                 </div>
             </div><br>
-
             <div class="row">
                 <div class="col-lg-11">
                     <div class="example">
@@ -472,7 +473,7 @@
                 <div class="col-lg-11">
                     <div class="example">
                         <h5 class="box-title m-t-30">Grade :</h5>
-                        <select  name="Grade" onchange="Kode4()"  class="custom-select col-12" >
+                        <select  name="Grade" onchange="Kode4()" required=""  class="custom-select col-12" >
                             <option value="">-- Pilih -- </option>
                             <?php
                             $query = $this->db->get('grade');
@@ -502,7 +503,7 @@
                 <div class="col-lg-11">
                     <div class="example">
                         <h5 class="box-title m-t-30">Stage :</h5>
-                        <select  name="Stage" onchange="Kode5()"  class="custom-select col-12" >
+                        <select  required="" name="Stage" onchange="Kode5()"  class="custom-select col-12" >
                             <option value="">-- Pilih -- </option>
                             <?php
                             $query = $this->db->get('stage');
@@ -532,7 +533,7 @@
                 <div class="col-lg-11">
                     <div class="example">
                         <h5 class="box-title m-t-30">Laterality:</h5>
-                        <select  name="Laterality" onchange="Kode6()"  class="custom-select col-12" >
+                        <select  name="Laterality" onchange="Kode6()" required=""  class="custom-select col-12" >
                             <option value="">-- Pilih -- </option>
                             <?php
                             $query = $this->db->get('laterality');
@@ -563,7 +564,7 @@
                     <div class="example">
                         <h5 class="box-title m-t-30">Immunohistokimia / immunohistochemistry :</h5>
                         <div class="col-md-12">
-                            <select name="ID_Immunohistokimia" class="custom-select col-12" id="inlineFormCustomSelect">
+                            <select name="ID_Immunohistokimia" required="" class="custom-select col-12" id="inlineFormCustomSelect">
                                 <option value="">-- Pilih -- </option>
                                 <?php
                                 $query = $this->db->get('immunohistokimia');
@@ -579,7 +580,7 @@
                     <div class="example">
                         <h5 class="box-title m-t-30">Date IHC :</h5>
                         <div class="col-md-12">
-                            <input name="Date_IHC" class="form-control" type="date" value="" id="example-password-input">
+                            <input name="Date_IHC" required="" class="form-control" type="date" value="" id="example-password-input">
                         </div>
                     </div>
                 </div>
@@ -590,7 +591,7 @@
                     <div class="example">
                         <h5 class="box-title m-t-30">In Situ Hybridization :</h5>
                         <div class="col-md-12">
-                            <select name="ID_Hybridization" class="custom-select col-12" id="inlineFormCustomSelect">
+                            <select name="ID_Hybridization" required="" class="custom-select col-12" id="inlineFormCustomSelect">
                                 <option value="">-- Pilih -- </option>
                                 <?php
                                 $query = $this->db->get('hybridization');
@@ -652,7 +653,7 @@
                 <div class="col-lg-11">
                     <div class="example">
                         <h5 class="box-title m-t-30">Sublocation of Breast Tumor :</h5>
-                        <select  name="Sublocation" onchange="Kode8()"  class="custom-select col-12" >
+                        <select required=""  name="Sublocation" onchange="Kode8()"  class="custom-select col-12" >
                             <option value="">-- Pilih -- </option>
                             <?php
                             $query = $this->db->get('sublocation');
@@ -704,11 +705,11 @@
                                     <tbody>
                                         <tr>
                                             <td><input name="Tgl_Periksa[]" type="date"></td>
-                                            <td><input name="Kode_RumahSakit[]" type="text" size="10"></td>
-                                            <td><input required="" name="nama_RumahSakit[]" type="text" size="10"></td>
-                                            <td><input name="unit_ID[]"type="text" size="10"></td>
-                                            <td><input name="unit[]"type="text" size="10"></td>
-                                            <td><input name="No_PALAB[]"type="text" size="10"></td>
+                                            <td><input placeholder="Kode RS" name="Kode_RumahSakit[]" type="text" size="10"></td>
+                                            <td><input placeholder="Nama RS" required="" name="nama_RumahSakit[]" type="text" size="10"></td>
+                                            <td><input placeholder="Unit id"  name="unit_ID[]"type="text" size="10"></td>
+                                            <td><input placeholder="Unit" name="unit[]"type="text" size="10"></td>
+                                            <td><input placeholder="NO PA/Lab"  name="No_PALAB[]"type="text" size="10"></td>
                                             <th>
                                                 <button type="button" class="btn btn-sm btn-icon btn-pure btn-outline delete-row-btn" data-toggle="tooltip" data-original-title="Delete" onclick="deleteRow(this)"><i class="ti-close" aria-hidden="true"></i></button>
                                             </th>
@@ -758,7 +759,7 @@
                                     <div class="col-lg-4">
                                         <div class="example">
                                             <h5 class="box-title m-t-30">Date last contact</h5>
-                                            <input class="form-control input-daterange-datepicker" type="date" name="Date_Last_Contact" value="" />
+                                            <input class="form-control input-daterange-datepicker" required="" type="date" name="Date_Last_Contact" value="" />
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
@@ -778,7 +779,7 @@
                                     <div class="col-lg-4">
                                         <div class="example">
                                             <h5 class="box-title m-t-30">Status</h5>
-                                            <select  name="status" onchange="Kode1()"  class="custom-select col-12" >
+                                            <select  name="status" onchange="Kode1()" required="" class="custom-select col-12" >
                                                 <option value="">Pilih Status</option>
                                                 <?php
                                                 $query = $this->db->get('status');
@@ -809,7 +810,7 @@
                                 <a href="#popup">
                                     <br>
                                     <div class="col-md-5 pull-right">
-                                        <button class="btn btn-facebook glyphicon  glyphicon-upload btn-lg btn-block text-uppercase waves-effect waves-light" type="submit"> Simpan</button>
+                                        <button class="btn btn-skype btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Submit</button>
 
                                     </div>
                                     <br><br></a>
