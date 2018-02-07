@@ -865,8 +865,12 @@
                 <div class="form-group">
                     <a href="#popup">
                         <div class="col-md-3 pull-right">
-                            <button class="btn btn-facebook glyphicon  glyphicon-print btn-lg btn-block text-uppercase waves-effect waves-light" type="submit"> Print</button>
-                        </div></a>
+                            <?php echo "<a class='btn btn-facebook glyphicon glyphicon-print btn-lg btn-block text-uppercase waves-effect waves-light' 
+					href='" . base_url("Laporan/cetak/$row->NIK") . " ' >	
+                    Print</a>"; ?>
+                        </div>
+
+                    </a>
                     <a>
                         <div class="col-md-3 pull-right">
                             <?php echo "<a class='btn btn-success glyphicon  glyphicon-edit btn-lg btn-block text-uppercase waves-effect waves-light' 

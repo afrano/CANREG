@@ -42,7 +42,6 @@ class User_model extends ci_model {
         return $query;
     }
 
-
     function get_byid($id_user) {
         $query = $this->db->get_where($this->nama_tabel, array('id_user' => $id_user));
         if ($query)
@@ -56,6 +55,13 @@ class User_model extends ci_model {
             return $query;
         return false;
     }
+
+//    function detaildatapasien($NIK) {
+//        $query = $this->db->query('SELECT NIK,Date_Of_Birth, year(curdate())-year(Date_Of_Birth)as usia FROM data_pasien where NIK = "' . $NIK . '"  ');
+//        if ($query)
+//            return $query;
+//        return false;
+//    }
 
     function get_byNIK($NIK) {
         $query = $this->db->get_where($this->data_tumor_pasien, array('NIK' => $NIK));
@@ -135,9 +141,7 @@ class User_model extends ci_model {
     }
 
     function get_all_provinsi() {
-        $this->db->select('*');
-        $this->db->from('wilayah_provinsi');
-        $query = $this->db->get();
+        $query = $this->db->query('select * from wilayah_provinsi order by nama asc');
         return $query->result();
     }
 

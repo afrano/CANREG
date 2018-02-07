@@ -745,7 +745,7 @@
                                     <div class="col-lg-4">
                                         <div class="example">
                                             <h5 class="box-title m-t-30">Registrar</h5>
-                                            <input type="text" class="form-control input-daterange-timepicker" placeholder="Registrar" required="" name="Registrar" value="" />
+                                            <input type="text" class="form-control input-daterange-timepicker" placeholder="Registrar" required="" readonly="" name="Registrar" value=" <?= $this->session->userdata('nama') ?> " />
                                         </div>
                                     </div>
                                     <div class="col-lg-4">

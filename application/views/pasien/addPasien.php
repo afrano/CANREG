@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<!--<div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
             <form class="row" action="<?php echo base_url(); ?>Pasien/tambah_pasien" method="POST" >
@@ -809,4 +809,4 @@
             </form>
         </div>
     </div>
-</div>
+</div>-->
