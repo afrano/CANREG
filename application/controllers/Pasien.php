@@ -356,7 +356,7 @@ class Pasien extends CI_Controller {
     }
 
     public function add_ajax_kab($id_prov) {
-        $query = $this->db->get_where('wilayah_kabupaten', array('provinsi_id' => $id_prov));
+        $query = $this->db->order_by('nama', 'ASC')->get_where('wilayah_kabupaten', array('provinsi_id' => $id_prov ));
         $data = "<option value=''>- Select Kabupaten -</option>";
         foreach ($query->result() as $value) {
             $data .= "<option value='" . $value->id . "'>" . $value->nama . "</option>";
@@ -365,7 +365,7 @@ class Pasien extends CI_Controller {
     }
 
     public function add_ajax_kec($id_kab) {
-        $query = $this->db->get_where('wilayah_kecamatan', array('kabupaten_id' => $id_kab));
+        $query = $this->db->order_by('nama', 'ASC')->get_where('wilayah_kecamatan', array('kabupaten_id' => $id_kab));
         $data = "<option value=''> - Select Kecamatan - </option>";
         foreach ($query->result() as $value) {
             $data .= "<option value='" . $value->id . "'>" . $value->nama . "</option>";

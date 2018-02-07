@@ -294,6 +294,7 @@
                         </div>
                     </div>
 
+                
                     <?php
                     if (isset($isi)) {
                         $this->load->view($isi);
@@ -330,7 +331,6 @@
         <!--Morris JavaScript -->
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/raphael/raphael-min.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/morrisjs/morris.js"></script>
-        <!-- Sparkline chart JavaScript -->
         <!-- Sparkline chart JavaScript -->
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
         <!-- jQuery peity -->

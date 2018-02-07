@@ -82,7 +82,8 @@ $(document).ready(function() {
             highlightLineColor: 'rgba(0, 0, 0, 0.2)',
             highlightSpotColor: '#4f4f4f'
         });
-        $("#sparkline8").sparkline([2,4,4,6,8,5,6,4,8,6,6,2 ], {
+        //disini data
+        $("#sparkline8").sparkline([2,4,4], {
             type: 'line',
             width: '100%',
             height: '50',

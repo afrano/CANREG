@@ -16,8 +16,6 @@ Class Laporan extends CI_Controller {
 
     function cetak($NIK = null) {
         $pasien = $this->user_model->get_DetilPasien($NIK)->result();
-
-        //    $pasien = $this->db->get('data_pasien')->result();
         foreach ($pasien as $row) {
             $pdf = new FPDF('l', 'mm', 'A4');
             $pdf->AddPage('portrait');
@@ -111,23 +109,36 @@ Class Laporan extends CI_Controller {
             $pdf->Cell(10, 7, '', 0, 1);
 
 
-
-
-
-
             $pdf->Cell(31, 6, 'Pov/Kab/Kota  ', 0, 'C');
 
             $query = $this->db->get('wilayah_provinsi');
             foreach ($query->result() as $row1) {
                 if ($row1->id == $row->ID_Provinsi) {
-                    $pdf->Cell(70, 6, $row1->nama , 1, 0, 'L');
+                    $pdf->Cell(40, 6, $row1->nama, 1, 0, 'L');
                 } else {
                     echo '';
                 }
             }
-            
-            $pdf->Cell(25, 6, 'Kode pos  ', 1, 0, 'C');
-            $pdf->Cell(64, 6, $row->kode_pos, 1, 0, 'L');
+
+            $query = $this->db->get('wilayah_kabupaten');
+            foreach ($query->result() as $row1) {
+                if ($row1->id == $row->id_kabupaten) {
+                    $pdf->Cell(40, 6, $row1->nama, 1, 0, 'L');
+                } else {
+                    echo '';
+                }
+            }
+            $query = $this->db->get('wilayah_kecamatan');
+            foreach ($query->result() as $row1) {
+                if ($row1->id == $row->id_kecamatan) {
+                    $pdf->Cell(40, 6, $row1->nama, 1, 0, 'L');
+                } else {
+                    echo '';
+                }
+            }
+
+            $pdf->Cell(19, 6, 'Kode pos  ', 1, 0, 'C');
+            $pdf->Cell(20, 6, $row->kode_pos, 1, 0, 'L');
 
 
 
@@ -137,16 +148,37 @@ Class Laporan extends CI_Controller {
 
             $pdf->Cell(10, 7, '', 0, 1);
             $pdf->Cell(31, 6, 'Pov/Kab/Kota  ', 0, 'C');
+
             $query = $this->db->get('wilayah_provinsi');
             foreach ($query->result() as $row1) {
                 if ($row1->id == $row->id_provinsi_1) {
-                    $pdf->Cell(70, 6, $row1->nama , 1, 0, 'L');
+                    $pdf->Cell(40, 6, $row1->nama, 1, 0, 'L');
                 } else {
                     echo '';
                 }
             }
-            $pdf->Cell(25, 6, 'Kode pos  ', 1, 0, 'C');
-            $pdf->Cell(64, 6, $row->kode_pos, 1, 0, 'L');
+
+
+            $query = $this->db->get('wilayah_kabupaten');
+            foreach ($query->result() as $row1) {
+                if ($row1->id == $row->id_kabupaten_1) {
+                    $pdf->Cell(40, 6, $row1->nama, 1, 0, 'L');
+                } else {
+                    echo '';
+                }
+            }
+            $query = $this->db->get('wilayah_kecamatan');
+            foreach ($query->result() as $row1) {
+                if ($row1->id == $row->id_kecamatan_1) {
+                    $pdf->Cell(40, 6, $row1->nama, 1, 0, 'L');
+                } else {
+                    echo '';
+                }
+            }
+
+            $pdf->Cell(19, 6, 'Kode pos  ', 1, 0, 'C');
+            $pdf->Cell(20, 6, $row->kode_pos1, 1, 0, 'L');
+
 
             $pdf->Cell(10, 7, '', 0, 1);
             $pdf->SetFont('Arial', 'B', 10);
@@ -218,10 +250,9 @@ Class Laporan extends CI_Controller {
 
                     $pdf->Cell(40, 6, 'No.of metastases', 0, 'C');
                     $pdf->Cell(35, 6, $row2->No_Of_Metastases, 1, 0, 'C');
-                    
                 }
             }
-          
+
             $query = $this->db->get('treatment_pasien');
             $pdf->Cell(10, 7, '', 0, 1);
             $pdf->Cell(70, 6, 'Treatment at reporting institution', 0, 'C');
@@ -243,28 +274,29 @@ Class Laporan extends CI_Controller {
             $pdf->SetFont('Arial', '', 10);
             $pdf->Cell(190, 6, 'Sources/Follow up', 1, 0, 'C');
             $pdf->Cell(10, 7, '', 0, 1);
-            $pdf->Cell(30, 6, 'Tgl.Periksa', 1, 0, 'C');
-            $pdf->Cell(40, 6, 'Kode Rumah Sakit', 1, 0, 'C');
-            $pdf->Cell(40, 6, 'Nama Rumah Sakit', 1, 0, 'C');
-            $pdf->Cell(30, 6, 'Unit ID', 1, 0, 'C');
-            $pdf->Cell(20, 6, 'Unit', 1, 0, 'C');
-            $pdf->Cell(30, 6, 'No. PA/LAB', 1, 0, 'C');
+            $pdf->Cell(35, 6, 'Tgl.Periksa', 1, 0, 'C');
+            $pdf->Cell(45, 6, 'Kode Rumah Sakit', 1, 0, 'C');
+            $pdf->Cell(50, 6, 'Nama Rumah Sakit', 1, 0, 'C');
+            $pdf->Cell(35, 6, 'Unit ID', 1, 0, 'C');
+            $pdf->Cell(25, 6, 'Unit', 1, 0, 'C');
             $query = $this->db->get('sources_follow_up');
             foreach ($query->result() as $row2) {
                 if ($row2->NIK == $row->NIK) {
                     $pdf->Cell(10, 6, '', 0, 1);
-                    $pdf->Cell(30, 6, $row2->Tgl_Periksa, 1, 0, 'C');
-                    $pdf->Cell(40, 6, $row2->Kode_Rumah_Sakit, 1, 0, 'C');
-                    $pdf->Cell(40, 6, $row2->nama_rumahsakit, 1, 0, 'C');
-                    $pdf->Cell(30, 6, $row2->Unit_ID, 1, 0, 'C');
-                    $pdf->Cell(20, 6, $row2->Unit, 1, 0, 'C');
-                    $pdf->Cell(30, 6, $row2->No_Pa, 1, 0, 'C');
+                    $pdf->Cell(35, 6, $row2->Tgl_Periksa, 1, 0, 'C');
+                    $pdf->Cell(45, 6, $row2->Kode_Rumah_Sakit, 1, 0, 'C');
+                    $pdf->Cell(50, 6, $row2->nama_rumahsakit, 1, 0, 'C');
+                    $pdf->Cell(35, 6, $row2->Unit_ID, 1, 0, 'C');
+                    $pdf->Cell(25, 6, $row2->Unit, 1, 0, 'C');
                 }
             }
             $pdf->Cell(10, 7, '', 0, 1);
             $pdf->Cell(10, 7, 'Kesimpulan', 0, 1);
-            $pdf->Cell(190, 15, 'ini', 1);
-            $pdf->Cell(10, 7, '', 0, 1);
+            $query = $this->db->get('data_tumor_pasien');
+            foreach ($query->result() as $row2) {
+                $pdf->Cell(190, 12, $row2->Kesimpulan, 1);
+                $pdf->Cell(10, 8, '', 0, 1);
+            }
 
             $pdf->Cell(10, 4, '', 0, 1);
 
@@ -292,12 +324,21 @@ Class Laporan extends CI_Controller {
                     $pdf->Cell(32, 6, 'Date of Verification', 0, 'C');
                     $pdf->Cell(30, 6, $row2->Date_Of_Verification, 1, 0, 'C');
                     $pdf->Cell(10, 6, '', 0, 1);
-                    $pdf->Cell(30, 7, 'Status', 0, 'C');
-                    $pdf->Cell(30, 6, $row2->id_status, 1, 0, 'C');
+
+
+
+                    $query = $this->db->get('status');
+                    foreach ($query->result() as $row3) {
+                        if ($row3->ID_Status == $row2->id_status) {
+                            $pdf->Cell(30, 7, 'Status', 0, 'C');
+                            $pdf->Cell(8, 6, $row3->ID_Status, 1, 0, 'C');
+                            $pdf->Cell(22, 6, $row3->Status, 1, 0, 'C');
+                        }
+                    }
                 }
             }
         }
-        $pdf->Output();
+        $pdf->Output('', 'Data Pasien ' . $NIK . ' ');
     }
 
 }

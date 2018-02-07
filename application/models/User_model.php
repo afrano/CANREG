@@ -144,5 +144,10 @@ class User_model extends ci_model {
         $query = $this->db->query('select * from wilayah_provinsi order by nama asc');
         return $query->result();
     }
+    function totalpasien(){
+        $query = $this->db->query('SELECT count(NIK) as total FROM data_pasien');
+        return $query->result();
+    }
+    
 
 }

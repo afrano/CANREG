@@ -739,7 +739,7 @@
                                     <div class="col-lg-4">
                                         <div class="example">
                                             <h5 class="box-title m-t-30">Admission date</h5>
-                                            <input class="form-control input-daterange-datepicker" type="date" required="" name="Admission_Date" value="" />
+                                            <input class="form-control input-daterange-datepicker" type="date" readonly="" name="Admission_Date" value="<?= Date("Y-m-d");?>" />
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
