@@ -14,7 +14,6 @@
                     <tr>
                         <th data-hide="phone, tablet"><center>NO</center></th>
                 <th data-hide="phone, tablet"><center>NIK</center></th>
-                <th data-hide="phone, tablet"><center>MRN</center></th>
                 <th data-hide="phone, tablet"><center>First Name</center></th>
                 <th data-hide="phone, tablet"><center>Family Name</center></th>
                 <th data-sort-ignore="true" class="min-width"><center>Action</center></th>
@@ -46,7 +45,6 @@
 			<tr>
                                 <td><center>$no</center></td>
 				<td><center>$row->NIK</center></td>
-				<td><center>$row->MRN</center></td>
 				<td><center>$row->First_Name</center></td>
 				<td><center>$row->Family_Name</center></td>
 				<td ><center>

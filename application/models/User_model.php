@@ -56,12 +56,6 @@ class User_model extends ci_model {
         return false;
     }
 
-//    function detaildatapasien($NIK) {
-//        $query = $this->db->query('SELECT NIK,Date_Of_Birth, year(curdate())-year(Date_Of_Birth)as usia FROM data_pasien where NIK = "' . $NIK . '"  ');
-//        if ($query)
-//            return $query;
-//        return false;
-//    }
 
     function get_byNIK($NIK) {
         $query = $this->db->get_where($this->data_tumor_pasien, array('NIK' => $NIK));

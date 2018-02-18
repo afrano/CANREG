@@ -4,15 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Pasien.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Laporan.php</file>
             <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/pasien/detailPasien.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/pasien/ubah_Pasien.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/third_party/pdf/fpdf.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/libraries/Pdf.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/user/tambah_user.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/controllers/Wilayah.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/pasien/addPasien.php</file>
-            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/models/User_model.php</file>
+            <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/pasien/detai.php</file>
             <file>file:/C:/xampp/htdocs/webane_Kesehatan/application/views/pasien/tambah_Pasien.php</file>
         </group>
     </open-files>

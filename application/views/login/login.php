@@ -20,15 +20,14 @@
     </head>
     <body>
         <!-- Preloader -->
-
         <div class="preloader">
             <div class="cssload-speeding-wheel"></div>
         </div>
 
         <div class="login-box">
             <div class="white-box">
-                   <a href="javascript:void(0)" class="text-center db"><img src="<?php echo base_url(); ?>assets/plugins/images/eliteadmin-logo-dark.PNG" alt="Home" /><br/><img src="<?php echo base_url(); ?>assets/plugins/images/eliteadmin-text-dark.PNG" alt="Home" /></a>  
-                 
+                <a href="javascript:void(0)" class="text-center db"><img src="<?php echo base_url(); ?>assets/plugins/images/eliteadmin-logo-dark.PNG" alt="Home" /><br/><img src="<?php echo base_url(); ?>assets/plugins/images/eliteadmin-text-dark.PNG" alt="Home" /></a>  
+
                 <form class="form-horizontal" id="recoverform" action="index.html">
                     <div class="form-group ">
                         <div class="col-xs-12">
@@ -81,7 +80,7 @@
                     </div>
                     <div class="form-group m-b-0">
                         <div class="col-sm-12 text-center">
-                            <p>Don't have an account? <a href="<?= site_url('daftar')?>" class="text-primary m-l-5"><b>Sign Up</b></a></p>
+                            <p>Don't have an account? <a href="<?= site_url('daftar') ?>" class="text-primary m-l-5"><b>Sign Up</b></a></p>
                         </div>
                     </div>
                 </form>

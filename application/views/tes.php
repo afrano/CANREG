@@ -1,7 +1,7 @@
 <html>
     <body>
 
-        <select id="pilihan1" onchange="Breast()">
+        <select id="pilihan1" onchange="function1()">
             <option value="">-- Pilih --
             <option value="YES">IHC For Breast Cancer YES
             <option value="NO">IHC For Breast Cancer NO
@@ -13,7 +13,7 @@
         <br>
         <br>
         <div id="perhitungan1" style="display:none;">
-            <select id="pilihan2" onchange="Breast()">
+            <select id="pilihan2" onchange="function2()">
                 <option value="">-- Pilih --
                 <option value="YES">ER+ and/or PR+
                 <option value="NO">ER- and/or PR-
@@ -96,30 +96,15 @@
 
         <script>
             function Breast() {
-                var a = document.getElementById("pilihan1").value;
-                var b = document.getElementById("pilihan2").value;
-                var c = document.getElementById("pilihan1").value;
-                var d = document.getElementById("pilihan1").value;
-                var f = document.getElementById("pilihan1").value;
-                var g = document.getElementById("pilihan1").value;
-                var h = document.getElementById("pilihan1").value;
-
-                if (a == null) {
-                    if (b == "YES")
-                    {
-                        document.getElementById('perhitungan2').style.display = '';
-                    } else if (b == "NO") {
-                        document.getElementById('noperhitungan2').style.display = '';
-                    }
-                }
-                if (a == "YES")
+                var x = document.getElementById("pilihan1").value;
+                if (x == "YES")
                 {
                     document.getElementById('perhitungan1').style.display = '';
-                } else if (a == "NO") {
+                } else if (x == "NO") {
                     document.getElementById('keterangan').style.display = '';
                 }
             }
-
+            
             function function1() {
                 var x = document.getElementById("pilihan1").value;
                 if (x == "YES")

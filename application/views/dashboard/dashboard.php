@@ -14,20 +14,21 @@
         <link href="<?php echo base_url(); ?>assets/css/popup.css" rel="stylesheet">
         <!-- animation CSS -->
         <link href="<?php echo base_url(); ?>assets/css/animate.css" rel="stylesheet">
-        <!-- Custom CSS -->
-        <link href="../../assets/css/style.css" rel="stylesheet">
+        <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
         <!-- color CSS -->
-        <link href="../../assets/css/colors/megna.css" id="theme" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css" />
-
-   <!--   <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.3.min.js"></script> -->
+        <link href="<?php echo base_url(); ?>assets/css/colors/megna.css" id="theme" rel="stylesheet">
+                <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css" />
+     
+        <!--   <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.3.min.js"></script> -->
+              <!-- tabel -->
+        <script src="<?php echo base_url(); ?>assets/Chart/Chart.bundle.js"></script>
 
 
         <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-
+        
         <!-- Bootstrap Core JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
@@ -52,21 +53,21 @@
 <!--        <script src="<?php echo base_url(); ?>assets/jquery.min.js"></script>-->
         <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/jquery.autocomplete.js'></script>
         <link href='<?php echo base_url(); ?>assets/js/jquery.autocomplete.css' rel='stylesheet' />
-
+        
         <script type='text/javascript'>
             var site = "<?php echo site_url(); ?>";
             $(function () {
                 $('.Topography').autocomplete({
                     // serviceUrl berisi URL ke controller/fungsi yang menangani request kita
                     serviceUrl: site + '/pasien/topography',
-                    // fungsi ini akan dijalankan ketika user memilih salah satu hasil request
+                     // fungsi ini akan dijalankan ketika user memilih salah satu hasil request
                     onSelect: function (suggestion) {
                         $('#nama_kanker').val('' + suggestion.Topography);
                         $('#ID_Topography').val('' + suggestion.ID_Topography);
                     }
                 });
             });
-
+           
             $(function () {
                 $('.Morphology').autocomplete({
                     // serviceUrl berisi URL ke controller/fungsi yang menangani request kita
@@ -162,17 +163,17 @@
 
                             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu"> Data Pasien <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li> <a href="<?php echo base_url(); ?>Pasien/addPasien">ADD Data Pasien</a> </li>
+                                    <li> <a href="<?php echo base_url(); ?>Pasien/addPasien">Add Data Pasien</a> </li>
                                     <li> <a href="<?php echo base_url(); ?>Pasien">All Database</a> </li>
 
                                 </ul>
                             </li>
 
-                            <li> <a href="javascript:void(0);" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu"> Setting <span class="fa arrow"></span></span></a>
+                            <li> <a href="javascript:void(0);" class="waves-effect"><i data-icon="&#xe00b;" class="linea-icon linea-basic fa-fw"></i> <span class="hide-menu"> Library <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="javascript:void(0);" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> Database Tumor <span class="fa arrow"></span></span></a>
+                                    <li><a href="javascript:void(0);" class="waves-effect"><i data-icon="&#xe008;" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> Database Tumor <span class="fa arrow"></span></span></a>
                                         <ul class="nav nav-second-level">
-                                            <li> <a href="<?php echo base_url(); ?>Tumor/Topography">Topography</a> </li>
+                                        <li> <a href="<?php echo base_url(); ?>Tumor/Topography">Topography</a> </li>
                                             <li> <a href="<?php echo base_url(); ?>Tumor/Morphology">Morphology</a> </li>
                                             <li> <a href="<?php echo base_url(); ?>Tumor/BasicDiagnosis">diagnosis Cancer</a> </li>
                                             <li> <a href="<?php echo base_url(); ?>Tumor/Diseasetreatment">disease before treatment</text></a> </li>
@@ -186,10 +187,10 @@
                                             <li> <a href="<?php echo base_url(); ?>Tumor/Hybridization">In Situ Hybridization</a> </li>
                                             <li> <a href="<?php echo base_url(); ?>Tumor/Biopsy">Type of biopsy</a> </li>
                                             <li> <a href="<?php echo base_url(); ?>Tumor/Sublocation">Sublocation of Breast Tumor</a> </li>
-
+                                        
                                         </ul>
                                     </li>
-                                    <li><a href="javascript:void(0);" class="waves-effect"><i data-icon="P" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> Database Wilayah <span class="fa arrow"></span></span></a>
+                                    <li><a href="javascript:void(0);" class="waves-effect"><i data-icon="&#xe008;" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> Database Wilayah <span class="fa arrow"></span></span></a>
 
                                         <ul class="nav nav-second-level">
                                             <li> <a href="<?php echo base_url(); ?>Wilayah">Provinsi</a> </li>
@@ -197,14 +198,17 @@
                                         </ul>
 
                                     </li>
+                                    <li><a href="<?php echo base_url(); ?>Rumahsakit" class="waves-effect"><i data-icon="&#xe008;" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> DB Rumah Sakit </span></a>
 
-                                </ul>
+
+                                    </li>
+                                
+                                  </ul>
                             </li>
 
                             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-chart p-r-10"></i> <span class="hide-menu"> Reports <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li> <a href="Dashboard">Export Page</a></li>
-                                    <li> <a href="Dashboard">Export Data</a></li>
+                                    <li> <a href="<?php echo base_url(); ?>Laporan/export_excel">Export Data</a></li>
                                 </ul>
                             </li>
 
@@ -244,8 +248,7 @@
 
                             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-chart p-r-10"></i> <span class="hide-menu"> Reports <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li> <a href="Dashboard">Export Page</a></li>
-                                    <li> <a href="Dashboard">Export Data</a></li>
+                                    <li> <a href="<?php echo base_url(); ?>Laporan/export_excel">Export Data</a></li>
                                 </ul>
                             </li>
 
@@ -274,8 +277,10 @@
                             </li>
                         </ul>
                     <?php } ?>
-                    <br>
+                                    <ul class="nav" id="side-menu">
+                    <li class="nav-small-cap">--- Main Menu</li>
                     <li ><a href="<?php echo base_url(); ?>login/logout" class="waves-effect"><i class="icon-logout fa-fw"></i><text style="color: #cc0000"> <b>  <span class="hide-menu"> Log out</span></b></a></li>
+                    </ul>
                 </div>
             </div>
             <div id="page-wrapper">
@@ -289,12 +294,11 @@
                 </style>    
                 <div class="container-fluid" >
                     <div class="row bg-title" >
-                        <div  class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                            <h4 class="page-title">Hospital Dashboard</h4>
+                        <div  class="col-lg-12 col-md-4 col-sm-4 col-xs-12">
+                          <center>  <h4 class="page-title">BADAN REGISTRASI KANKER YAPI</h4> </center>
                         </div>
                     </div>
 
-                
                     <?php
                     if (isset($isi)) {
                         $this->load->view($isi);
@@ -320,6 +324,7 @@
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/datatables/dataTables.bootstrap.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/tiny-editable/mindmup-editabletable.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/tiny-editable/numeric-input-example.js"></script>
+        <script src="../assets/js/addtable.js"></script>
 
 
         <!-- Menu Plugin JavaScript -->
@@ -332,6 +337,7 @@
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/raphael/raphael-min.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/morrisjs/morris.js"></script>
         <!-- Sparkline chart JavaScript -->
+        <!-- Sparkline chart JavaScript -->
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js"></script>
         <!-- jQuery peity -->
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/peity/jquery.peity.min.js"></script>
@@ -342,6 +348,8 @@
 <!--        <script src="<?php echo base_url(); ?>assets/js/custom.min.js"></script>-->
         <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/dashboard1.js"></script>
+        <script src="../../assets/js/jasny-bootstrap.js"></script>
+        <script src="../../assets/js/validator.js"></script>
         <!--Style Switcher -->
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
     </body>

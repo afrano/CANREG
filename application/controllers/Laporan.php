@@ -10,11 +10,14 @@ Class Laporan extends CI_Controller {
         cek_hakakses(array(1, 2, 3));
     }
 
-    function index() {
-        
+    public function export_excel() {
+        $pasien = $this->user_model->get_allPasien()->result();
+        $data = array('title' => 'Data Pasien',
+            'user' => $pasien);
+        $this->load->view('laporan/laporanexcel', $data);
     }
 
-    function cetak($NIK = null) {
+    function cetak($NIK = null) {//cetak ke pdf
         $pasien = $this->user_model->get_DetilPasien($NIK)->result();
         foreach ($pasien as $row) {
             $pdf = new FPDF('l', 'mm', 'A4');
