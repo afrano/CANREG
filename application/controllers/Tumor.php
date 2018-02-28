@@ -1393,4 +1393,59 @@ class Tumor extends ci_controller {
         }
     }
 
+    function detailTopography($kode = null) {
+        $where = 'ID_Topography';
+        if ($data_user = $this->user_model->Cekdata('data_tumor_pasien', $where, $kode)) {
+            $data['row'] = $data_user->row();
+            $data['isi'] = 'laporan/grafik';
+            $data['title'] = 'Data User';
+            $this->load->view('dashboard/dashboard', $data);
+        }
+    }
+    function detailtumor() {
+        if ($_POST['rowid']) {
+            $id = $_POST['rowid'];
+            $where = 'ID_Topography';
+            $datatumor = $this->user_model->Cekdata('data_tumor_pasien', $where, $id);
+            echo '<table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="10">
+    <thead>
+        <tr>
+            <th>NO</th>
+            <th>Nama</th>
+            <th>Alamat</th>            
+            <th>Usia</th>
+              <th>Sex</th>
+        </tr>
+    </thead><tbody>
+        ';
+            $no = 0;
+            foreach ($datatumor->result() as $datatumor) {
+                $no++;
+                $datapasien = $this->user_model->get_alldata('data_pasien');
+                foreach ($datapasien->result() as $datapasien) {
+                    if ($datatumor->NIK == $datapasien->NIK) {
+                        $query = $this->db->get('sex');
+                        foreach ($query->result() as $sex) {
+                            if ($sex->id_sex == $datapasien->ID_Sex) {
+                                $tangallahir = new DateTime($datapasien->Date_Of_Birth);
+                                $today = new DateTime('today');
+                                $usia = $today->diff($tangallahir)->y;
+                                echo '<tr>
+            <td>' . $no . '</td>
+                <td><a href=' . base_url("Pasien/DetailPasien/$datapasien->NIK") . ' >' . $datapasien->First_Name . '</a></td>
+        
+                  <td>' . $datapasien->Alamat_Tetap . '</td>
+            <td>' . $usia . '</td>
+                <td>' . $sex->sex . '</td>
+    ';
+                            }
+                        }
+                    }
+                }
+            }echo '    
+    </tbody>
+</table>';
+        }
+    }
+
 }

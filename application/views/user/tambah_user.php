@@ -7,7 +7,20 @@
                 echo "<div class='alert alert-danger'>" . validation_errors() . "</div>";
             }
             ?>
-            <form class="form-group" action="<?= site_url($this->uri->uri_string()) ?>" method="POST">
+            <form class="form-group" action="<?= site_url('user/tambah_user') ?>"  method="POST">
+                <?php
+                $kode = $this->db->query("SELECT max(id_user_lokal) as maxKode FROM tb_user");
+                foreach ($kode->result() as $data) {
+                    $noUrut = (int) substr($data->maxKode, 11, 11);
+                    $noUrut++;
+                    $char = "SU" . date('ydm');
+                    $newKode = $char . sprintf("%04s", $noUrut);
+                }
+                ?>
+                <div class="form-group">
+                    <center><span class="sl-date">ID : <?php echo $newKode; ?></span></center>
+                    <input class="form-control" hidden="" readonly="" type="text" value="<?php echo $newKode; ?>" name="id_user_lokal" required="true" />
+                </div>
                 <div class="form-group">
                     <label>Email</label>
                     <input class="form-control" type="email" name="username" required="true" />

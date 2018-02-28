@@ -1,54 +1,3 @@
-<div class="modal fade none-border" id="add-new-event">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title"><strong><center>Tambah User</center></strong></h4>
-            </div>
-            <div class="modal-body">
-                <form class="form-group" action="<?= site_url('user/tambah_user') ?>" method="POST" >
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input class="form-control" type="email" name="username" required="true" />
-                    </div>
-                    <div class="form-group">
-                        <label>password</label>
-                        <input class="form-control" type="password" name="password" required="true" />
-                    </div>
-                    <div class="form-group">
-                        <label>Nama User</label>
-                        <input class="form-control" name="nama" required="true"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Hak Akses</label>
-                        <select name='hak_akses' class="form-control" required="true">
-                            <option value="">Pilih Hak Akses</option>
-                            <?php
-                            $query = $this->db->get('akses');
-                            foreach ($query->result() as $row) {
-                                echo "<option value='$row->id_akses'>$row->nama_akses</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Status</label>
-                        <select name='status' class="form-control" required="true">
-                            <option value="">Pilih Status User</option>
-                            <option value="1">Aktif</option>
-                            <option value="0">Tidak Aktif</option>
-                        </select>
-                    </div>
-                    <div class='form-group'>
-                        <button class="btn btn-primary">Simpan</button>
-                   
-                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="row">
     <div class="col-lg-12">
         <div class="white-box">
@@ -56,8 +5,8 @@
             <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="7">
                 <thead>
                     <tr>
-
                         <th>NO</th>
+                        <th>ID User</th>
                         <th data-hide="phone, tablet">Email</th>
                         <th data-hide="phone, tablet">Nama</th>
                         <th data-hide="phone, tablet">Hal Akses</th>
@@ -71,9 +20,6 @@
 
                             <div class="form-group">
 
-                                <a href="#" data-toggle="modal" data-target="#add-new-event"  class='btn btn-skype '>
-                                    <i class='glyphicon glyphicon-plus'> Tambah</i> 
-                                </a>
                                 <input id="demo-input-search2" type="text" placeholder="Search" class="form-control" autocomplete="off">
 
                             </div>
@@ -83,10 +29,10 @@
                 </div>
                 <tbody>
                     <?php
-                    $no =0;
+                    $no = 0;
                     if ($data_user->num_rows() > 0) {
                         foreach ($data_user->result() as $row) {
-                             $no++;
+                            $no++;
                             if ($row->status == 0) {
                                 $link = "<a class='glyphicon glyphicon-cog' style='color:red'	href='" . site_url("user/aktif/$row->id_user") . "' ></a>";
                             } else {
@@ -95,6 +41,7 @@
                             echo "
 			<tr>
 				<td>$no</td>
+                                <td>$row->id_user_lokal</td>
 				<td>$row->username</td>
 				<td>$row->nama</td>
 				<td>$row->nama_akses</td>

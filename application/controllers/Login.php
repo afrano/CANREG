@@ -31,14 +31,14 @@ class Login extends CI_Controller {
             if ($query->num_rows() == 1) {
                 $row = $query->row();
                 $data_sesi = array(
-                    'username' => $email, 'nama' => $row->nama, 'hak_akses' => $row->hak_akses,
+                    'username' => $email, 'nama' => $row->nama, 'hak_akses' => $row->hak_akses,'foto' => $row->foto,'id_user_lokal' => $row->id_user_lokal,
                     'berhasil_login' => true
                 );
                 $this->session->set_userdata($data_sesi);
                 redirect(base_url() . 'dashboard');
             } else {
                 $this->session->set_flashdata('pesan_error', 'Gagal Login Username/Password salah !!!');
-                redirect('login');
+                redirect(base_url() . 'login');
             }
         } else {
 //            Jika Validasi Gagal Tampilkan Halaman Login Dan Error
@@ -48,7 +48,7 @@ class Login extends CI_Controller {
 
     function logout() {
         $this->session->sess_destroy();
-        redirect('login');
+        redirect(base_url() . 'login');
     }
 
 }

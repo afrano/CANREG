@@ -20,6 +20,11 @@ class User_model extends ci_model {
         return $query;
     }
 
+    function Get_limit($database,$limit) {
+        $data = $this->db->query('SELECT * from '.$database.' limit '.$limit.' ');
+        return $data;
+    }
+
     function get_all() {
         $this->db->join('akses', "akses.id_akses = $this->nama_tabel.hak_akses", 'LEFT');
         $query = $this->db->get($this->nama_tabel);
@@ -28,6 +33,11 @@ class User_model extends ci_model {
 
     function get_allPasien() {
         $data = $this->db->query('SELECT * from data_pasien ');
+        return $data;
+    }
+
+    function get_allPasienlokal($alamat) {
+        $data = $this->db->query('SELECT * from data_pasien where ID_Provinsi = "' . $alamat . '" ');
         return $data;
     }
 
@@ -55,7 +65,6 @@ class User_model extends ci_model {
             return $query;
         return false;
     }
-
 
     function get_byNIK($NIK) {
         $query = $this->db->get_where($this->data_tumor_pasien, array('NIK' => $NIK));
@@ -99,7 +108,7 @@ class User_model extends ci_model {
 
     function ubah($id_user, $data_user) {
         $this->db->where('id_user', $id_user);
-        $query = $this->db->update($this->nama_tabel, $data_user, array('id_user' => $id_user));
+        $query = $this->db->update('tb_user', $data_user, array('id_user' => $id_user));
         if ($query)
             return $query;
         return false;
@@ -138,10 +147,10 @@ class User_model extends ci_model {
         $query = $this->db->query('select * from wilayah_provinsi order by nama asc');
         return $query->result();
     }
-    function totalpasien(){
+
+    function totalpasien() {
         $query = $this->db->query('SELECT count(NIK) as total FROM data_pasien');
         return $query->result();
     }
-    
 
 }

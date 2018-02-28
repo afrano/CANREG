@@ -1,26 +1,36 @@
 <?php
-header("Content-type: application/vnd.ms-excel");
+//Google Chrome
+header("Content-type: application/octet-stream");
 header("Content-Disposition: attachment; filename=$title.xls");
-header("Cache-Control: max-age=0");
+header("Pragma: no-cache");
 header("Expires: 0");
+//Mozilla Firefox
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Content-Type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=Data_Pasien.xls");
+//Internet Explorer
+//Coming Soon
 ?>
 <br>
-<center><h2>Data Pasien</h2></center>
+
 <table border="1" width="100%">
     <thead>
         <tr>
             <th>NO</th>
             <th>NIK</th>
-            <th>MRN</th>
             <th>First Name</th>
             <th>Middle Name</th>
             <th>Family Name</th>
             <th>Place Of Birth</th>
             <th>Date Of Birth</th>
             <th>Alamat Tetap</th>
-            <th>Provinsi/Kabupaten/Kota</th>
+            <th>Provinsi</th>
+            <th>Kabupaten</th>
+            <th>Kota</th>
             <th>Alamat Sementara</th>
-            <th>Provinsi/Kabupaten/Kota</th>
+            <th>Provinsi</th>
+            <th>Kabupaten</th>
+            <th>Kota</th>
             <th>Kode Sex</th>
             <th>Kode Race</th>
             <th>Kode Religion</th>
@@ -46,7 +56,6 @@ header("Expires: 0");
             <th>In Situ Hybridization</th>
             <th>Date ISH</th>
             <th>Jenis Biopsy</th>
-            <th>Sublocation of Breast tumor</th>
 
         </tr>
     </thead>
@@ -57,7 +66,6 @@ header("Expires: 0");
             ?>
             <tr><td><?= $i; ?></td>
                 <td><?php echo $row->NIK ?></td>
-                <td><?php echo $row->MRN ?></td>
                 <td><?php echo $row->First_Name ?></td>
                 <td><?php echo $row->Middle_Name ?></td>
                 <td><?php echo $row->Family_Name ?></td>
@@ -68,19 +76,19 @@ header("Expires: 0");
                 $query = $this->db->get('wilayah_provinsi');
                 foreach ($query->result() as $row2) {
                     if ($row2->id == $row->ID_Provinsi) {
-                        echo '<td>' . $row2->nama . '/';
+                        echo '<td>' . $row2->nama . '</td>';
                     }
                 }
                 $query = $this->db->get('wilayah_kabupaten');
                 foreach ($query->result() as $row2) {
                     if ($row2->id == $row->id_kabupaten) {
-                        echo ' ' . $row2->nama . '/';
+                        echo '<td> ' . $row2->nama . '</td>';
                     }
                 }
                 $query = $this->db->get('wilayah_kecamatan');
                 foreach ($query->result() as $row2) {
                     if ($row2->id == $row->id_kecamatan) {
-                        echo ' ' . $row2->nama . '</td> ';
+                        echo '<td>' . $row2->nama . '</td> ';
                     }
                 }
                 ?>
@@ -89,19 +97,19 @@ header("Expires: 0");
                 $query = $this->db->get('wilayah_provinsi');
                 foreach ($query->result() as $row2) {
                     if ($row2->id == $row->id_provinsi_1) {
-                        echo '<td>' . $row2->nama . '/';
+                        echo '<td>' . $row2->nama . '</td>';
                     }
                 }
                 $query = $this->db->get('wilayah_kabupaten');
                 foreach ($query->result() as $row2) {
                     if ($row2->id == $row->id_kabupaten_1) {
-                        echo ' ' . $row2->nama . '/';
+                        echo '<td>' . $row2->nama . '</td>';
                     }
                 }
                 $query = $this->db->get('wilayah_kecamatan');
                 foreach ($query->result() as $row2) {
                     if ($row2->id == $row->id_kecamatan_1) {
-                        echo ' ' . $row2->nama . '</td> ';
+                        echo '<td>' . $row2->nama . '</td> ';
                     }
                 }
                 ?>
@@ -140,17 +148,16 @@ header("Expires: 0");
                                 echo '' . $row4->ID_Distant_Metastases . ',';
                             }
                         }
-                         echo '</td>';
+                        echo '</td>';
                         echo '<td>' . $row2->No_Of_Metastases . '</td>'
                         . '<td>' . $row2->ID_Grade . '</td>'
                         . '<td>' . $row2->ID_Stage . '</td>'
                         . '<td>' . $row2->ID_Laterality . '</td>'
-                        . '<td>' . $row2->ID_Immunohistokimia . '</td>'
+                        . '<td>' . $row2->Immunohistokimia . '</td>'
                         . '<td>' . $row2->Date_IHC . '</td>'
                         . '<td>' . $row2->ID_Hybridization . '</td>'
                         . '<td>' . $row2->Date . '</td>'
-                        . '<td>' . $row2->ID_Biopsy . '</td>'
-                        . '<td>' . $row2->ID_Sublocation . '</td>';
+                        . '<td>' . $row2->ID_Biopsy . '</td>';
                     }
                 }
                 ?>

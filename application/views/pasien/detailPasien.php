@@ -481,16 +481,16 @@
                                         <div class="col-md-6">
                                             <h5 class="box-title m-t-30">Date Of Therapy :</h5>
 
-                                             <?php
-                                                $query = $this->db->get('data_tumor_pasien');
-                                                foreach ($query->result() as $row1) {
-                                                    if ($row1->NIK == $row->NIK) {
-                                                        echo ' <input type="search" value=' . $row1->Date_Therapy . ' readonly=""   class="Morphology form-control nama" placeholder="Nama Morphology">';
-                                                    } else {
-                                                        echo "";
-                                                    }
+                                            <?php
+                                            $query = $this->db->get('data_tumor_pasien');
+                                            foreach ($query->result() as $row1) {
+                                                if ($row1->NIK == $row->NIK) {
+                                                    echo ' <input type="search" value=' . $row1->Date_Therapy . ' readonly=""   class="Morphology form-control nama" placeholder="Nama Morphology">';
+                                                } else {
+                                                    echo "";
                                                 }
-                                                ?>
+                                            }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -731,20 +731,27 @@
                                         <h5 class="box-title m-t-30">Jenis Biopsy / type of Biopsy :</h5>
                                         <?php
                                         $query = $this->db->get('data_tumor_pasien');
-                                        foreach ($query->result() as $row1) {
-                                            if ($row1->NIK == $row->NIK) {
-                                                echo ' <input type="search" value=' . $row1->ID_Biopsy . ' readonly=""   class="Morphology form-control nama" placeholder="Nama Morphology">';
+                                        foreach ($query->result() as $rowdatumor) {
+                                            if ($rowdatumor->NIK == $row->NIK) {
+                                                $query = $this->db->get('biopsy');
+                                                foreach ($query->result() as $rowbiopsy) {
+                                                    if ($rowdatumor->ID_Biopsy == $rowbiopsy->ID_Biopsy) {
+                                                        echo '<input type="text" readonly="" class="form-control input-daterange-timepicker" value="' . $rowbiopsy->Biopsy . '" />';
+                                                    }
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="example">
+                                                <h5 class="box-title m-t-30">Kode</h5>
+                                                <input type="text" class="form-control input-daterange-timepicker" readonly="" name="ID_Biopsy" value="<?php echo $row1->ID_Biopsy; ?>" />
+                                                <?php
                                             } else {
                                                 echo "";
                                             }
                                         }
                                         ?>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="example">
-                                        <h5 class="box-title m-t-30">Kode</h5>
-                                        <input type="text" class="form-control input-daterange-timepicker" readonly="" name="ID_Biopsy" value="" />
                                     </div>
                                 </div>
                                 <script language = "javascript">
@@ -756,25 +763,19 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-lg-10">
+                                <div class="col-lg-12">
                                     <div class="example">
                                         <h5 class="box-title m-t-30">Tumor Size :</h5>
                                         <?php
                                         $query = $this->db->get('data_tumor_pasien');
-                                        foreach ($query->result() as $row1) {
-                                            if ($row1->NIK == $row->NIK) {
-                                                echo ' <input type="text" value=" ' . $row1->TumorSize . '" readonly=""   class=" form-control nama" >';
+                                        foreach ($query->result() as $rowTumor) {
+                                            if ($rowTumor->NIK == $row->NIK) {
+                                                echo ' <input type="text" value="' . $rowTumor->TumorSize . '" readonly=""   class=" form-control nama" >';
                                             } else {
                                                 echo "";
                                             }
                                         }
                                         ?>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2">
-                                    <div class="example">
-                                        <h5 class="box-title m-t-30">Kode</h5>
-                                        <input type="text" class="form-control input-daterange-timepicker" readonly="" name="ID_TumorSize" value="" />
                                     </div>
                                 </div>
                                 <script language = "javascript">
@@ -792,12 +793,12 @@
                     <div class="col-lg-12">
                         <div class="example">
                             <h5 class="box-title m-t-30">Immunohistokimia / immunohistochemistry (IHC) :</h5>
-                            <div class="col-md-12">
+                            <div class="col-md-11">
                                 <?php
                                 $query = $this->db->get('data_tumor_pasien');
                                 foreach ($query->result() as $row1) {
                                     if ($row1->NIK == $row->NIK) {
-                                        echo ' <input type="text" value=" ' . $row1->Immunohistokimia . '" readonly=""   class=" form-control nama" >';
+                                        echo ' <label class=" form-control nama" > ' . $row1->Immunohistokimia . ' </label>';
                                     } else {
                                         echo "";
                                     }
@@ -1015,16 +1016,16 @@
                     <div class="col-lg-11">
                         <div class="example">
                             <h5 class="box-title m-t-30">Jenis Molekul</h5>
-                             <?php
-                                $query = $this->db->get('data_tumor_pasien');
-                                foreach ($query->result() as $row1) {
-                                    if ($row1->NIK == $row->NIK) {
-                                        echo ' <input type="search" value=' . $row1->jenis_molekul . ' readonly=""   class="Morphology form-control nama" placeholder="Nama Morphology">';
-                                    } else {
-                                        echo "";
-                                    }
+                            <?php
+                            $query = $this->db->get('data_tumor_pasien');
+                            foreach ($query->result() as $row1) {
+                                if ($row1->NIK == $row->NIK) {
+                                    echo ' <input type="search" value=' . $row1->jenis_molekul . ' readonly=""   class="Morphology form-control nama" placeholder="Nama Morphology">';
+                                } else {
+                                    echo "";
                                 }
-                                ?>          </div>
+                            }
+                            ?>          </div>
                     </div>
                 </div>
 
@@ -1042,149 +1043,90 @@
                                         <th>Rumah Sakit</th>
                                         <th>Unit ID</th>
                                         <th>Unit</th>
-                                        <th>Delete</th>
                                     </tr>
                                 </thead>
-                                <div class="form-inline padding-bottom-15">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                           </div>
-                                        <div class="form-inline padding-bottom-15 form-group">
-
-                                        </div>
-                                        <tbody>
-                                            <?php
-                                            $query = $this->db->get('sources_follow_up');
-                                            foreach ($query->result() as $row1) {
-                                                if ($row1->NIK == $row->NIK) {
-                                                    echo "<tr><th>$row1->Tgl_Periksa</th>";
-                                                    echo "<th>$row1->Kode_Rumah_Sakit</th>";
-                                                    echo "<th>$row1->nama_rumahsakit</th>";
-                                                    echo "<th>$row1->Unit_ID</th>";
-                                                    echo "<th>$row1->Unit</th>";
-                                                    echo "<th>$row1->Unit</th></tr>";
-                                                } else {
-                                                    echo "";
-                                                }
-                                            }
-                                            ?>  
-                                        </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                <tbody>
+                                    <?php
+                                    $query = $this->db->get('sources_follow_up');
+                                    foreach ($query->result() as $row1) {
+                                        if ($row1->NIK == $row->NIK) {
+                                            echo "<tr><th>$row1->Tgl_Periksa</th>";
+                                            echo "<th>$row1->Kode_Rumah_Sakit</th>";
+                                            echo "<th>$row1->nama_rumahsakit</th>";
+                                            echo "<th>$row1->Unit_ID</th>";
+                                            echo "<th>$row1->Unit</th></tr>";
+                                        } else {
+                                            echo "";
+                                        }
+                                    }
+                                    ?>  
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="row">
-                            <div class="col-lg-11">
-                                <div class="example">
-                                    <h5 class="box-title m-t-30"> Kesimpulan :</h5>
-                                    <div class="col-md-12">
-                                        <textarea readonly="" class="form-control" rows="5"><?php
-                                            $query = $this->db->get('data_tumor_pasien');
-                                            foreach ($query->result() as $row1) {
-                                                if ($row1->NIK == $row->NIK) {
-                                                    echo $row1->Kesimpulan;
-                                                } else {
-                                                    echo "";
-                                                }
-                                            }
-                                            ?>
-                                        </textarea>
-                                    </div>
-                                </div>
-
+                <div class="row">
+                    <div class="col-lg-11">
+                        <div class="example">
+                            <h5 class="box-title m-t-30"> Kesimpulan :</h5>
+                            <div class="col-md-12">
+                                <textarea readonly="" class="form-control" rows="5"><?php
+                                    $query = $this->db->get('data_tumor_pasien');
+                                    foreach ($query->result() as $row1) {
+                                        if ($row1->NIK == $row->NIK) {
+                                            echo $row1->Kesimpulan;
+                                        } else {
+                                            echo "";
+                                        }
+                                    }
+                                    ?>
+                                </textarea>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="white-box">
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="example">
-                                                <h5 class="box-title m-t-30">Admission date</h5>
-                                                <?php
-                                                $query = $this->db->get('registrar');
-                                                foreach ($query->result() as $row1) {
-                                                    if ($row1->NIK == $row->NIK) {
-                                                        echo '<input readonly="" class="form-control input-daterange-datepicker" type="text" name="daterange" value="' . $row1->Admission_Date . '" />
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="white-box">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="example">
+                                        <h5 class="box-title m-t-30">Admission date</h5>
+                                        <?php
+                                        $query = $this->db->get('registrar');
+                                        foreach ($query->result() as $row1) {
+                                            if ($row1->NIK == $row->NIK) {
+                                                echo '<input readonly="" class="form-control input-daterange-datepicker" type="text" name="daterange" value="' . $row1->Admission_Date . '" />
 ';
-                                                    } else {
-                                                        echo "";
-                                                    }
-                                                }
-                                                ?>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="example">
-                                                <h5 class="box-title m-t-30">Registrar</h5>
-                                                <?php
-                                                $query = $this->db->get('registrar');
-                                                foreach ($query->result() as $row1) {
-                                                    if ($row1->NIK == $row->NIK) {
-                                                        echo '<input readonly="" class="form-control input-daterange-datepicker" type="text" name="daterange" value="' . $row1->Registrar . '" />
-';
-                                                    } else {
-                                                        echo "";
-                                                    }
-                                                }
-                                                ?>      
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="example">
-                                                <h5 class="box-title m-t-30">Verifier</h5>
-                                                <?php
-                                                $query = $this->db->get('registrar');
-                                                foreach ($query->result() as $row1) {
-                                                    if ($row1->NIK == $row->NIK) {
-                                                        echo '<input readonly="" class="form-control input-daterange-datepicker" type="text" name="daterange" value="' . $row1->Verifeir . '" />
-';
-                                                    } else {
-                                                        echo "";
-                                                    }
-                                                }
-                                                ?>  
-                                            </div>
-                                        </div>
+                                            } else {
+                                                echo "";
+                                            }
+                                        }
+                                        ?>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="example">
-                                                <h5 class="box-title m-t-30">Date last contact</h5>
-                                             <?php
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="example">
+                                        <h5 class="box-title m-t-30">Registrar</h5>
+                                        <?php
                                         $query = $this->db->get('registrar');
                                         foreach ($query->result() as $row1) {
                                             if ($row1->NIK == $row->NIK) {
-                                                echo '<input readonly="" class="form-control input-daterange-datepicker" type="text" name="daterange" value="' . $row1->Date_Last_Contact . '" />
+                                                echo '<input readonly="" class="form-control input-daterange-datepicker" type="text" name="daterange" value="' . $row1->Registrar . '" />
 ';
                                             } else {
                                                 echo "";
                                             }
                                         }
-                                        ?>    
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="example">
-                                                <h5 class="box-title m-t-30">Date of abstract</h5>
-                                             <?php
-                                        $query = $this->db->get('registrar');
-                                        foreach ($query->result() as $row1) {
-                                            if ($row1->NIK == $row->NIK) {
-                                                echo '<input readonly="" class="form-control input-daterange-datepicker" type="text" name="daterange" value="' . $row1->Date_Of_Abstract . '" />
-';
-                                            } else {
-                                                echo "";
-                                            }
-                                        }
-                                        ?>    
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="example">
-                                                <h5 class="box-title m-t-30">Date of Verification</h5>
-                                                    <?php
+                                        ?>      
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="example">
+                                        <h5 class="box-title m-t-30">Verifier</h5>
+                                        <?php
                                         $query = $this->db->get('registrar');
                                         foreach ($query->result() as $row1) {
                                             if ($row1->NIK == $row->NIK) {
@@ -1195,64 +1137,121 @@
                                             }
                                         }
                                         ?>  
-                                            </div>
-                                        </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="example">
-                                                <h5 class="box-title m-t-30">Status</h5>
-                                                    <?php
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="example">
+                                        <h5 class="box-title m-t-30">Date last contact</h5>
+                                        <?php
                                         $query = $this->db->get('registrar');
                                         foreach ($query->result() as $row1) {
                                             if ($row1->NIK == $row->NIK) {
-                                                echo '<input readonly="" class="form-control input-daterange-datepicker" type="text" name="daterange" value="' . $row1->id_status . '" />
+                                                echo '<input readonly="" class="form-control input-daterange-datepicker" type="text" name="daterange" value="' . $row1->Date_Last_Contact . '" />
+';
+                                            } else {
+                                                echo "";
+                                            }
+                                        }
+                                        ?>    
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="example">
+                                        <h5 class="box-title m-t-30">Date of abstract</h5>
+                                        <?php
+                                        $query = $this->db->get('registrar');
+                                        foreach ($query->result() as $row1) {
+                                            if ($row1->NIK == $row->NIK) {
+                                                echo '<input readonly="" class="form-control input-daterange-datepicker" type="text" name="daterange" value="' . $row1->Date_Of_Abstract . '" />
+';
+                                            } else {
+                                                echo "";
+                                            }
+                                        }
+                                        ?>    
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="example">
+                                        <h5 class="box-title m-t-30">Date of Verification</h5>
+                                        <?php
+                                        $query = $this->db->get('registrar');
+                                        foreach ($query->result() as $row1) {
+                                            if ($row1->NIK == $row->NIK) {
+                                                echo '<input readonly="" class="form-control input-daterange-datepicker" type="text" name="daterange" value="' . $row1->Verifeir . '" />
 ';
                                             } else {
                                                 echo "";
                                             }
                                         }
                                         ?>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="example">
+                                        <h5 class="box-title m-t-30">Status</h5>
+                                        <?php
+                                        $query = $this->db->get('registrar');
+                                        foreach ($query->result() as $rowregistrar) {
+                                            if ($rowregistrar->NIK == $row->NIK) {
+                                                $query = $this->db->get('status');
+                                                foreach ($query->result() as $rowstatus) {
+                                                    if ($rowregistrar->id_status == $rowstatus->ID_Status) {
+                                                        echo '<input type="text" readonly="" class="form-control input-daterange-timepicker" value="' . $rowstatus->Status . '" />';
+                                                    }
+                                                }
+                                                ?>
+
                                             </div>
                                         </div>
                                         <div class="col-lg-1">
                                             <div class="example">
                                                 <h5 class="box-title m-t-30">Kode</h5>
-                                                <input type="text" readonly="" required="" class="form-control input-daterange-timepicker" name="ID_Status" value="" />
-                                            </div>
-                                        </div>
-                                        <script language = "javascript">
-                                            function Kode1() {
-                                                var status = document.forms[0].status.value;
-                                                document.forms[0].ID_Status.value = status;
+                                                <input type="text" readonly="" required="" class="form-control input-daterange-timepicker" name="ID_Status" value="<?php echo $rowregistrar->id_status; ?>" />
+                                                <?php
+                                            } else {
+                                                echo "";
                                             }
-                                        </script>
+                                        }
+                                        ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <a href="#popup">
-                                        <div class="col-md-3 pull-right">
-                                            <?php echo "<a class='btn btn-facebook glyphicon glyphicon-print btn-lg btn-block text-uppercase waves-effect waves-light' 
-					href='" . base_url("Laporan/cetak/$row->NIK") . " ' >	
-                    Print</a>"; ?>
-                                        </div>
-
-                                    </a>
-                                    <a>
-                                        <div class="col-md-3 pull-right">
-                                            <?php echo "<a class='btn btn-success glyphicon  glyphicon-edit btn-lg btn-block text-uppercase waves-effect waves-light' 
-					href='" . site_url("Pasien/ubah/$row->NIK") . " ' >	
-                    Edit</a>"; ?>
-                                        </div>
-                                    </a>
-                                </div>
+                                <script language = "javascript">
+                                    function Kode1() {
+                                        var status = document.forms[0].status.value;
+                                        document.forms[0].ID_Status.value = status;
+                                    }
+                                </script>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <a href="#popup">
+                                <div class="col-md-3 pull-right">
+                                    <?php echo "<a class='btn btn-facebook glyphicon glyphicon-print btn-lg btn-block text-uppercase waves-effect waves-light' 
+					href='" . base_url("Laporan/cetak/$row->NIK") . " ' >	
+                    Print</a>"; ?>
+                                </div>
 
+                            </a>
+                            <a>
+                                <div class="col-md-3 pull-right">
+                                    <?php echo "<a class='btn btn-success glyphicon  glyphicon-edit btn-lg btn-block text-uppercase waves-effect waves-light' 
+					href='" . site_url("Pasien/ubah/$row->NIK") . " ' >	
+                    Edit</a>"; ?>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                    </form>
                 </div>
 
             </div>
+        </form>
+    </div>
+
+</div>
 
 

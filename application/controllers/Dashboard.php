@@ -9,7 +9,7 @@ class Dashboard extends CI_Controller {
         parent::__construct();
         $this->load->model('user_model');
         cek_login();
-        cek_hakakses(array(1, 2, 3));
+        cek_hakakses(array(1, 2, 3,4));
     }
 
     function index() {

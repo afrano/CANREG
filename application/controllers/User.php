@@ -24,6 +24,7 @@ class User extends ci_controller {
         $this->form_validation->set_rules('status', 'status', 'required');
         if ($this->form_validation->run()) {
             $data_simpan = array(
+                'id_user_lokal' => $_POST['id_user_lokal'],
                 'username' => $_POST['username'],
                 'password' => md5($_POST['password']),
                 'nama' => $_POST['nama'],
@@ -48,18 +49,27 @@ class User extends ci_controller {
     function ubah($id_user = null) {
         if ($data_user = $this->user_model->get_byid($id_user)) {
             $this->form_validation->set_rules('username', 'Username', 'required');
-            //   $this->form_validation->set_rules('password', 'password', 'required');
+            //$this->form_validation->set_rules('password', 'password', 'required');
             $this->form_validation->set_rules('nama', 'nama', 'required');
             $this->form_validation->set_rules('hak_akses', 'hak_akses', 'required');
             $this->form_validation->set_rules('status', 'status', 'required');
             if ($this->form_validation->run()) {
-                $data_simpan = array(
-                    'username' => $_POST['username'],
-                    //         'password' => md5($_POST['password']),
-                    'nama' => $_POST['nama'],
-                    'hak_akses' => $_POST['hak_akses'],
-                    'status' => $_POST['status'],
-                );
+                if ($_POST['password'] != NULL) {
+                    $data_simpan = array(
+                        'username' => $_POST['username'],
+                        'password' => md5($_POST['password']),
+                        'nama' => $_POST['nama'],
+                        'hak_akses' => $_POST['hak_akses'],
+                        'status' => $_POST['status'],
+                    );
+                } else {
+                    $data_simpan = array(
+                        'username' => $_POST['username'],   
+                        'nama' => $_POST['nama'],
+                        'hak_akses' => $_POST['hak_akses'],
+                        'status' => $_POST['status'],
+                    );
+                }
 
                 if ($this->user_model->ubah($id_user, $data_simpan)) {
                     $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');

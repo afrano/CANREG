@@ -18,6 +18,10 @@
                     <input class="form-control" name="nama" value="<?= $row->nama ?>" required="true"/>
                 </div>
                 <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control" name="password" value="" />
+                </div>
+                <div class="form-group">
                     <label>Hak Akses</label>
                     <select name='hak_akses' class="form-control" required="true">
                         <option value="">Pilih Hak Akses</option>

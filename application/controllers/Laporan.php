@@ -10,6 +10,13 @@ Class Laporan extends CI_Controller {
         cek_hakakses(array(1, 2, 3));
     }
 
+    function index() {
+        $data['laporan'] = $this->user_model->totalpasien();
+        $data['isi'] = 'laporan/grafik';
+        $data['title'] = 'Data User';
+        $this->load->view('dashboard/dashboard', $data);
+    }
+
     public function export_excel() {
         $pasien = $this->user_model->get_allPasien()->result();
         $data = array('title' => 'Data Pasien',
@@ -24,7 +31,7 @@ Class Laporan extends CI_Controller {
             $pdf->AddPage('portrait');
             $pdf->SetFont('Arial', 'B', 12);
             $pdf->Image('assets/Logokemses.png', 12, 8, 12, 12, 'png', '');
-            $pdf->Cell(190, 7, 'KEMENTRIAN KESEHATAN REPUBLIK INDONESIA', 0, 1, 'C');
+            $pdf->Cell(190, 7, 'BADAN REGISTRASI KANKER YAPI', 0, 1, 'C');
             $pdf->Cell(10, 7, '', 0, 1);
             $pdf->SetFont('Arial', 'B', 10);
             $pdf->Cell(190, 6, 'DATA PASIEN', 1, 0, 'C');
@@ -41,7 +48,7 @@ Class Laporan extends CI_Controller {
                     $pdf->Cell(54, 6, $row2->sex, 1, 0, 'L');
                     $pdf->Cell(10, 7, '', 0, 1);
                     $pdf->Cell(31, 6, 'MRN', 0, 'C');
-                    $pdf->Cell(70, 6, $row->MRN, 1, 0, 'L');
+                    $pdf->Cell(70, 6, 'MRN', 1, 0, 'L');
                     $pdf->Cell(10, 7, '', 0, 1);
                     $pdf->Cell(31, 6, '', 0, 'C');
                     $pdf->Cell(40, 6, 'tuhuh digit kode RS', 1, 0, 'C');
@@ -242,20 +249,16 @@ Class Laporan extends CI_Controller {
 
 
                     $pdf->Cell(10, 7, '', 0, 1);
-                    $pdf->Cell(70, 6, 'Immunohistokimia/immunohistochemistry', 0, 'C');
-                    $pdf->Cell(35, 6, $row2->ID_Immunohistokimia, 1, 0, 'C');
-
-                    $pdf->Cell(10, 7, '', 0, 1);
-                    $pdf->Cell(70, 6, 'Sublocation of Breast tumor', 0, 'C');
-                    $pdf->Cell(35, 6, $row2->ID_Sublocation, 1, 0, 'C');
-
+                    $pdf->Cell(25, 6, 'Immunohistokimia', 0, 'C');
                     $pdf->Cell(10, 6, '', 0, 'C');
-
-                    $pdf->Cell(40, 6, 'No.of metastases', 0, 'C');
+                    $pdf->SetFont('Arial', '', 7);
+                    $pdf->Cell(155, 6, $row2->Immunohistokimia, 1, 0, 'L');
+                    $pdf->SetFont('Arial', '', 10);
+                    $pdf->Cell(10, 7, '', 0, 1);
+                    $pdf->Cell(70, 6, 'No.of metastases', 0, 'C');
                     $pdf->Cell(35, 6, $row2->No_Of_Metastases, 1, 0, 'C');
                 }
             }
-
             $query = $this->db->get('treatment_pasien');
             $pdf->Cell(10, 7, '', 0, 1);
             $pdf->Cell(70, 6, 'Treatment at reporting institution', 0, 'C');
@@ -285,6 +288,7 @@ Class Laporan extends CI_Controller {
             $query = $this->db->get('sources_follow_up');
             foreach ($query->result() as $row2) {
                 if ($row2->NIK == $row->NIK) {
+                    $pdf->SetFont('Arial', '', 9);
                     $pdf->Cell(10, 6, '', 0, 1);
                     $pdf->Cell(35, 6, $row2->Tgl_Periksa, 1, 0, 'C');
                     $pdf->Cell(45, 6, $row2->Kode_Rumah_Sakit, 1, 0, 'C');
@@ -297,11 +301,10 @@ Class Laporan extends CI_Controller {
             $pdf->Cell(10, 7, 'Kesimpulan', 0, 1);
             $query = $this->db->get('data_tumor_pasien');
             foreach ($query->result() as $row2) {
+                $pdf->SetFont('Arial', '', 9);
                 $pdf->Cell(190, 12, $row2->Kesimpulan, 1);
                 $pdf->Cell(10, 8, '', 0, 1);
             }
-
-            $pdf->Cell(10, 4, '', 0, 1);
 
             $pdf->SetFont('Arial', '', 10);
             $pdf->Cell(10, 7, '', 0, 1);
@@ -327,9 +330,6 @@ Class Laporan extends CI_Controller {
                     $pdf->Cell(32, 6, 'Date of Verification', 0, 'C');
                     $pdf->Cell(30, 6, $row2->Date_Of_Verification, 1, 0, 'C');
                     $pdf->Cell(10, 6, '', 0, 1);
-
-
-
                     $query = $this->db->get('status');
                     foreach ($query->result() as $row3) {
                         if ($row3->ID_Status == $row2->id_status) {

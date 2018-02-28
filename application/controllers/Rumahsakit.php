@@ -9,8 +9,8 @@ class Rumahsakit extends ci_controller {
         cek_hakakses(array(1));
     }
 
-    public function index() {
-        $data['alldata'] = $this->user_model->get_alldata('rumah_sakit');
+    public function datarumahsakit($limit) {
+        $data['alldata'] = $this->user_model->Get_limit('rumah_sakit', $limit);
         $data['isi'] = 'rumahsakit/rumahsakit';
         $data['title'] = 'Data User';
         $this->load->view('dashboard/dashboard', $data);
@@ -21,7 +21,7 @@ class Rumahsakit extends ci_controller {
         $kode = 'Kode_Rumah_Sakit';
         $nama = 'Nama_Rumah_Sakit';
         $alamat = 'Alamat';
-        $method = 'Rumahsakit';
+        $method = 'Rumahsakit/datarumahsakit/20';
         $isinya = 'rumahsakit/rumahsakit';
         $this->form_validation->set_rules($kode, $kode, 'required');
         $this->form_validation->set_rules($nama, $nama, 'required');
@@ -41,14 +41,20 @@ class Rumahsakit extends ci_controller {
             if ($Cek == NULL) {
                 if ($this->user_model->tambahData($table, $data_simpan)) {
                     $this->session->set_flashdata('pesan_sukses', 'Data Berhasil Disimpan');
-                    redirect($method);
+                    $data['alldata'] = $this->user_model->Cekdata($table, $where, $ID);
+                    $data['isi'] = 'rumahsakit/rumahsakit';
+                    $data['title'] = 'Data User';
+                    $this->load->view('dashboard/dashboard', $data);
                 } else {
                     $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
                     redirect($method);
                 }
             } else {
                 $this->session->set_flashdata('pesan_error', 'Data Sudah ada');
-                redirect(base_url() . $method);
+                $data['alldata'] = $this->user_model->Cekdata($table, $where, $ID);
+                $data['isi'] = 'rumahsakit/rumahsakit';
+                $data['title'] = 'Data User';
+                $this->load->view('dashboard/dashboard', $data);
             }
         } else {
             $data['isi'] = $isinya;
@@ -62,7 +68,7 @@ class Rumahsakit extends ci_controller {
         $Kode = 'Kode_Rumah_Sakit';
         $nama = 'Nama_Rumah_Sakit';
         $alamat = 'Alamat';
-        $method = 'Rumahsakit';
+        $method = 'Rumahsakit/datarumahsakit/20';
         $isinya = 'rumahsakit/ubah_rumahsakit';
         $Date = Date("Y-m-d H:i:s", time() + 60 * 360);
         if ($datarumahsakit = $this->user_model->getdata_bykode($table, $Kode, $ID)) {
@@ -78,7 +84,10 @@ class Rumahsakit extends ci_controller {
                 );
                 if ($this->user_model->ubahdata($table, $Kode, $ID, $datarumahsakit)) {
                     $this->session->set_flashdata('pesan_sukses', 'Data Berhasil DIsimpan');
-                    redirect($method);
+                    $data['alldata'] = $this->user_model->Cekdata($table, $Kode, $ID);
+                    $data['isi'] = 'rumahsakit/rumahsakit';
+                    $data['title'] = 'Data User';
+                    $this->load->view('dashboard/dashboard', $data);
                 } else {
                     $this->session->set_flashdata('pesan_error', 'Data Gagal Disimpan');
                     redirect($method);
@@ -96,7 +105,7 @@ class Rumahsakit extends ci_controller {
 
     function hapus($kode = null) {
         $table = 'rumah_sakit';
-        $method = 'Rumahsakit';
+        $method = 'Rumahsakit/datarumahsakit/20';
         $where = 'Kode_Rumah_Sakit';
         if ($this->user_model->getdata_bykode($table, $where, $kode)) {
             if ($this->user_model->Hapusdata($table, array($where => $kode))) {

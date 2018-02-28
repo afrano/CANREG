@@ -19,6 +19,13 @@ class Pasien extends CI_Controller {
         $this->load->view('dashboard/dashboard', $data);
     }
 
+    public function lokal($provinsi) {
+        $data['data_pasien'] = $this->user_model->get_allPasienlokal($provinsi);
+        $data['isi'] = 'pasien/v_pasien';
+        $data['title'] = 'Data User';
+        $this->load->view('dashboard/dashboard', $data);
+    }
+
     public function addPasien() {
         $data['provinsi'] = $this->user_model->get_all_provinsi();
         $data['isi'] = 'pasien/tambah_Pasien';
@@ -389,6 +396,19 @@ class Pasien extends CI_Controller {
         echo json_encode($arr);
     }
 
+    public function rumahsakit() {
+        $keyword = $this->uri->segment(3);
+        $data = $this->db->from('rumah_sakit')->like('Nama_Rumah_Sakit', $keyword)->get();
+        foreach ($data->result() as $row) {
+            $arr['query'] = $keyword;
+            $arr['suggestions'][] = array(
+                'value' => $row->Nama_Rumah_Sakit,
+                'Kode_Rumah_Sakit' => $row->Kode_Rumah_Sakit
+            );
+        }
+        echo json_encode($arr);
+    }
+
     public function add_ajax_kab($id_prov) {
         $query = $this->db->order_by('nama', 'ASC')->get_where('wilayah_kabupaten', array('provinsi_id' => $id_prov));
         $data = "<option value=''>- Select Kabupaten -</option>";
@@ -407,11 +427,11 @@ class Pasien extends CI_Controller {
         echo $data;
     }
 
-    public function add_ajax_des($id_kec) {
-        $query = $this->db->get_where('wilayah_desa', array('kecamatan_id' => $id_kec));
-        $data = "<option value=''> - Kode Pos - </option>";
+    public function unit($nama_unit) {
+
+        $query = $this->db->query('SELECT unit_id from unit where unit like "' . $nama_unit . '"');
         foreach ($query->result() as $value) {
-            $data .= "<option value='" . $value->id . "'>" . $value->nama . "</option>";
+            $data .= "<option value='" . $value->unit_id . "'>" . $value->unit_id . "</option>";
         }
         echo $data;
     }

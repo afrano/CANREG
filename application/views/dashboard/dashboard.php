@@ -17,10 +17,10 @@
         <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
         <!-- color CSS -->
         <link href="<?php echo base_url(); ?>assets/css/colors/megna.css" id="theme" rel="stylesheet">
-                <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css" />
-     
-        <!--   <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.3.min.js"></script> -->
-              <!-- tabel -->
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css" />
+
+   <!--   <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.3.min.js"></script> -->
+        <!-- tabel -->
         <script src="<?php echo base_url(); ?>assets/Chart/Chart.bundle.js"></script>
 
 
@@ -28,7 +28,7 @@
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-        
+        <link href="<?php echo base_url(); ?>assets/plugins/bower_components/Magnific-Popup-master/dist/magnific-popup.css" rel="stylesheet">
         <!-- Bootstrap Core JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
@@ -53,21 +53,21 @@
 <!--        <script src="<?php echo base_url(); ?>assets/jquery.min.js"></script>-->
         <script type='text/javascript' src='<?php echo base_url(); ?>assets/js/jquery.autocomplete.js'></script>
         <link href='<?php echo base_url(); ?>assets/js/jquery.autocomplete.css' rel='stylesheet' />
-        
+
         <script type='text/javascript'>
             var site = "<?php echo site_url(); ?>";
             $(function () {
                 $('.Topography').autocomplete({
                     // serviceUrl berisi URL ke controller/fungsi yang menangani request kita
                     serviceUrl: site + '/pasien/topography',
-                     // fungsi ini akan dijalankan ketika user memilih salah satu hasil request
+                    // fungsi ini akan dijalankan ketika user memilih salah satu hasil request
                     onSelect: function (suggestion) {
                         $('#nama_kanker').val('' + suggestion.Topography);
                         $('#ID_Topography').val('' + suggestion.ID_Topography);
                     }
                 });
             });
-           
+
             $(function () {
                 $('.Morphology').autocomplete({
                     // serviceUrl berisi URL ke controller/fungsi yang menangani request kita
@@ -78,6 +78,17 @@
                     }
                 });
             });
+
+            $(function () {
+                $('.rumahsakit').autocomplete({
+                    serviceUrl: "<?php echo site_url(); ?>" + '/pasien/rumahsakit',
+                    // fungsi ini akan dijalankan ketika user memilih salah satu hasil request
+                    onSelect: function (suggestion) {
+                        $('#Kode_Rumah_Sakit').val('' + suggestion.Kode_Rumah_Sakit);
+                    }
+                });
+            });
+
         </script>
         <script>
             $(document).ready(function () {
@@ -117,6 +128,12 @@
                     $('#desa1').load(url);
                     return false;
                 })
+
+                $("#unit").change(function () {
+                    var url = "<?php echo site_url('pasien/unit'); ?>/" + $(this).val();
+                    $('#unit_id').load(url);
+                    return false;
+                })
             }
 
             );
@@ -144,14 +161,17 @@
             <!-- Left navbar-header -->
             <div class="navbar-default sidebar" role="navigation" id="main">
                 <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-
                     <?php
-                    // Tampilan Menu Admin
+                    if ($this->session->userdata('foto') == NULL) {
+                        $gambar = 'afrano.png';
+                    } else {
+                        $gambar = $this->session->userdata('foto');
+                    }
                     if ($this->session->userdata('hak_akses') == 1) {
                         ?>
                         <ul class="nav" id="side-menu">
                             <li id="menu1" class="user-pro">
-                                <a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/plugins/images/users/d1.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"><text style="color: black"> <b> <?= $this->session->userdata('nama') ?> </b><span class="fa arrow"></span></span>
+                                <a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/upload/<?= $gambar ?>" alt="user-img" class="img-circle"> <span class="hide-menu"><text style="color: black"> <b> <?= $this->session->userdata('nama') ?> </b><span class="fa arrow"></span></span>
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li><a href="<?php echo base_url(); ?>profile"><i class="ti-user"></i> My Profile</a></li>
@@ -173,7 +193,7 @@
                                 <ul class="nav nav-second-level">
                                     <li><a href="javascript:void(0);" class="waves-effect"><i data-icon="&#xe008;" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> Database Tumor <span class="fa arrow"></span></span></a>
                                         <ul class="nav nav-second-level">
-                                        <li> <a href="<?php echo base_url(); ?>Tumor/Topography">Topography</a> </li>
+                                            <li> <a href="<?php echo base_url(); ?>Tumor/Topography">Topography</a> </li>
                                             <li> <a href="<?php echo base_url(); ?>Tumor/Morphology">Morphology</a> </li>
                                             <li> <a href="<?php echo base_url(); ?>Tumor/BasicDiagnosis">diagnosis Cancer</a> </li>
                                             <li> <a href="<?php echo base_url(); ?>Tumor/Diseasetreatment">disease before treatment</text></a> </li>
@@ -187,7 +207,7 @@
                                             <li> <a href="<?php echo base_url(); ?>Tumor/Hybridization">In Situ Hybridization</a> </li>
                                             <li> <a href="<?php echo base_url(); ?>Tumor/Biopsy">Type of biopsy</a> </li>
                                             <li> <a href="<?php echo base_url(); ?>Tumor/Sublocation">Sublocation of Breast Tumor</a> </li>
-                                        
+
                                         </ul>
                                     </li>
                                     <li><a href="javascript:void(0);" class="waves-effect"><i data-icon="&#xe008;" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> Database Wilayah <span class="fa arrow"></span></span></a>
@@ -198,17 +218,29 @@
                                         </ul>
 
                                     </li>
-                                    <li><a href="<?php echo base_url(); ?>Rumahsakit" class="waves-effect"><i data-icon="&#xe008;" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> DB Rumah Sakit </span></a>
 
+                                    <li><a href="javascript:void(0);" class="waves-effect"><i data-icon="&#xe008;" class="linea-icon linea-basic fa-fw" ></i> <span class="hide-menu"> DB Rumah Sakit  <span class="fa arrow"></span></span></a>
+
+                                        <ul class="nav nav-second-level">
+                                            <li> <a href="<?php echo base_url(); ?>Rumahsakit/datarumahsakit/10">10 Data</a> </li>
+                                            <li> <a href="<?php echo base_url(); ?>Rumahsakit/datarumahsakit/100">100 Data</a> </li>
+                                            <li> <a href="<?php echo base_url(); ?>Rumahsakit/datarumahsakit/500">500 Data</a> </li>
+                                            <li> <a href="<?php echo base_url(); ?>Rumahsakit/datarumahsakit/1000">1000 Data</a> </li>
+                                            <li> <a href="<?php echo base_url(); ?>Rumahsakit/datarumahsakit/1500">1500 Data</a> </li>
+                                            <li> <a href="<?php echo base_url(); ?>Rumahsakit/datarumahsakit/2400">All Data RS</a> </li>
+                                        </ul>
 
                                     </li>
-                                
-                                  </ul>
+
+
+                                </ul>
                             </li>
 
                             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-chart p-r-10"></i> <span class="hide-menu"> Reports <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
                                     <li> <a href="<?php echo base_url(); ?>Laporan/export_excel">Export Data</a></li>
+
+                                    <li> <a href="<?php echo base_url(); ?>Laporan">Grafik Tumor</a></li>
                                 </ul>
                             </li>
 
@@ -228,10 +260,10 @@
                         ?>
                         <ul class="nav" id="side-menu">
                             <li id="menu1" class="user-pro">
-                                <a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/plugins/images/users/d1.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"><text style="color: yellow"> <b> <?= $this->session->userdata('nama') ?> </b><span class="fa arrow"></span></span>
+                                <a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/upload/<?= $gambar ?>" alt="user-img" class="img-circle"> <span class="hide-menu"><text style="color: black"> <b> <?= $this->session->userdata('nama') ?> </b><span class="fa arrow"></span></span>
                                 </a>
                                 <ul class="nav nav-second-level">
-                                    <li><a href="<?= site_url("profile") ?>"><i class="ti-user"></i> My Profile</a></li>
+                                    <li><a href="<?php echo base_url(); ?>profile"><i class="ti-user"></i> My Profile</a></li>
                                     <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>                                    
                                 </ul>
                             </li>
@@ -249,6 +281,7 @@
                             <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-chart p-r-10"></i> <span class="hide-menu"> Reports <span class="fa arrow"></span></span></a>
                                 <ul class="nav nav-second-level">
                                     <li> <a href="<?php echo base_url(); ?>Laporan/export_excel">Export Data</a></li>
+                                    <li> <a href="<?php echo base_url(); ?>Laporan">Grafik Tumor</a></li>
                                 </ul>
                             </li>
 
@@ -258,28 +291,53 @@
                     <?php
                     // Tampilan Menu Tamu
                     if ($this->session->userdata('hak_akses') == 3) {
-                        ?>
-                        <ul class="nav" id="side-menu">
-                            <li id="menu1" class="user-pro">
-                                <a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/plugins/images/users/d1.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"> <text style="color: yellow"> <b> <?= $this->session->userdata('nama') ?> </b><span class="fa arrow"></span></span>
-                                </a>
-                                <ul class="nav nav-second-level">
-                                    <li><a href="<?= site_url("profile") ?>"><i class="ti-user"></i> My Profile</a></li>
-                                    <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>                                    
-                                </ul>
-                            </li>
-                            <li> <a href="<?php echo base_url(); ?>Dashboard" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>
-                            <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu"> Data Pasien <span class="fa arrow"></span></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li> <a href="<?php echo base_url(); ?>Pasien/addPasien">Add Data Pasien</a> </li>
+                        $menu = NULL;
+                        $query = $this->db->get('tb_user');
+                        foreach ($query->result() as $rowuser) {
+                            if ($this->session->userdata('username') == $rowuser->username) {
+                                $menu = $rowuser->nik;
+                                if ($menu == NULL) {
+                                    ?>
 
-                                </ul>
-                            </li>
-                        </ul>
-                    <?php } ?>
                                     <ul class="nav" id="side-menu">
-                    <li class="nav-small-cap">--- Main Menu</li>
-                    <li ><a href="<?php echo base_url(); ?>login/logout" class="waves-effect"><i class="icon-logout fa-fw"></i><text style="color: #cc0000"> <b>  <span class="hide-menu"> Log out</span></b></a></li>
+                                        <li id="menu1" class="user-pro">
+                                            <a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/upload/<?= $gambar ?>" alt="user-img" class="img-circle"> <span class="hide-menu"><text style="color: black"> <b> <?= $this->session->userdata('nama') ?> </b><span class="fa arrow"></span></span>
+                                            </a>
+                                            <ul class="nav nav-second-level">
+                                                <li><a href="<?php echo base_url(); ?>profile"><i class="ti-user"></i> My Profile</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <script>alert('Untuk dapat mengakses lengkapi profil Anda!!')</script>
+
+                                <?php } else {
+                                    ?>
+                                    <ul class="nav" id="side-menu">
+                                        <li id="menu1" class="user-pro">
+                                            <a href="#" class="waves-effect"><img src="<?php echo base_url(); ?>assets/upload/<?= $gambar ?>" alt="user-img" class="img-circle"> <span class="hide-menu"><text style="color: black"> <b> <?= $this->session->userdata('nama') ?> </b><span class="fa arrow"></span></span>
+                                            </a>
+                                            <ul class="nav nav-second-level">
+                                                <li><a href="<?php echo base_url(); ?>profile"><i class="ti-user"></i> My Profile</a></li>
+                                                <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>                                    
+                                            </ul>
+                                        </li>
+                                        <li> <a href="<?php echo base_url(); ?>Dashboard" class="waves-effect"><i class="ti-dashboard p-r-10"></i> <span class="hide-menu">Dashboard</span></a> </li>
+                                        <li> <a href="javascript:void(0);" class="waves-effect"><i class="icon-people p-r-10"></i> <span class="hide-menu"> Data Pasien <span class="fa arrow"></span></span></a>
+                                            <ul class="nav nav-second-level">
+                                                <li> <a href="<?php echo base_url(); ?>Pasien/addPasien">Add Data Pasien</a> </li>
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    <?php
+                                }
+                            }
+                        }
+                        ?>
+                    <?php } ?>
+                    <ul class="nav" id="side-menu">
+                        <li class="nav-small-cap">--- Main Menu</li>
+                        <li ><a href="<?php echo base_url(); ?>login/logout" class="waves-effect"><i class="icon-logout fa-fw"></i><text style="color: #a74bb6;"> <b>  <span class="hide-menu"> Log out</span></b></a></li>
                     </ul>
                 </div>
             </div>
@@ -295,9 +353,11 @@
                 <div class="container-fluid" >
                     <div class="row bg-title" >
                         <div  class="col-lg-12 col-md-4 col-sm-4 col-xs-12">
-                          <center>  <h4 class="page-title">BADAN REGISTRASI KANKER YAPI</h4> </center>
+                            <center>  <h4 class="page-title">BADAN REGISTRASI KANKER YAPI</h4> </center>
                         </div>
                     </div>
+
+
 
                     <?php
                     if (isset($isi)) {
@@ -305,14 +365,13 @@
                     }
                     ?>
 
-
                     <!-- /.row -->
                     <!-- .right-sidebar -->
 
                     <!-- /.right-sidebar -->
                 </div>
                 <!-- /.container-fluid -->
-                <footer  class="footer text-center"><text style="color: #ff6600"><b> 2018 &copy;  Web</b><text style="color: #33cc00"><b>ane Indonesia</b> </text> </footer>
+                <footer  class="footer text-center"><text style="color: #d05d00;"><b> 2018 &copy;  Web</b><text style="color: #73ab01;"><b>ane Indonesia</b> </text> </footer>
             </div>
             <!-- /#page-wrapper -->
         </div>
@@ -324,7 +383,7 @@
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/datatables/dataTables.bootstrap.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/tiny-editable/mindmup-editabletable.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/tiny-editable/numeric-input-example.js"></script>
-        <script src="../assets/js/addtable.js"></script>
+        <script src="<?php echo base_url(); ?>assets/js/addtable.js"></script>
 
 
         <!-- Menu Plugin JavaScript -->
@@ -348,8 +407,6 @@
 <!--        <script src="<?php echo base_url(); ?>assets/js/custom.min.js"></script>-->
         <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/dashboard1.js"></script>
-        <script src="../../assets/js/jasny-bootstrap.js"></script>
-        <script src="../../assets/js/validator.js"></script>
         <!--Style Switcher -->
         <script src="<?php echo base_url(); ?>assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
     </body>

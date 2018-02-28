@@ -1,12 +1,11 @@
 <div class="container-fluid">
     <div class="row">
         <form action="<?php echo base_url(); ?>Pasien/tambah_pasien" method="POST" >
-            <div class="col-sm-12 white-box" > 
+            <div class="col-sm-12 white-box"> 
                 <center>
                     <h5> <strong><text style="color: #999999">DATA PASIEN</text></strong></h5>
                     <hr align="right" width="95%" color="cccccc">
                 </center>
-
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="white-box">
@@ -705,7 +704,7 @@
                             <div class="col-md-1" id="perhitungan2" style="display:none;" >
                                 <select id="pilihan3" name="post2" onchange="function3()" class="custom-select col-12">
                                     <option value="" selected="">Pilih
-                                    <option value="YES">HER2 - post2
+                                    <option value="YES">HER2 - 
                                     <option value="NO">HER2 +
                                 </select>
                             </div>
@@ -889,8 +888,8 @@
                 <div class="row">
                     <div class="col-lg-11">
                         <div class="example">
-                            <h5 class="box-title m-t-30">Jenis Molekul</h5>
-                            <input type="text" name="jenis_molekul"  required="true"  class="form-control nama" placeholder="Jenis Molekul">
+                            <h5 class="box-title m-t-30">Pemeriksaan Molekular</h5>
+                            <input type="text" name="jenis_molekul"  required="true"  class="form-control nama" placeholder="Pemeriksaan Molekular">
                         </div>
                     </div>
                 </div>
@@ -916,7 +915,7 @@
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
-                                                <button type="button" onclick="myCreateFunction()" class="btn btn-outline btn-primary btn-sm"><i class="icon wb-plus" aria-hidden="true"></i>Tambahkan Tabel
+                                                <button type="button" onclick="myCreateFunction()" class="btn btn-outline btn-primary btn-sm"><i class="icon wb-plus glyphicon glyphicon-plus-sign" aria-hidden="true"></i>&nbspTambahkan Tabel
                                                 </button><br>
                                             </div>
                                         </div>
@@ -924,29 +923,48 @@
 
                                         </div>
                                         <tbody>
+                                            <tr>
+                                                <td><input class='form-control' required='true'  name='Tgl_Periksa[]' type='date' size='7'/></td>
+                                                <td><input type="text" id="Kode_Rumah_Sakit"  name="Kode_Rumah_Sakit[]" readonly="" size='9' required="true"  class="autocomplete form-control" ></td> 
+                                                <td><input type="search" id="Kode_Rumah_Sakit" placeholder="Nama RS" name="nama_rumahsakit[]" class="rumahsakit form-control" size='9' ></td>
+                                                <td><select name="unit_id" required="" class="form-control" id="unit_id">
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select name="Unit[]" required="" class="custom-select " id="unit">
+                                                        <option value="">-- Pilih -- </option>
+                                                        <?php
+                                                        $query = $this->db->query('SELECT * from unit order by unit_id asc ');
+                                                        foreach ($query->result() as $rowunit) {
+                                                            echo "<option value='$rowunit->unit'>$rowunit->unit_id &nbsp;$rowunit->unit</option>";
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </td>
+                                            </tr>
                                         </tbody>
                                         </table>
-                                        <script>
-                                            function myCreateFunction() {
-                                                var table = document.getElementById("datatabel");
-                                                var row = table.insertRow(1);
-                                                var cell1 = row.insertCell(0);
-                                                var cell2 = row.insertCell(1);
-                                                var cell3 = row.insertCell(2);
-                                                var cell4 = row.insertCell(3);
-                                                var cell5 = row.insertCell(4);
-                                                var cell6 = row.insertCell(5);
-                                                cell1.innerHTML = "<input class='form-control' required='true'  name='Tgl_Periksa[]' type='date' size='9'/>";
-                                                cell2.innerHTML = "<input class='form-control' required='true' name='Kode_Rumah_Sakit[]' placeholder='Kode Rumah Sakit' type='text' size='9'/>";
-                                                cell3.innerHTML = "<input class='form-control' required='true' name='nama_rumahsakit[]' placeholder='Nama Rumah Sakit' type='text' size='9'/>";
-                                                cell4.innerHTML = "<input class='form-control' required='true' name='Unit_ID[]' placeholder='Unit ID' type='text' size='9'/>";
-                                                cell5.innerHTML = "<input class='form-control' required='true' name='Unit[]' placeholder='Unit ' type='text' size='9'/>";
-                                                cell6.innerHTML = "<th><button type='button' class= 'btn btn-sm btn-icon btn-pure btn-outline delete-row-btn' title='Delete' onclick='deleteRow(this)'><i class='ti-close' aria-hidden='true'></i></button></th>";
-                                            }
-                                        </script> 
                                     </div>
                                 </div>
                         </div>
+                        <script>
+                            function myCreateFunction() {
+                                var table = document.getElementById("datatabel");
+                                var row = table.insertRow(2);
+                                var cell1 = row.insertCell(0);
+                                var cell2 = row.insertCell(1);
+                                var cell3 = row.insertCell(2);
+                                var cell4 = row.insertCell(3);
+                                var cell5 = row.insertCell(4);
+                                var cell6 = row.insertCell(5);
+                                cell1.innerHTML = "<input class='form-control' required='true'  name='Tgl_Periksa[]' type='date' size='7'/>";
+                                cell2.innerHTML = "<input type='search' id='Kode_Rumah_Sakit' placeholder='Nama RS' name='nama_rumahsakit[]' class='rumahsakit form-control' size='9' >";
+                                cell3.innerHTML = "";
+                                cell4.innerHTML = "";
+                                cell5.innerHTML = "";
+                                cell6.innerHTML = "";
+                            }</script>
+
 
                         <div class="row">
                             <div class="col-lg-11">

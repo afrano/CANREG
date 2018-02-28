@@ -39,7 +39,7 @@
                 echo "<div class='alert alert-success'>" . $this->session->userdata('pesan_sukses') . "</div>";
             }
             ?>
-            <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="7">
+            <table id="demo-foo-addrow" class="table table-bordered table-hover toggle-circle" data-page-size="20">
                 <thead>
                     <tr>
                         <th data-hide="phone, tablet">NO</th>
